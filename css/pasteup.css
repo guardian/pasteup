@@ -6,5 +6,8 @@
  /* CSS reset */
  @import "reset.css";
 
+/* general grid */
+@import "grid.css";
+
  /* base CSS */
  @import "forms.css";
