@@ -1,7 +1,7 @@
 Introduction
 ============
 
-Bootstrap is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products.
+Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products.
 
 Swim-laning CSS
 ---------------
