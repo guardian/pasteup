@@ -5,88 +5,63 @@
 	line-height: 1;
 	margin-bottom: 20px;
 	width: 100%;
+}
 
-	ul {
-		background: @lightGrey;
-		list-style: none;
-		margin: 0;
-		padding: 0;
+.topbar ul {
+	background: @lightGrey;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
-		&.tools { float: left; }
-		&.quick-nav { float: right; }
+.topbar-menu li {
+	border-left: 1px solid @grey;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
-		li {
-			border-left: 1px solid @grey;
-			float: left;
-			list-style: none;
-			margin: 0;
-			padding: 0;
+.topbar-menu li:first-child {
+	border-left: 0 none;
+}
 
-			&:first-child {
-				border-left: 0 none;
-			}
+.topbar-menu a,
+.topbar-menu h3 {
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	margin: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-decoration: none;
+}
 
-			a, h3 {
-				display: block;
-				font-size: 12px;
-				font-weight: normal;
-				line-height: 30px;
-				margin: 0;
-				padding-left: 10px;
-				padding-right: 10px;
-				text-decoration: none;
-			}
-		}
-	}
+.dropdown-holder {
+	position: relative;
+}
+.dropdown-holder:hover {
+	background: @hoverGrey;
+}
+.dropdown-holder:hover .dropdown {
+	display: block;
+}
 
-	.dropdown-holder {
-		position: relative;
+.dropdown {
+	background: @hoverGrey;
+	position: absolute;
+	display: none;
+}
 
-		&:hover {
-			background: @hoverGrey;
+.dropdown li {
+	border-left: 0 none;
+	border-top: 1px solid @grey;
+	clear: both;
+	line-height: 1;
+}
 
-			.dropdown {
-				background: @hoverGrey;
-				display: block;
-			}
-		}
-
-		.dropdown {
-			position: absolute;
-			display: none;
-
-			li {
-				border-left: 0 none;
-				border-top: 1px solid @grey;
-				clear: both;
-
-				&:first-child {
-					border-top: 0 none;
-				}
-
-				a {
-					border-top: 0;
-					width: 160px;
-				}
-			}
-		}
-	}
-
-	.edition-switch {
-		.dropdown {
-			right: 0;
-
-			li {
-				a {
-					width: auto;
-				}
-			}
-		}
-	}
-
-	.quick-nav {
-		.dropdown {
-			right: 0;
-		}
-	}
+.dropdown li:first-child {
+	border-top: 0 none;
 }
