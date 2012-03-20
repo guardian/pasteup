@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Pasteup Module {{ module.name }} | The Guardian</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products" />
+        <meta name="author" content="The Guardian" />
+    
+        <link rel="stylesheet" href="/build/pasteup.css" />
+        <style>
+            .pasteup-wrapper {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .pasteup-mod {
+            	padding: 30px 0;
+            	clear: both;
+            }
+            .pasteup-title {
+            	font-size: 16px;
+            	font-weight: normal;
+            	margin-bottom: 30px;
+            	padding-bottom: 2px;
+            	border-bottom: 1px solid #666;
+            }
+            .pasteup-textarea {
+            	width: 100%;
+            	height: 8em;
+            	margin-top: 20px;
+            	padding: 0.5em;
+            	border: 1px solid #999;
+            	font-family: monospace;
+            	box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+    <body>
+    	<div class="pasteup-wrapper">
+    		<div class="pasteup-mod">
+				<p class="pasteup-title">{{ module.name }}</p>
+				<div class="pasteup-mod-code">
+					{{ module.code }}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
