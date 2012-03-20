@@ -1,0 +1,8 @@
+# Ignore python leftovers
+ve
+pip-log.txt
+*.pyc
+
+# Ignore my less compile command
+lessc
+node_modules
