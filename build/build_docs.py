@@ -63,6 +63,5 @@ def build_module_pages():
 
 
 if __name__ == '__main__': 
-    # TODO: Add command line option to build individual files as well.
     build_module_library()
-    #build_module_pages()
+    build_module_pages()
