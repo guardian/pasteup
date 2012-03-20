@@ -7,6 +7,7 @@ import sys
 
 try:
     from jinja2 import Environment, FileSystemLoader
+    from jinja2.exceptions import TemplateNotFound
 except ImportError:
     print "Cannot find jinja2 templating. Install with pip install jinja2."
     sys.exit()
@@ -22,8 +23,9 @@ def build_module_library():
     try:
         env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
         base_template = env.get_template('library.html')
-    except:
-        print "Cannot find template. Are you running script from /build?"
+    except TemplateNotFound:
+        print "Cannot find library.html template. Are you running script from /build?"
+        sys.exit()
 
     modules = []
     for file in os.listdir(MODULE_DIR):
@@ -46,7 +48,7 @@ def build_module_pages():
         env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
         module_template = env.get_template('module.html')
     except:
-        print "Cannot find template. Are you running script from /build?"
+        print "Cannot find module.html template. Are you running script from /build?"
 
     for file in os.listdir(MODULE_DIR):
         f = open(MODULE_DIR + file, 'r')
