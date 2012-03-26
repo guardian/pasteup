@@ -1,20 +1,4 @@
 .h{position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
-.col-12{width:940px;}
-.col-11{width:860px;}
-.col-10{width:780px;}
-.col-9{width:700px;}
-.col-8{width:620px;}
-.col-7{width:540px;}
-.col-6{width:460px;}
-.col-5{width:380px;}
-.col-4{width:300px;}
-.col-3{width:220px;}
-.col-2{width:140px;}
-.col-1{width:60px;}
-.row{clear:both;margin-left:-20px;}
-.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11{float:left;margin-left:20px;background:#546;}
-.col-12{margin-left:0;}
-.start-col{margin-left:0;}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
 audio:not([controls]){display:none;height:0;}
