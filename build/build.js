@@ -2,16 +2,27 @@
 
 var fs       = require('fs'),
     child_pr = require('child_process'),
-	mustache = require('mustache'),
+    mustache = require('mustache'),
     less     = require('less'),
     r        = require('requirejs');
 
-var TEMPLATE_DIR 	 = 'templates',
-	MODULE_DIR 		 = '../content/module/',
-	MODULE_LIB 		 = '../docs/modules.html',
-	MODULE_PAGES_DIR = '../docs/modules/';
+var TEMPLATE_DIR     = 'templates',
+    MODULE_DIR       = '../content/module/',
+    MODULE_LIB       = '../docs/modules.html',
+    MODULE_PAGES_DIR = '../docs/modules/';
 
-var pages;
+console.log('\nBuilding pasteup:');
+
+send_message('Compiling LESS to CSS');
+compile_css();
+send_message('Compiling JS');
+compile_js();
+send_message('Building module library');
+build_module_library();
+send_message('Building module pages');
+build_module_pages();
+console.log('======================');
+console.log('Pasteup build complete');
 
 function compile_css() {
     child_pr.exec("./compile_less", function(error, stdout, stderr) {
@@ -29,19 +40,19 @@ function compile_js() {
 
 function build_module_library() {
 
-	var modules = [];
-	fs.readdirSync(__dirname + '/' + MODULE_DIR).forEach(function(name) {
-		var f = fs.readFileSync(__dirname  + '/'  + MODULE_DIR + '/' + name, 'utf-8');
-		modules.push({
-			'name': name,
-			'code': f
-		});
-	});
+    var modules = [];
+    fs.readdirSync(__dirname + '/' + MODULE_DIR).forEach(function(name) {
+        var f = fs.readFileSync(__dirname  + '/'  + MODULE_DIR + '/' + name, 'utf-8');
+        modules.push({
+            'name': name,
+            'code': f
+        });
+    });
 
-	// Get template file, and render modules into template.
-	var template = fs.readFileSync(__dirname + '/' + TEMPLATE_DIR + '/library.html');
-	var output = mustache.to_html(template.toString(), {'modules': modules});
-	fs.writeFileSync(__dirname + '/' + MODULE_LIB, output, 'utf-8');
+    // Get template file, and render modules into template.
+    var template = fs.readFileSync(__dirname + '/' + TEMPLATE_DIR + '/library.html');
+    var output = mustache.to_html(template.toString(), {'modules': modules});
+    fs.writeFileSync(__dirname + '/' + MODULE_LIB, output, 'utf-8');
 }
 
 function build_module_pages() {
@@ -56,7 +67,6 @@ function build_module_pages() {
     });
 }
 
-//compile_css();
-//compile_js();
-build_module_library();
-build_module_pages();
+function send_message(message) {
+    console.log(' * ' + message);
+}
