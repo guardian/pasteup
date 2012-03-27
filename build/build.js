@@ -11,34 +11,62 @@ var TEMPLATE_DIR     = 'templates',
     MODULE_LIB       = '../docs/modules.html',
     MODULE_PAGES_DIR = '../docs/modules/';
 
-console.log('\nBuilding pasteup:');
+/* Check the build number and confirm it's correct. */
+process.stdout.write('\nAbout to build pasteup. Version: ' + getVersionNumber());
+process.stdout.write('\nIs this the correct build number? (y/n)');
+var stdin = process.openStdin();
+stdin.setEncoding('utf8');
+stdin.once('data', function(val) {
+    if (val.trim() === 'y') {
+        doBuild();
+    } else {
+        process.stdout.write("\nUpdate the build number in /version\n\n");
+    }
+    process.exit();
+}).resume();
 
-send_message('Compiling LESS to CSS');
-compile_css();
-send_message('Compiling JS');
-compile_js();
-send_message('Building module library');
-build_module_library();
-send_message('Building module pages');
-build_module_pages();
-console.log('======================');
-console.log('Pasteup build complete');
 
-function compile_css() {
+function doBuild() {
+    sendMessage('Compiling LESS to CSS');
+    compileCss();
+    sendMessage('Compiling JS');
+    compileJs();
+    sendMessage('Building module library');
+    buildModuleLibrary();
+    sendMessage('Building module pages');
+    buildModulePages();
+    process.stdout.write('\n======================');
+    process.stdout.write('\nPasteup build complete\n\n');
+}
+
+function compileCss() {
     child_pr.exec("./compile_less", function(error, stdout, stderr) {
-        console.log(stdout);
+        process.stdout.write(stdout);
     });
 }
 
-function compile_js() {
+function compileJs() {
     child_pr.exec("./compile_js", function(error, stdout, stderr) {
         if (error !== null) {
-            console.error(error);
+            process.stdout.error(error);
         }
     });
 }
 
-function build_module_library() {
+/*
+Returns the most recent version number in /version
+*/
+function getVersionNumber() {
+    var f = fs.readFileSync(__dirname  + '/../version', 'utf-8');
+    var data = JSON.parse(f.toString());
+    return data['versions'].pop();
+}
+
+/*
+Get all the modules in /content/modules,
+and add them all to the module library doc.
+*/
+function buildModuleLibrary() {
 
     var modules = [];
     fs.readdirSync(__dirname + '/' + MODULE_DIR).forEach(function(name) {
@@ -55,7 +83,11 @@ function build_module_library() {
     fs.writeFileSync(__dirname + '/' + MODULE_LIB, output, 'utf-8');
 }
 
-function build_module_pages() {
+/*
+Get all the modules in /content/modules,
+and create a page for each on in doc/modules.
+*/
+function buildModulePages() {
     // Get module template.
     var template = fs.readFileSync(__dirname + '/' + TEMPLATE_DIR + '/module.html');
 
@@ -67,6 +99,6 @@ function build_module_pages() {
     });
 }
 
-function send_message(message) {
-    console.log(' * ' + message);
+function sendMessage(message) {
+    process.stdout.write('\n * ' + message);
 }
