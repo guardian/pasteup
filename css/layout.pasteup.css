@@ -72,3 +72,8 @@
 .start-col {
   margin-left: 0;
 }
+/*
+.row [class*="col-"]:first-child {
+	margin-left: 0;
+}
+*/

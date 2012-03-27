@@ -1,0 +1,8 @@
+node node_modules/less/bin/lessc ../less/pasteup.less ../css/pasteup.css
+node node_modules/less/bin/lessc ../less/pasteup.less ../css/pasteup.min.css --compress
+
+node node_modules/less/bin/lessc ../less/layout.pasteup.less ../css/layout.pasteup.css
+node node_modules/less/bin/lessc ../less/layout.pasteup.less ../css/layout.pasteup.min.css --compress
+
+node node_modules/less/bin/lessc ../less/core.pasteup.less ../css/core.pasteup.css
+node node_modules/less/bin/lessc ../less/core.pasteup.less ../css/core.pasteup.min.css --compress

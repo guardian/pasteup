@@ -1,0 +1,1 @@
+node node_modules/requirejs/bin/r.js -o name=main out=../js/main.min.js baseUrl=../js
