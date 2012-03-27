@@ -8,7 +8,7 @@ Pasteup is where design meets development. It is where the Guardian's design lan
 Swim-laning CSS
 ---------------
 
-Bootstrap gives us an opportunity to extract the common patterns from across the Guardian's web apps into a central shared repository. Over time it give us a number of benefits:
+Pasteup gives us an opportunity to extract the common patterns from across the Guardian's web apps into a central shared repository. Over time it give us a number of benefits:
 
  - Encourages re-use - everyone knows where to get code that implements the core Guardian designs. These styles don't get forked and inconsistent (unless that's desirable).
  - Decoupled from app code - The Guardian design language stays isolated and can evolve separately to the applications it sits on top of; although they may incorporate it in their build/deploy processes.
