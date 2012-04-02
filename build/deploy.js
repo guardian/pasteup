@@ -20,7 +20,7 @@ var s3_sync_cmd = 's3cmd sync\
                      --acl-public\
                      --guess-mime-type\
                      --add-header "Content-Encoding: gzip"\
-                     --add-header "Expires: Thu, 15 Apr 2022 20:00:00 GMT"\
+                     --add-header "Expires: {{expiry_date}}"\
                       {{directory}}/ s3://{{s3bucket}}/';
 
 /* Check the build number we're about to deploy */
@@ -44,7 +44,7 @@ function doDeploy() {
         // After files are gzipped...
         child_pr.exec(
             // Send tmp_dir to s3.
-            mustache.to_html(s3_sync_cmd, {'directory': tmp_dir, 's3bucket': s3bucket}),
+            mustache.to_html(s3_sync_cmd, {'directory': tmp_dir, 's3bucket': s3bucket, 'expiry_date': getExpiryDate()}),
             function(error, stdout, stderr) {
                 if (error !== null) {
                     if (stdout) {
@@ -124,4 +124,10 @@ function getVersionNumber() {
     var f = fs.readFileSync(__dirname  + '/../version', 'utf-8');
     var data = JSON.parse(f.toString());
     return data['versions'].pop();
+}
+
+function getExpiryDate() {
+    var d = new Date();
+    d.setYear(d.getFullYear() + 10);
+    return d.toGMTString();
 }
