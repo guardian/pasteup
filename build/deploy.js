@@ -33,6 +33,7 @@ stdin.once('data', function(val) {
         doDeploy();
     } else {
         process.stdout.write("\nUpdate the version number in /version\n\n");
+        process.exit();
     }
 }).resume();
 
@@ -56,6 +57,10 @@ function doDeploy() {
                 }
                 if (stderr !== null) {
                     process.stderr.write(stderr);
+                    if (stderr.indexOf('s3cmd') > -1) {
+                        process.stderr.write('ERROR: Have you installed and configured s3cmd?\n');
+                        process.stderr.write('http://s3tools.org/s3cmd\n\n');
+                    }
                 }
                 // Remove the tmp dir. TODO: Deal with output?
                 child_pr.exec('rm -rf ' + tmp_dir, function() {});
