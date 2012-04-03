@@ -1,0 +1,30 @@
+{
+	"ruleset": [
+		"box-model",
+		"display-property-grouping",
+		"duplicate-properties",
+		"empty-rules",
+		"known-properties",
+		"adjoining-classes",
+		"box-sizing",
+		"compatible-vendor-prefixes",
+		"gradients",
+		"text-indent",
+		"vendor-prefix",
+		"fallback-colors",
+		"font-faces",
+		"import",
+		"regex-selectors",
+		"universal-selector",
+		"unqualified-attributes",
+		"zero-units",
+		"overqualified-elements",
+		"shorthand",
+		"duplicate-background-images",
+		"floats",
+		"font-sizes",
+		"ids",
+		"important",
+		"outline-none"
+	]
+}

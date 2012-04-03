@@ -7,10 +7,10 @@ var fs        = require('fs'),
     path      = require('path');
 
 var build = {
-	TEMPLATE_DIR: 'templates',
-    MODULE_DIR: '../content/module/',
-    MODULE_LIB: '../docs/modules.html',
-    MODULE_PAGES_DIR: '../docs/modules/',
+	TEMPLATE_DIR: '../templates',
+    MODULE_DIR: '../../content/module',
+    MODULE_LIB: '../modules.html',
+    MODULE_PAGES_DIR: '../modules/',
 
     go: function() {
     	process.stdout.write('\nBuilding pasteup\n');
@@ -25,7 +25,9 @@ var build = {
     },
 
     compileAssets: function (callback) {
-    	async.parallel([ build.compileJS, build.compileCSS ]);
+    	async.parallel([ build.compileJS, build.compileCSS ], function() {
+    		callback();
+    	});
 	},
 
 	/*
@@ -33,7 +35,7 @@ var build = {
 	a bit odd as we have to loop through the LESS files to do it
 	TODO: see if there is a way to build in this compiler similar r.js
 	*/
-	compileCSS: function() {
+	compileCSS: function(callback) {
 		process.stdout.write('\n * Compiling and optimising LESS to CSS');
 		// get the less files
 		var less_dir = '../../less';
@@ -42,9 +44,6 @@ var build = {
 			var filename = less_dir + '/' + name,
 				out_filename = '../static/css/' + name.replace('.less', '.css'),
 				out_filename_compressed = out_filename.replace('.css', '.min.css');
-
-
-			process.stdout.write('\n * Compiling ' + name);
 
 			// read the file's content
 			fs.readFile(filename, 'utf-8', function(e, data) {
@@ -64,12 +63,13 @@ var build = {
 				});
 			});
 		});
+		callback();
 	},
 
 	/*
 	Use require JS to compile and optimise JS
 	*/
-	compileJS: function() {
+	compileJS: function(callback) {
     	process.stdout.write('\n * Compiling and optimising JS');
 		var config = {
 		    baseUrl: '../../js',
@@ -80,6 +80,7 @@ var build = {
 		requirejs.optimize(config, function(buildResponse) {
 			var contents = fs.readFileSync(config.out, 'utf8');
 		});
+		callback();
     },
 
 	/*
@@ -90,7 +91,6 @@ var build = {
 	    process.stdout.write('\n * Building module library');
 	    var modules = [];
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	        console.log(__dirname  + '/'  + build.MODULE_DIR + '/' + name);
 	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf-8');
 	        modules.push({
 	            'name': name,
@@ -119,8 +119,40 @@ var build = {
 	        var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
 	        fs.writeFileSync(__dirname + '/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf-8');
 	    });
-	}
+	},
+
+	lintJavaScript: function () {
+        var config_json = njson.loadSync('jshint_config.json'); // Using njson because it strips comments from JSON file.
+        wrench.readdirSyncRecursive('../js').forEach(function(name) {
+            if (name.indexOf('lib/') !== 0 &&
+                name.indexOf('.min.js') === -1 &&
+                name.indexOf('.js') !== -1) {
+                var f = fs.readFileSync('../js/' + name, 'utf-8');
+                var result = jshint(f, config_json);
+                if (result === false) {
+                    console.log('JavaScript has failed our JSHint rules. Please fix errors.\n');
+                    console.log(jshint.errors);
+                    process.exit();
+                }
+            }
+        })
+    },
+
+    lintCss: function() {
+        var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
+        wrench.readdirSyncRecursive('../css').forEach(function(name) {
+            var f = fs.readFileSync('../css/' + name, 'utf-8');
+            var result = csslint.verify(f, config_json.ruleset);
+            console.log(result);
+        });
+    }
 
 }
 
 module.exports = build;
+
+if (!module.parent) {
+	//build.lintJavaScript();
+	build.go();
+	//build.lintCss();
+}
