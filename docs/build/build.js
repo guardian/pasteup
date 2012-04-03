@@ -1,9 +1,13 @@
 var fs        = require('fs'),
     child_pr  = require('child_process'),
     async     = require('async'),
-    mustache  = require('mustache')
+    mustache  = require('mustache'),
+    wrench	  = require('wrench'),
     requirejs = require('requirejs'),
     less      = require('less'),
+    jshint    = require('jshint').JSHINT,
+    csslint   = require('csslint').CSSLint,
+    njson	  = require('norris-json').make(),
     path      = require('path');
 
 var build = {
@@ -123,11 +127,11 @@ var build = {
 
 	lintJavaScript: function () {
         var config_json = njson.loadSync('jshint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../js').forEach(function(name) {
+        wrench.readdirSyncRecursive('../../js').forEach(function(name) {
             if (name.indexOf('lib/') !== 0 &&
                 name.indexOf('.min.js') === -1 &&
                 name.indexOf('.js') !== -1) {
-                var f = fs.readFileSync('../js/' + name, 'utf-8');
+                var f = fs.readFileSync('../../js/' + name, 'utf-8');
                 var result = jshint(f, config_json);
                 if (result === false) {
                     console.log('JavaScript has failed our JSHint rules. Please fix errors.\n');
@@ -140,8 +144,8 @@ var build = {
 
     lintCss: function() {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../css').forEach(function(name) {
-            var f = fs.readFileSync('../css/' + name, 'utf-8');
+        wrench.readdirSyncRecursive('../static/css').forEach(function(name) {
+            var f = fs.readFileSync('../static/css/' + name, 'utf-8');
             var result = csslint.verify(f, config_json.ruleset);
             console.log(result);
         });
@@ -153,6 +157,6 @@ module.exports = build;
 
 if (!module.parent) {
 	//build.lintJavaScript();
-	build.go();
-	//build.lintCss();
+	//build.go();
+	build.lintCss();
 }
