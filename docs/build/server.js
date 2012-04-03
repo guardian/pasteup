@@ -14,9 +14,9 @@ app.configure(function() {
 	// thought we should only serve up JS and CSS for now
 	// this will promote linking to the built files and not hashin in a hack to link to the less files
 	// but perhaps this should be allowed
-	app.use('/css', express.static(__dirname + '/../css'));
-	app.use('/js', express.static(__dirname + '/../js'));
-	app.use('/docs', express.static(__dirname + '/../docs'));
+	app.use('/css', express.static(__dirname + '/../static/css'));
+	app.use('/js', express.static(__dirname + '/../static/js'));
+	app.use('/docs', express.static(__dirname + '/..'));
 });
 
 // Routing
@@ -27,7 +27,7 @@ app.get('/', function(req, res, next) {
 });
 
 // watch and compile changes to LESS / JS
-watch.add('../less', true).add('../js', true).onChange(function(file, prev, curr, action) {
+watch.add('../../less', true).add('../../js', true).onChange(function(file, prev, curr, action) {
     console.log('\n * ' + file + ' has been changed. Recompiling.\n');
     build.go();
 });

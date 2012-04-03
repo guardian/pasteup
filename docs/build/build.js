@@ -1,7 +1,10 @@
-var fs       = require('fs'),
-    child_pr = require('child_process'),
-    async    = require('async'),
-    mustache = require('mustache');
+var fs        = require('fs'),
+    child_pr  = require('child_process'),
+    async     = require('async'),
+    mustache  = require('mustache')
+    requirejs = require('requirejs'),
+    less      = require('less'),
+    path      = require('path');
 
 var build = {
 	TEMPLATE_DIR: 'templates',
@@ -18,37 +21,66 @@ var build = {
 		    build.buildModulePagesSync();
 		    process.stdout.write('\n======================');
 		    process.stdout.write('\nPasteup build complete\n\n');
-		    // process.exit();
 		});
     },
 
     compileAssets: function (callback) {
-	    async.parallel([
-	        function(callback) {
-	            process.stdout.write('\n * Compiling LESS to CSS');
-	            child_pr.exec("./compile_less", function(error, stdout, stderr) {
-	                if (error !== null) {
-	                    process.stdout.write(error);
-	                    process.exit();
-	                }
-	                callback();
-	            });
-	        },
-	        function(callback) {
-	            process.stdout.write('\n * Compiling JS');
-	            child_pr.exec("./compile_js", function(error, stdout, stderr) {
-	                if (error !== null) {
-	                    process.stdout.write(error);
-	                    process.exit();
-	                }
-	                callback();
-	            });
-	        }
-	    ],
-	    function(err, results) {
-	        callback();
-	    })
+    	async.parallel([ build.compileJS, build.compileCSS ]);
 	},
+
+	/*
+	LESS compression
+	a bit odd as we have to loop through the LESS files to do it
+	TODO: see if there is a way to build in this compiler similar r.js
+	*/
+	compileCSS: function() {
+		process.stdout.write('\n * Compiling and optimising LESS to CSS');
+		// get the less files
+		var less_dir = '../../less';
+		var less_files = fs.readdirSync(less_dir).filter(function(name) { return /\.less$/.test(name); });
+		less_files.forEach(function(name) {
+			var filename = less_dir + '/' + name,
+				out_filename = '../static/css/' + name.replace('.less', '.css'),
+				out_filename_compressed = out_filename.replace('.css', '.min.css');
+
+
+			process.stdout.write('\n * Compiling ' + name);
+
+			// read the file's content
+			fs.readFile(filename, 'utf-8', function(e, data) {
+				// now parse the content as a string through less
+				new(less.Parser)({
+					paths: [path.dirname(filename)],
+					filename: filename
+				}).parse(data, function(err, tree) {
+					var css = tree.toCSS(),
+						css_compressed = tree.toCSS({ compress: true }),
+						fd = fs.openSync(out_filename, 'w'),
+						fd_compressed = fs.openSync(out_filename_compressed, 'w');
+
+					// write out both compressed and normal CSS
+					fs.writeSync(fd, css, 0, 'utf8');
+					fs.writeSync(fd_compressed, css_compressed, 0, 'utf8');
+				});
+			});
+		});
+	},
+
+	/*
+	Use require JS to compile and optimise JS
+	*/
+	compileJS: function() {
+    	process.stdout.write('\n * Compiling and optimising JS');
+		var config = {
+		    baseUrl: '../../js',
+		    name: 'main',
+		    out: '../static/js/main.min.js'
+		};
+
+		requirejs.optimize(config, function(buildResponse) {
+			var contents = fs.readFileSync(config.out, 'utf8');
+		});
+    },
 
 	/*
 	Get all the modules in /content/modules,
