@@ -25,14 +25,14 @@ var s3_sync_cmd = 's3cmd sync\
 
 /* Check the build number we're about to deploy */
 process.stdout.write('\nYou are deploying version: ' + getVersionNumber());
-process.stdout.write('\nIs this the correct version number? (y/n)');
+process.stdout.write('\nIs this the correct version number? (y/n)\n');
 var stdin = process.openStdin();
 stdin.setEncoding('utf8');
 stdin.once('data', function(val) {
     if (val.trim() === 'y') {
         doDeploy();
     } else {
-        process.stdout.write("\nUpdate the version number in /version\n\n");
+        process.stdout.write("\nSo update the version number in ../version\n\n");
         process.exit();
     }
 }).resume();
@@ -63,8 +63,9 @@ function doDeploy() {
                     }
                 }
                 // Remove the tmp dir. TODO: Deal with output?
-                child_pr.exec('rm -rf ' + tmp_dir, function() {});
-                process.exit();
+                child_pr.exec('rm -rf ' + tmp_dir, function() {
+                    process.exit();
+                });
             }
         );
     });
