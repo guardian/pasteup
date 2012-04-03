@@ -4,7 +4,7 @@ var guardian = {};
 guardian.util = {
 
     /* native method to add a class */
-    add_class: function(elm, classname) {
+    addClass: function(elm, classname) {
         var re = new RegExp(classname, 'g');
         if(!elm.className.match(re)){
             elm.className += ' ' + classname;
@@ -12,15 +12,15 @@ guardian.util = {
     },
 
     /* native method to remove a class */
-    remove_class: function(elm, classname) {
+    removeClass: function(elm, classname) {
         var re = new RegExp(classname, 'g');
         elm.className = elm.className.replace(re, '');
     },
 
     /* convenience method to swap one class for another */
-    swap_class: function(elm, class_to_remove, class_to_add) {
-        this.remove_class(elm, class_to_remove);
-        this.add_class(elm, class_to_add);
+    swapClass: function(elm, classToRemove, classToAdd) {
+        this.removeClass(elm, classToRemove);
+        this.addClass(elm, classToAdd);
     }
 
 };
