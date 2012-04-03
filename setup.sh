@@ -6,10 +6,10 @@ echo "Installing nodejs"
 echo "==============================================="
 mkdir ~/node-install
 cd ~/node-install
-curl -O http://nodejs.org/dist/node-v0.6.13.tar.gz
+curl -O http://nodejs.org/dist/v0.6.14/node-v0.6.14.tar.gz
 
-tar xvf node-v0.6.13.tar.gz
-cd node-v0.6.13
+tar xvf node-v0.6.14.tar.gz
+cd node-v0.6.14
 
 ./configure
 sudo make install
