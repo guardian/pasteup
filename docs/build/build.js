@@ -11,7 +11,7 @@ var fs        = require('fs'),
     path      = require('path');
 
 var build = {
-	TEMPLATE_DIR: '../templates',
+	TEMPLATE_DIR: 'templates',
     MODULE_DIR: '../../content/module',
     MODULE_LIB: '../modules.html',
     MODULE_PAGES_DIR: '../modules/',
@@ -45,7 +45,7 @@ var build = {
 				out_filename_compressed = out_filename.replace('.css', '.min.css');
 
 			// read the file's content
-			fs.readFile(filename, 'utf-8', function(e, data) {
+			fs.readFile(filename, 'utf8', function(e, data) {
 				// now parse the content as a string through less
 				new(less.Parser)({
 					paths: [path.dirname(filename)],
@@ -90,7 +90,7 @@ var build = {
 	    process.stdout.write('\n * Building module library');
 	    var modules = [];
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf-8');
+	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
 	        modules.push({
 	            'name': name,
 	            'code': f
@@ -100,7 +100,7 @@ var build = {
 	    // Get template file, and render modules into template.
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/library.html');
 	    var output = mustache.to_html(template.toString(), {'modules': modules});
-	    fs.writeFileSync(__dirname + '/' + build.MODULE_LIB, output, 'utf-8');
+	    fs.writeFileSync(__dirname + '/' + build.MODULE_LIB, output, 'utf8');
 	    callback();
 	},
 
@@ -115,9 +115,9 @@ var build = {
 
 	    // Get each module and create its own page in the docs.
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf-8');
+	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
 	        var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
-	        fs.writeFileSync(__dirname + '/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf-8');
+	        fs.writeFileSync(__dirname + '/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf8');
 	    });
 	    callback();
 	},
@@ -128,7 +128,7 @@ var build = {
             if (name.indexOf('lib/') !== 0 &&
                 name.indexOf('.min.js') === -1 &&
                 name.indexOf('.js') !== -1) {
-                var f = fs.readFileSync('../../js/' + name, 'utf-8');
+                var f = fs.readFileSync('../../js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
                     console.log('JavaScript has failed our JSHint rules. Please fix errors.\n');
@@ -142,7 +142,7 @@ var build = {
     lintCss: function() {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
         wrench.readdirSyncRecursive('../static/css').forEach(function(name) {
-            var f = fs.readFileSync('../static/css/' + name, 'utf-8');
+            var f = fs.readFileSync('../static/css/' + name, 'utf8');
             var result = csslint.verify(f, config_json.ruleset);
             console.log(result);
         });
