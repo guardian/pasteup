@@ -12,7 +12,7 @@ var fs       = require('fs'),
 
 
 var s3bucket  = 'pasteup',
-    tmp_dir   = 'deploy_tmp',
+    tmp_dir   = '../../deploy_tmp',
     tmp_v_dir = tmp_dir + '/' + getVersionNumber();
 
 var s3_sync_cmd = 's3cmd sync\
@@ -32,7 +32,7 @@ stdin.once('data', function(val) {
     if (val.trim() === 'y') {
         doDeploy();
     } else {
-        process.stdout.write("\nSo update the version number in ../version\n\n");
+        process.stdout.write("\nSo update the version number in ../../version\n\n");
         process.exit();
     }
 }).resume();
@@ -73,10 +73,14 @@ function doDeploy() {
 
 function copyPasteupTo(dest) {
     fs.mkdirSync(dest, '0777');
-    wrench.copyDirSyncRecursive('../css', dest + '/css');
-    wrench.copyDirSyncRecursive('../js', dest + '/js');
-    wrench.copyDirSyncRecursive('../content', dest + '/content');
-    wrench.copyDirSyncRecursive('../docs', dest + '/docs');
+    wrench.copyDirSyncRecursive('../static/css', dest + '/css');
+    wrench.copyDirSyncRecursive('../static/js', dest + '/js');
+    wrench.copyDirSyncRecursive('../.', dest + '/docs');
+    // Don't copy the build directory to tmp.
+    wrench.rmdirSyncRecursive(dest + '/docs/build', false);
+    // Static files are already in top level dir.
+    wrench.rmdirSyncRecursive(dest + '/docs/static', false);
+
 }
 
 function gzipFile(name, callback) {
@@ -127,7 +131,7 @@ function gzipCssAndJs(callback) {
 Returns the most recent version number in /version
 */
 function getVersionNumber() {
-    var f = fs.readFileSync(__dirname  + '/../version', 'utf-8');
+    var f = fs.readFileSync(__dirname  + '/../../version', 'utf-8');
     var data = JSON.parse(f.toString());
     return data['versions'].pop();
 }
