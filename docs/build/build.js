@@ -18,20 +18,15 @@ var build = {
 
     go: function() {
     	process.stdout.write('\nBuilding pasteup\n');
-		// Compile CSS and JS
-		build.compileAssets(function() {
-		    // And then build modules.
-		    build.buildModuleLibrarySync();
-		    build.buildModulePagesSync();
-		    process.stdout.write('\n======================');
+		async.parallel([
+			build.compileJS,
+			build.compileCSS,
+			build.buildModuleLibrary,
+			build.buildModulePages
+		], function() {
+			process.stdout.write('\n======================');
 		    process.stdout.write('\nPasteup build complete\n\n');
 		});
-    },
-
-    compileAssets: function (callback) {
-    	async.parallel([ build.compileJS, build.compileCSS ], function() {
-    		callback();
-    	});
 	},
 
 	/*
@@ -83,15 +78,15 @@ var build = {
 
 		requirejs.optimize(config, function(buildResponse) {
 			var contents = fs.readFileSync(config.out, 'utf8');
+			callback();
 		});
-		callback();
     },
 
 	/*
 	Get all the modules in /content/modules,
 	and add them all to the module library doc.
 	*/
-	buildModuleLibrarySync: function() {
+	buildModuleLibrary: function(callback) {
 	    process.stdout.write('\n * Building module library');
 	    var modules = [];
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
@@ -106,13 +101,14 @@ var build = {
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/library.html');
 	    var output = mustache.to_html(template.toString(), {'modules': modules});
 	    fs.writeFileSync(__dirname + '/' + build.MODULE_LIB, output, 'utf-8');
+	    callback();
 	},
 
 	/*
 	Get all the modules in /content/modules,
 	and create a page for each on in doc/modules.
 	*/
-	buildModulePagesSync: function () {
+	buildModulePages: function (callback) {
 	    process.stdout.write('\n * Building module pages');
 	    // Get module template.
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/module.html');
@@ -123,6 +119,7 @@ var build = {
 	        var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
 	        fs.writeFileSync(__dirname + '/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf-8');
 	    });
+	    callback();
 	},
 
 	lintJavaScript: function () {
@@ -157,6 +154,6 @@ module.exports = build;
 
 if (!module.parent) {
 	//build.lintJavaScript();
-	//build.go();
-	build.lintCss();
+	build.go();
+	//build.lintCss();
 }
