@@ -27,7 +27,9 @@ app.get('/', function(req, res, next) {
 });
 
 // watch and compile changes to LESS / JS
-watch.add('../../less', true).add('../../js', true).onChange(function(file, prev, curr, action) {
+watch.add('../../less', true)
+	.add('../../js', true)
+	.add('../../content', true).onChange(function(file, prev, curr, action) {
     console.log('\n * ' + file + ' has been changed. Recompiling.\n');
     build.go();
 });

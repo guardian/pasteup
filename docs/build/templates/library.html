@@ -40,17 +40,17 @@
     	<div class="pasteup-wrapper">
     		<h1 class="h1">Pasteup</h1>
 
-    		{% for module in modules %}
+    		{{#modules}}
 
     		<div class="pasteup-mod">
-				<p class="pasteup-title">{{ module.name }}</p>
+				<p class="pasteup-title">{{name}}</p>
 				<div class="pasteup-mod-code">
-					{{ module.code }}
+					{{{code}}}
 				</div>
-				<textarea class="pasteup-textarea">{{ module.code }}</textarea>
+				<textarea class="pasteup-textarea">{{code}}</textarea>
 			</div>
 
-			{% endfor %}
+			{{/modules}}
 
 		</div>
 	</body>

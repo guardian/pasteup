@@ -38,15 +38,128 @@
     <body>
     	<div class="pasteup-wrapper">
     		<h1 class="h1">Pasteup</h1>
-    		{% for module in modules %}
-    		<div class="pasteup-mod">
-				<p class="pasteup-title"></p>
+    		    		<div class="pasteup-mod">
+				<p class="pasteup-title">topbar.html</p>
 				<div class="pasteup-mod-code">
-					
+					<div class="topbar">
+	<h2 class="h">Tools</h2>
+	<ul class="topbar-menu tools pull-left">
+		<li class="dropdown-holder edition-switch">
+			<h3>Edition: <span>UK</span></h3>
+			<ul class="dropdown">
+				<li><a href="#">US</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Sign in</a></li>
+		<li><a href="#">Mobile</a></li>
+		<li class="dropdown-holder">
+			<h3>About us</h3>
+			<ul class="dropdown">
+				<li><a href="http://www.guardian.co.uk/information/0,,711853,00.html" class="link-text">About us</a></li>
+				<li><a href="http://www.guardian.co.uk/gu_contacts/0,,180767,00.html" class="link-text">Contact us</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+	<h2 class="h">Quick navigation</h2>
+	<ul class="topbar-menu quick-nav pull-right">
+		<li class="dropdown-holder">
+			<h3>Today's paper</h3>
+			<ul class="dropdown">
+				<li><a href="http://www.guardian.co.uk/information/0,,711853,00.html" class="link-text">About us</a></li>
+				<li><a href="http://www.guardian.co.uk/gu_contacts/0,,180767,00.html" class="link-text">Contact us</a></li>
+			</ul>
+		</li>
+		<li class="dropdown-holder">
+			<h3>Subscribe</h3>
+			<ul class="dropdown">
+				<li><a href="http://www.guardian.co.uk/information/0,,711853,00.html" class="link-text">About us</a></li>
+				<li><a href="http://www.guardian.co.uk/gu_contacts/0,,180767,00.html" class="link-text">Contact us</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
 				</div>
-				<textarea class="pasteup-textarea"></textarea>
+				<textarea class="pasteup-textarea">&lt;div class=&quot;topbar&quot;&gt;
+	&lt;h2 class=&quot;h&quot;&gt;Tools&lt;/h2&gt;
+	&lt;ul class=&quot;topbar-menu tools pull-left&quot;&gt;
+		&lt;li class=&quot;dropdown-holder edition-switch&quot;&gt;
+			&lt;h3&gt;Edition: &lt;span&gt;UK&lt;/span&gt;&lt;/h3&gt;
+			&lt;ul class=&quot;dropdown&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;US&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sign in&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mobile&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;dropdown-holder&quot;&gt;
+			&lt;h3&gt;About us&lt;/h3&gt;
+			&lt;ul class=&quot;dropdown&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/information/0,,711853,00.html&quot; class=&quot;link-text&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/gu_contacts/0,,180767,00.html&quot; class=&quot;link-text&quot;&gt;Contact us&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+	
+	&lt;h2 class=&quot;h&quot;&gt;Quick navigation&lt;/h2&gt;
+	&lt;ul class=&quot;topbar-menu quick-nav pull-right&quot;&gt;
+		&lt;li class=&quot;dropdown-holder&quot;&gt;
+			&lt;h3&gt;Today&#39;s paper&lt;/h3&gt;
+			&lt;ul class=&quot;dropdown&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/information/0,,711853,00.html&quot; class=&quot;link-text&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/gu_contacts/0,,180767,00.html&quot; class=&quot;link-text&quot;&gt;Contact us&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li class=&quot;dropdown-holder&quot;&gt;
+			&lt;h3&gt;Subscribe&lt;/h3&gt;
+			&lt;ul class=&quot;dropdown&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/information/0,,711853,00.html&quot; class=&quot;link-text&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://www.guardian.co.uk/gu_contacts/0,,180767,00.html&quot; class=&quot;link-text&quot;&gt;Contact us&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</textarea>
 			</div>
-			{% endfor %}
-		</div>
+			    		<div class="pasteup-mod">
+				<p class="pasteup-title">nav-sections.html</p>
+				<div class="pasteup-mod-code">
+					<nav>
+	<ul class="nav-sections" role="navigation">
+		<li class="zone-news"><a href="/" class="zone-text">News</a></li>
+		<li class="zone-sport"><a href="/" class="zone-text">Sport</a></li>
+		<li class="zone-comment"><a href="/" class="zone-text">Comment</a></li>
+		<li class="zone-culture"><a href="/" class="zone-text">Culture</a></li>
+		<li class="zone-business"><a href="/" class="zone-text">Business</a></li>
+		<li class="zone-money"><a href="/" class="zone-text">Money</a></li>
+		<li class="zone-sport"><a href="/" class="zone-text">London 2012</a></li>
+		<li class="zone-lifestyle"><a href="/" class="zone-text">Life &#38; style</a></li>
+		<li class="zone-travel"><a href="/" class="zone-text">Travel</a></li>
+		<li class="zone-environment"><a href="/" class="zone-text">Environment</a></li>
+		<li><a href="/">Video</a></li>
+		<li><a href="/">Apps</a></li>
+		<li><a href="/">Offers</a></li>
+		<li><a href="/">Jobs</a></li>
+	</ul>
+</nav>
+				</div>
+				<textarea class="pasteup-textarea">&lt;nav&gt;
+	&lt;ul class=&quot;nav-sections&quot; role=&quot;navigation&quot;&gt;
+		&lt;li class=&quot;zone-news&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-sport&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Sport&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-comment&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Comment&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-culture&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Culture&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-business&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Business&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-money&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Money&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-sport&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;London 2012&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-lifestyle&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Life &amp;#38; style&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-travel&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Travel&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;zone-environment&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Environment&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Video&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Apps&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Offers&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Jobs&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;</textarea>
+			</div>
+			</div>
 	</body>
 </html>
