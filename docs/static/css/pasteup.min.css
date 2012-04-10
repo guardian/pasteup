@@ -96,9 +96,20 @@ a:active{color:white;background-color:#005689;}
 .dropdown li{border-left:0 none;border-top:1px solid #c6c6c6;clear:both;line-height:1;}
 .dropdown li:first-child{border-top:0 none;}
 .zone-news .zone-border{border-color:#d61d00;}
+.zone-news .zone-text{color:#d61d00;}
 .zone-sport .zone-border{border-color:#008000;}
+.zone-sport .zone-text{color:#008000;}
 .zone-comment .zone-border{border-color:#0061a6;}
+.zone-comment .zone-text{color:#0061a6;}
 .zone-culture .zone-border{border-color:#d61d00;}
+.zone-culture .zone-text{color:#d61d00;}
 .zone-business .zone-border{border-color:#3246ab;}
+.zone-business .zone-text{color:#3246ab;}
 .zone-money .zone-border{border-color:#8f1ab6;}
+.zone-money .zone-text{color:#8f1ab6;}
 .zone-lifestyle .zone-border{border-color:#ad532f;}
+.zone-lifestyle .zone-text{color:#ad532f;}
+.zone-travel .zone-border{border-color:#066ec9;}
+.zone-travel .zone-text{color:#066ec9;}
+.zone-environment .zone-border{border-color:#4a7801;}
+.zone-environment .zone-text{color:#4a7801;}
