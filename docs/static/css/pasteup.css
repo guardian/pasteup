@@ -336,6 +336,9 @@ img {
   -ms-interpolation-mode: bicubic;
   /* 2 */
 
+  max-width: 100%;
+  /* By default all images shrink down to their parent container. */
+
 }
 /*
  * Corrects overflow displayed oddly in IE9
