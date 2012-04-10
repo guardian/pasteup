@@ -50,6 +50,7 @@ table{border-collapse:collapse;border-spacing:0;}
 .pull-left{float:left;}
 .pull-right{float:right;}
 .h-backed{background-color:#ededed;padding-left:5px;padding-right:5px;padding-top:10px;padding-bottom:20px;}
+.h{position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
 .zone-border{border-top:3px solid #D61D00;padding-top:5px;}
 .zone-border-small{border-top-width:1px;padding-top:2px;}
 .zone-color{color:#D61D00;}
@@ -78,7 +79,9 @@ a:active{color:white;background-color:#005689;}
 .dropdown{background:#d9d9d9;position:absolute;display:none;}
 .dropdown li{border-left:0 none;border-top:1px solid #c6c6c6;clear:both;line-height:1;}
 .dropdown li:first-child{border-top:0 none;}
-.nav-sections{float:left;font-family:Georgia;font-size:16px;margin:0;padding:0;width:100%;}.nav-sections li{border-left:1px solid #c6c6c6;float:left;}.nav-sections li:first-child{border:0 none;}
+.nav-sections{float:left;font-family:Georgia;font-size:16px;margin:0;padding:0;width:100%;}
+.nav-sections li{border-left:1px solid #c6c6c6;float:left;}
+.nav-sections li:first-child{border:0 none;}
 .nav-sections li a{display:block;line-height:24px;padding:0 5px;}
 .zone-news .zone-border{border-color:#D61D00;}
 .zone-sport .zone-border{border-color:green;}

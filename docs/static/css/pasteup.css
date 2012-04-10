@@ -533,6 +533,11 @@ table {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+.h {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
 .zone-border {
   border-top: 3px solid #D61D00;
   padding-top: 5px;
