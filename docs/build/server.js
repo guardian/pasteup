@@ -17,6 +17,7 @@ app.configure(function() {
 	app.use('/css', express.static(__dirname + '/../static/css'));
 	app.use('/js', express.static(__dirname + '/../static/js'));
 	app.use('/docs', express.static(__dirname + '/..'));
+	app.use('/content', express.static(__dirname + '/../content'));
 });
 
 // Routing
