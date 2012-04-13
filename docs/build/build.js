@@ -51,7 +51,6 @@ var build = {
 					paths: [path.dirname(filename)],
 					filename: filename
 				}).parse(data, function(err, tree) {
-					console.log(filename + '***\n\n');
 					var css = tree.toCSS(),
 						css_compressed = tree.toCSS({ compress: true }),
 						fd = fs.openSync(out_filename, 'w'),
@@ -70,6 +69,7 @@ var build = {
 	Use require JS to compile and optimise JS
 	*/
 	compileJS: function(callback) {
+		wrench.copyDirSyncRecursive('../../js', '../static/js');
     	process.stdout.write('\n * Compiling and optimising JS');
 		var config = {
 		    baseUrl: '../../js',
