@@ -100,34 +100,6 @@ a:active {
    Typography
    ========================================================================== */
 /*
- * Addresses font sizes and margins set differently in IE6/7
- * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
- */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-h2 {
-  font-size: 1.5em;
-  margin: 0.83em 0;
-}
-h3 {
-  font-size: 1.17em;
-  margin: 1em 0;
-}
-h4 {
-  font-size: 1em;
-  margin: 1.33em 0;
-}
-h5 {
-  font-size: 0.83em;
-  margin: 1.67em 0;
-}
-h6 {
-  font-size: 0.75em;
-  margin: 2.33em 0;
-}
-/*
  * Addresses styling not present in IE7/8/9, S5, Chrome
  */
 abbr[title] {
@@ -481,6 +453,7 @@ table {
 }
 body {
   color: #333;
+  background-color: #FFF;
   font-size: 12px;
   line-height: 15px;
   font-family: arial, sans-serif;
@@ -494,6 +467,60 @@ p {
   line-height: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+/*
+	Headings
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: georgia, serif;
+  font-weight: normal;
+}
+h1,
+.h1 {
+  font-size: 24px;
+  line-height: 30px;
+  margin: 15px 0;
+}
+h2,
+.h2 {
+  font-size: 21px;
+  line-height: 25px;
+  margin: 20px 0;
+}
+h3,
+.h3 {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 15px 0;
+}
+h4,
+.h4 {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 15px 0;
+}
+h5,
+.h5 {
+  font-size: 15px;
+  line-height: 20px;
+  margin: 15px 0;
+}
+h6,
+.h6 {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 10px 0;
 }
 /*
 	Links
@@ -512,43 +539,51 @@ a:active {
   color: white;
   background-color: #005689;
 }
-/*
-	Headings
-*/
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  font-family: georgia, serif;
-  font-weight: normal;
-}
-.h1 {
-  font-size: 24px;
-  line-height: 30px;
-}
-.h2 {
-  font-size: 21px;
-  line-height: 25px;
-}
-.h3 {
-  font-size: 18px;
-  line-height: 20px;
-}
-.h4 {
-  font-size: 16px;
-  line-height: 20px;
-}
-.h5 {
-  font-size: 15px;
-  line-height: 20px;
-}
-.h6 {
-  font-size: 12px;
-  line-height: 15px;
-}
 /* Font for form elements */
+/*
+	Tables
+*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #333;
+}
+tr {
+  background-color: #F5F5F5;
+}
+tr:nth-child(odd) {
+  background-color: #EDEDED;
+}
+th {
+  background-color: #D8D8D8;
+  border-bottom: 1px solid #999;
+  font-weight: bold;
+  text-align: left;
+}
+th,
+td {
+  padding: 10px;
+  border-right: 1px solid #999;
+}
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+table caption {
+  background-color: #CCC;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #333;
+  border-width: 1px 0;
+}
+thead tr {
+  background-color: #999;
+}
+tfoot {
+  border-top: 1px solid #999;
+  font-size: 10px;
+}
 .topbar {
   background: #ededed;
   float: left;
