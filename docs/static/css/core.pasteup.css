@@ -264,14 +264,6 @@ form {
   margin: 0;
 }
 /*
- * Define consistent border, margin, and padding
- */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-/*
  * 1. Corrects color not being inherited in IE6/7/8/9
  * 2. Corrects text not wrapping in FF3
  * 3. Corrects alignment displayed oddly in IE6/7
@@ -432,11 +424,6 @@ table {
   padding-top: 10px;
   padding-bottom: 20px;
 }
-.h {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-}
 .zone-border {
   border-top: 3px solid #D61D00;
   padding-top: 5px;
@@ -539,6 +526,7 @@ a:active {
   color: white;
   background-color: #005689;
 }
+<<<<<<< HEAD
 /* Font for form elements */
 /*
 	Tables
@@ -583,6 +571,98 @@ thead tr {
 tfoot {
   border-top: 1px solid #999;
   font-size: 10px;
+=======
+/* Basic form styles */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+label {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+}
+.inline-message {
+  display: inline-block;
+  padding: 0.4em 5px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  font-style: normal;
+}
+.error {
+  background-color: #F7D2CC;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="url"],
+input[type="search"],
+textarea {
+  border: 1px solid #999;
+  min-height: 14px;
+  padding: 0.4em 5px 0.4em 5px;
+}
+input[type="checkbox"] {
+  margin-bottom: 1em;
+}
+button,
+.button,
+input[type="button"],
+input[type="submit"] {
+  background-color: #0061A6;
+  color: white;
+  display: inline-block;
+  height: 2.4em;
+  line-height: 2.4em;
+  border: none;
+  outline: none;
+  padding: 0 7px;
+}
+/* Form layout */
+.field {
+  margin-bottom: 15px;
+  clear: both;
+}
+.field-label {
+  display: block;
+  float: left;
+  width: 25%;
+  margin: 0.4em 0 0 0;
+}
+.field-inputs {
+  width: 70%;
+  margin-left: 30%;
+}
+.field-inputs label {
+  display: block;
+  margin: 0.4em;
+}
+.field-inputs input[type="email"],
+.field-inputs input[type="password"],
+.field-inputs input[type="text"],
+.field-inputs input[type="url"],
+.field-inputs input[type="search"],
+.field-inputs textarea {
+  width: 45%;
+}
+.field-inputs .check,
+.field-inputs .radio {
+  margin-left: 18px;
+}
+.field-inputs .check input[type="checkbox"],
+.field-inputs .radio input[type="radio"] {
+  float: left;
+  margin-left: -18px;
+  margin-bottom: 0;
+}
+.field-inputs .inline-message {
+  width: 45%;
+}
+.field-inputs input[type="button"],
+.field-inputs input[type="submit"] {
+  float: right;
+>>>>>>> forms
 }
 .topbar {
   background: #ededed;
@@ -643,26 +723,6 @@ tfoot {
 .dropdown li:first-child {
   border-top: 0 none;
 }
-.nav-sections {
-  float: left;
-  font-family: Georgia;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-.nav-sections li {
-  border-left: 1px solid #c6c6c6;
-  float: left;
-}
-.nav-sections li:first-child {
-  border: 0 none;
-}
-.nav-sections li a {
-  display: block;
-  line-height: 24px;
-  padding: 0 5px;
-}
 /*
 	Show the current zone border color.
 */
@@ -722,34 +782,4 @@ tfoot {
 }
 .zone-environment .zone-background {
   background-color: #4A7801;
-}
-/*
-	Show the current zone text color.
-*/
-.zone-news .zone-text {
-  color: #D61D00;
-}
-.zone-sport .zone-text {
-  color: green;
-}
-.zone-comment .zone-text {
-  color: #0061A6;
-}
-.zone-culture .zone-text {
-  color: #D61D00;
-}
-.zone-business .zone-text {
-  color: #3246AB;
-}
-.zone-money .zone-text {
-  color: #8F1AB6;
-}
-.zone-lifestyle .zone-text {
-  color: #AD532F;
-}
-.zone-travel .zone-text {
-  color: #066EC9;
-}
-.zone-environment .zone-text {
-  color: #4A7801;
 }

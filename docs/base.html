@@ -430,72 +430,42 @@
                 <div class="example">
                     <form action="#">
                         <fieldset>
-                            <legend>Legend</legend>
-                            <div>
-                                <label for="text">Text Input <abbr title="Required">*</abbr></label>
-                                <input id="text" type="text"/>
-                                <em>Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="password">Password</label>
-                                <input id="password" type="password"/>
-                                <em>Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="password">Web Address</label>
-                                <input id="password" type="url"/>
-                                <em>Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="password">Email Address</label>
-                                <input id="password" type="email"/>
-                                <em>Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="search">Search</label>
-                                <input id="search" type="search"/><input id="password" type="submit" class="search"/>
-                                <em>Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="textarea">Textarea</label>
-                                <textarea id="textarea" rows="8" cols="48"></textarea>
-                                <em class="clear">Note about this field</em>
-                            </div>
-                            <div>
-                                <label for="checkbox">Single Checkbox</label>
-                                <label for="checkbox" class="check"><input id="checkbox" type="checkbox" class="checkbox"/> Label</label>
-                            </div>
-                            <div>
-                                <label for="select">Select</label>
-                                <select id="select">
-                                    <optgroup label="Option Group">
-                                        <option>Option One</option>
-                                        <option>Option Two</option>
-                                        <option>Option Three</option>
-                                    </optgroup>
-                                </select>
-                                <em>Note about this selection</em>
-                            </div>
+                            <label class="label" for="texti">Label goes here</label>
+                            <input id="texti" type="text" placeholder="Placeholder text&hellip;" />
+                            <em class="inline-message">Note about this field</em>
+
+                            <label class="label" for="texti">Label goes here</label>
+                            <input id="texti" type="password" placeholder="Placeholder text&hellip;" />
+                            <em class="inline-message error">Error on this field</em>
+
+                            <label for="checkbox"><input id="checkbox" type="checkbox" /> Label</label>
+
+
+                            <input type="submit" value="Submit" />
+                        </fieldset>
+                        <fieldset>
+                            <select id="select">
+                                <optgroup label="Option Group">
+                                    <option>Option One</option>
+                                    <option>Option Two</option>
+                                    <option>Option Three</option>
+                                </optgroup>
+                            </select>
+                            <em class="inline-message">Note about this field</em>
                             <fieldset class="options">
-                                <legend>Checkbox <abbr title="Required">*</abbr></legend>
-                                <ul>
-                                    <li><label for="checkbox1"><input id="checkbox1" name="checkbox" type="checkbox" checked="checked" /> Choice A</label></li>
-                                    <li><label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label></li>
-                                    <li><label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label></li>
-                                </ul>
+                                <legend class="label">Checkbox</legend>
+                                <label for="checkbox1"><input id="checkbox1" name="checkbox" type="checkbox" checked="checked" /> Choice A</label>
+                                <label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox" /> Choice B</label>
+                                <label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox" /> Choice C</label>
                             </fieldset>
                             <fieldset class="options">
-                                <legend>Radio</legend>
-                                <ul>
-                                    <li><label for="radio1"><input id="radio1" name="radio" type="radio" class="radio" checked="checked" /> Option 1</label></li>
-                                    <li><label for="radio2"><input id="radio2" name="radio" type="radio" class="radio" /> Option 2</label></li>
-                                </ul>
+                                <legend class="label">Radio</legend>
+                                <label for="radio1"><input id="radio1" name="radio" type="radio" class="radio" checked="checked" /> Option 1</label>
+                                <label for="radio2"><input id="radio2" name="radio" type="radio" class="radio" /> Option 2</label>
                             </fieldset>
-                            <div class="submit">
-                                <input type="submit" value="Post Comment" />
-                                <input type="button" value="Preview" />
-                                <a href="#">Cancel</a>
-                            </div>
+                            <input type="submit" value="Post Comment" />
+                            <input type="button" value="Preview" />
+                            <a href="#">Cancel</a>
                         </fieldset>
                     </form>
                 </div>
