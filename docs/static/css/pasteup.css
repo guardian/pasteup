@@ -691,7 +691,8 @@ input[type="submit"] {
   float: right;
 }
 /*
-	Tables
+	Tables:
+	https://sites.google.com/a/guardian.co.uk/bootstrap/-archive/table_specs090108.pdf?attredirects=0&d=1
 */
 table {
   width: 100%;
@@ -699,11 +700,23 @@ table {
   border-spacing: 0;
   border-color: #333;
 }
+/* Set stripey row backgrounds */
 tr {
   background-color: #F5F5F5;
 }
-tr:nth-child(odd) {
+tbody tr:nth-child(even) {
   background-color: #EDEDED;
+}
+/* On tbody hover, remove any default highlight and reset stripey rows. */
+tbody:hover tr {
+  background-color: #F5F5F5;
+}
+tbody:hover tr:nth-child(even) {
+  background-color: #EDEDED;
+}
+tbody:hover tr:hover,
+tr.highlighted-row {
+  background-color: #FFF3A5;
 }
 th {
   background-color: #D8D8D8;
@@ -714,7 +727,7 @@ th {
 th,
 td {
   padding: 10px;
-  border-right: 1px solid #999;
+  border-right: 1px solid #B9B9B9;
 }
 th:last-child,
 td:last-child {
@@ -723,16 +736,15 @@ td:last-child {
 table caption {
   background-color: #CCC;
   text-align: left;
-  padding: 10px;
-  border: 1px solid #333;
-  border-width: 1px 0;
+  padding: 10px 6px 20px 6px;
+  border-bottom: 1px solid #999;
+  border-top: 1px solid #D61D00;
 }
-thead tr {
-  background-color: #999;
-}
-tfoot {
-  border-top: 1px solid #999;
-  font-size: 10px;
+tfoot tr {
+  background-color: F5F5F5;
+  border-top: 1px dotted #999;
+  font-size: 11px;
+  line-height: 14px;
 }
 .topbar {
   background: #ededed;
