@@ -417,6 +417,14 @@ table {
 .pull-right {
   float: right;
 }
+.standfirst {
+  font-size: 16px;
+  line-height: 20px;
+  color: #666;
+}
+.caption {
+  color: #666;
+}
 .h-backed {
   background-color: #ededed;
   padding-left: 5px;
