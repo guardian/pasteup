@@ -76,24 +76,6 @@ h6,.h6{font-size:12px;line-height:15px;margin:10px 0;}
 a,a:link,a:visited{color:#005689;text-decoration:none;}
 a:hover,a:focus{text-decoration:underline;}
 a:active{color:white;background-color:#005689;}
-<<<<<<< HEAD
-table{width:100%;border-collapse:collapse;border-spacing:0;border-color:#333;}
-tr{background-color:#F5F5F5;}
-tr:nth-child(odd){background-color:#EDEDED;}
-th{background-color:#D8D8D8;border-bottom:1px solid #999;font-weight:bold;text-align:left;}
-th,td{padding:10px;border-right:1px solid #999;}
-th:last-child,td:last-child{border-right:none;}
-table caption{background-color:#CCC;text-align:left;padding:10px;border:1px solid #333;border-width:1px 0;}
-thead tr{background-color:#999;}
-tfoot{border-top:1px solid #999;font-size:10px;}
-=======
-.h1,.h2,.h3,.h4,.h5,.h6{font-family:georgia, serif;font-weight:normal;}
-.h1{font-size:24px;line-height:30px;}
-.h2{font-size:21px;line-height:25px;}
-.h3{font-size:18px;line-height:20px;}
-.h4{font-size:16px;line-height:20px;}
-.h5{font-size:15px;line-height:20px;}
-.h6{font-size:12px;line-height:15px;}
 fieldset{border:none;padding:0;margin:0;}
 label{display:block;margin-top:1em;margin-bottom:0.2em;}
 .inline-message{display:inline-block;padding:0.4em 5px;margin-left:0.5em;margin-right:0.5em;font-style:normal;}
@@ -110,7 +92,15 @@ button,.button,input[type="button"],input[type="submit"]{background-color:#0061A
 .field-inputs .check input[type="checkbox"],.field-inputs .radio input[type="radio"]{float:left;margin-left:-18px;margin-bottom:0;}
 .field-inputs .inline-message{width:45%;}
 .field-inputs input[type="button"],.field-inputs input[type="submit"]{float:right;}
->>>>>>> forms
+table{width:100%;border-collapse:collapse;border-spacing:0;border-color:#333;}
+tr{background-color:#F5F5F5;}
+tr:nth-child(odd){background-color:#EDEDED;}
+th{background-color:#D8D8D8;border-bottom:1px solid #999;font-weight:bold;text-align:left;}
+th,td{padding:10px;border-right:1px solid #999;}
+th:last-child,td:last-child{border-right:none;}
+table caption{background-color:#CCC;text-align:left;padding:10px;border:1px solid #333;border-width:1px 0;}
+thead tr{background-color:#999;}
+tfoot{border-top:1px solid #999;font-size:10px;}
 .topbar{background:#ededed;float:left;font-size:12px;line-height:1;margin-bottom:20px;width:100%;}
 .topbar ul{background:#ededed;list-style:none;margin:0;padding:0;}
 .topbar-menu li{border-left:1px solid #c6c6c6;float:left;list-style:none;margin:0;padding:0;}

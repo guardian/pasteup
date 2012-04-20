@@ -599,52 +599,6 @@ a:active {
   color: white;
   background-color: #005689;
 }
-<<<<<<< HEAD
-/* Font for form elements */
-/*
-	Tables
-*/
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border-color: #333;
-}
-tr {
-  background-color: #F5F5F5;
-}
-tr:nth-child(odd) {
-  background-color: #EDEDED;
-}
-th {
-  background-color: #D8D8D8;
-  border-bottom: 1px solid #999;
-  font-weight: bold;
-  text-align: left;
-}
-th,
-td {
-  padding: 10px;
-  border-right: 1px solid #999;
-}
-th:last-child,
-td:last-child {
-  border-right: none;
-}
-table caption {
-  background-color: #CCC;
-  text-align: left;
-  padding: 10px;
-  border: 1px solid #333;
-  border-width: 1px 0;
-}
-thead tr {
-  background-color: #999;
-}
-tfoot {
-  border-top: 1px solid #999;
-  font-size: 10px;
-=======
 /* Basic form styles */
 fieldset {
   border: none;
@@ -735,7 +689,50 @@ input[type="submit"] {
 .field-inputs input[type="button"],
 .field-inputs input[type="submit"] {
   float: right;
->>>>>>> forms
+}
+/*
+	Tables
+*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #333;
+}
+tr {
+  background-color: #F5F5F5;
+}
+tr:nth-child(odd) {
+  background-color: #EDEDED;
+}
+th {
+  background-color: #D8D8D8;
+  border-bottom: 1px solid #999;
+  font-weight: bold;
+  text-align: left;
+}
+th,
+td {
+  padding: 10px;
+  border-right: 1px solid #999;
+}
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+table caption {
+  background-color: #CCC;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #333;
+  border-width: 1px 0;
+}
+thead tr {
+  background-color: #999;
+}
+tfoot {
+  border-top: 1px solid #999;
+  font-size: 10px;
 }
 .topbar {
   background: #ededed;
