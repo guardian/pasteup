@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <title>Pasteup | Guardian News &amp; Media</title>
+        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products" />
+        <meta name="author" content="the Guardian" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>document.getElementsByTagName('html')[0].className += ' has-js';</script>
+
+        <!-- Include core base and module styles -->
+        <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
+
+        <!-- Add layout styles for browsers over 50em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 50em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
+            <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
+        <![endif]-->
+
+        <style>
+            .doc-holder {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .example {
+                border: 1px solid #ccc;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 10px 20px;
+                margin: 10px 0;
+            }
+            .base-header {
+                border-bottom: 1px solid #005689;
+            }
+            .pu-link {
+                font-size: 14px;
+                margin-top: -15px;
+                margin-bottom: 20px;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+
+        <div class="doc-holder">
+            <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
+            
+            <h1>Pasteup | Guardian News &amp; Media</h1>
+
+            <p>Pasteup is where design meets development. It is where the Guardian's globally recognised design language is turned into code, and the starting point for styling Guardian branded web products both internally and for partners.</p>
+
+            <h2 class="base-header">HTML Styleguide</h2>
+            <p class="pu-link"><a href="base.html">base.html</a></p>
+            <p>Include Pasteup in any HTML document and you should get some good standard Guardian design features. This is the first and simplest way of using Pasteup.</p>
+
+            <h2 class="base-header">Layout styles</h2>
+            <p class="pu-link"><a href="grid.html">grid.html</a></p>
+            <p>Guardian web pages typically implement one of two main grids. A <code>940px</code> fixed width grid, and a liquid and responsive layout which works across devices from mobile and tablet up to desktop (this doesn't exist yet).</p>
+
+            <h2 class="base-header">Module library</h2>
+            <p class="pu-link"><a href="modules.html">modules.html</a></p>
+            <p>A set of stand-alone components which make up Guardian web pages. These should be entirely decoupled from any particular page or any particular layout.
+
+            <h2 class="base-header">Hosting</h2>
+            <p>Pasteup is fully hosted on <a href="http://pasteup.gu.com">http://pasteup.gu.com</a> which is a globally distributed and load balanced CDN. All files are minified, gzipped, and have far future Expires headers so they are aggressively cached by browsers.</p>
+            <p>In the first instance, please link to URLs on this domain, as they are likely to be already cached by your users.</p>
+
+            <h2 class="base-header">Other things</h2>
+            <p>Looking for <a href="https://github.com/guardian/pasteup/blob/master/content/index.html">boilerplate HTML</a>?</p>
+
+        </div><!-- /.doc-holder -->
+    	
+	</body>
+
+</html>
