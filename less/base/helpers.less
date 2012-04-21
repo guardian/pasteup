@@ -6,10 +6,42 @@
 .pull-right {
 	float: right;
 }
+.margin-top {
+	margin-top: 20px;
+}
+.margin-bottom {
+	margin-bottom: 20px;
+}
+
+// Accessible hidden content.
 .h {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px);
 	clip: rect(1px, 1px, 1px, 1px);
+}
+
+// Some list helpers
+ol.unstyled, 
+ul.unstyled {
+	padding-left: 0;
+	list-style: none;	
+}
+
+// Micro clearfix
+// http://nicolasgallagher.com/micro-clearfix-hack/
+
+// For modern browsers
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+// For IE 6/7 (trigger hasLayout)
+.cf {
+    zoom:1;
 }
 
 // Some generic typography helpers
@@ -37,7 +69,7 @@
 // Zone helpers for adding zone colors in various places.
 // Default zone color is red  for news.
 .zone-border {
-	border-top: 3px solid #D61D00; // red
+	border-top: 3px solid #0061A6; // blue by default
 	padding-top: 5px;
 }
 .zone-border-small {
@@ -45,8 +77,8 @@
 	padding-top: 2px;
 }
 .zone-color {
-	color:#D61D00; // red
+	color:#0061A6; // blue by default
 }
 .zone-background-color {
-	background-color: #D61D00; // red
+	background-color: #0061A6; // blue by default
 }

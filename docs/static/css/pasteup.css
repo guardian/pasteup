@@ -43,6 +43,15 @@
 .row {
   clear: both;
   margin-left: -20px;
+  zoom: 1;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
 }
 /* All column padding / margin */
 .col-1,
@@ -58,7 +67,6 @@
 .col-11 {
   float: left;
   margin-left: 20px;
-  background: #546;
 }
 .col-12 {
   margin-left: 0;
@@ -490,10 +498,32 @@ table {
 .pull-right {
   float: right;
 }
+.margin-top {
+  margin-top: 20px;
+}
+.margin-bottom {
+  margin-bottom: 20px;
+}
 .h {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
+}
+ol.unstyled,
+ul.unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  zoom: 1;
 }
 .standfirst {
   font-size: 16px;
@@ -511,7 +541,7 @@ table {
   padding-bottom: 20px;
 }
 .zone-border {
-  border-top: 3px solid #D61D00;
+  border-top: 3px solid #0061A6;
   padding-top: 5px;
 }
 .zone-border-small {
@@ -519,10 +549,10 @@ table {
   padding-top: 2px;
 }
 .zone-color {
-  color: #D61D00;
+  color: #0061A6;
 }
 .zone-background-color {
-  background-color: #D61D00;
+  background-color: #0061A6;
 }
 body {
   color: #333;
@@ -532,10 +562,9 @@ body {
   font-family: arial, sans-serif;
 }
 p {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 0 0 5px;
 }
-.article-body p {
+.article-body {
   font-size: 14px;
   line-height: 20px;
   margin-top: 10px;
@@ -543,6 +572,9 @@ p {
 }
 figcaption {
   color: #666;
+}
+code {
+  font-weight: bold;
 }
 /*
 	Headings
@@ -561,42 +593,41 @@ h6,
 .h6 {
   font-family: georgia, serif;
   font-weight: normal;
+  margin: 0;
 }
 h1,
 .h1 {
   font-size: 24px;
   line-height: 30px;
-  margin: 15px 0;
+  margin-bottom: 10px;
 }
 h2,
 .h2 {
   font-size: 21px;
   line-height: 25px;
-  margin: 20px 0;
+  margin-bottom: 10px;
 }
 h3,
 .h3 {
   font-size: 18px;
   line-height: 20px;
-  margin: 15px 0;
+  margin-bottom: 5px;
 }
 h4,
 .h4 {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
-  margin: 15px 0;
+  margin-bottom: 5px;
 }
 h5,
 .h5 {
   font-size: 15px;
   line-height: 20px;
-  margin: 15px 0;
 }
 h6,
 .h6 {
   font-size: 12px;
   line-height: 15px;
-  margin: 10px 0;
 }
 /*
 	Links
@@ -614,6 +645,9 @@ a:focus {
 a:active {
   color: white;
   background-color: #005689;
+}
+p a {
+  font-weight: bold;
 }
 /* Basic form styles */
 fieldset {
@@ -790,9 +824,10 @@ tfoot tr {
   text-decoration: none;
   cursor: pointer;
 }
+.topbar-menu a:hover,
+.topbar-menu a:focus,
 .topbar-menu .dropdown-holder:hover,
-.topbar-menu .dropdown-holder:focus,
-.topbar-menu a:focus {
+.topbar-menu .dropdown-holder:focus {
   background: #d9d9d9;
 }
 .dropdown-holder {
@@ -834,6 +869,29 @@ li:first-child .dropdown.left-align {
 }
 li:last-child .dropdown.align-right {
   right: 0;
+}
+@media screen and (max-width: 600px) {
+  .topbar ul {
+    float: none;
+    border: none;
+  }
+  .topbar li {
+    float: none;
+    border: none;
+    border-bottom: 1px solid #c6c6c6;
+  }
+  .dropdown {
+    position: static;
+    width: 100%;
+  }
+}
+/*
+	Factbox:
+	https://sites.google.com/a/guardian.co.uk/bootstrap/-archive/factboxes.pdf?attredirects=0&d=1
+*/
+.factbox {
+  background-color: #F3F3F3;
+  padding: 5px 10px;
 }
 /*
 	Show the current zone border color.

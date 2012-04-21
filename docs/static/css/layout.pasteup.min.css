@@ -10,7 +10,9 @@
 .col-3{width:220px;}
 .col-2{width:140px;}
 .col-1{width:60px;}
-.row{clear:both;margin-left:-20px;}
-.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11{float:left;margin-left:20px;background:#546;}
+.row{clear:both;margin-left:-20px;zoom:1;}
+.row:before,.row:after{content:"";display:table;}
+.row:after{clear:both;}
+.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11{float:left;margin-left:20px;}
 .col-12{margin-left:0;}
 .start-col{margin-left:0;}

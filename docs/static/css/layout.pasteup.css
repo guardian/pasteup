@@ -43,6 +43,15 @@
 .row {
   clear: both;
   margin-left: -20px;
+  zoom: 1;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
 }
 /* All column padding / margin */
 .col-1,
@@ -58,7 +67,6 @@
 .col-11 {
   float: left;
   margin-left: 20px;
-  background: #546;
 }
 .col-12 {
   margin-left: 0;

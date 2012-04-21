@@ -27,9 +27,10 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+.topbar-menu a:hover,
+.topbar-menu a:focus,
 .topbar-menu .dropdown-holder:hover,
-.topbar-menu .dropdown-holder:focus,
-.topbar-menu a:focus {
+.topbar-menu .dropdown-holder:focus {
 	background: #d9d9d9; // hover grey
 }
 
@@ -76,4 +77,21 @@ li:first-child .dropdown.left-align {
 }
 li:last-child .dropdown.align-right {
 	right: 0;
+}
+
+// Add some trial responsiveness
+@media screen and (max-width: 600px) {
+	.topbar ul {
+		float: none;
+		border: none;
+	}
+	.topbar li {
+		float: none;
+		border: none;
+		border-bottom: 1px solid #c6c6c6;
+	}
+	.dropdown {
+		position: static;
+		width: 100%;
+	}
 }
