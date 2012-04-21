@@ -490,6 +490,11 @@ table {
 .pull-right {
   float: right;
 }
+.h {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
 .standfirst {
   font-size: 16px;
   line-height: 20px;
@@ -761,7 +766,6 @@ tfoot tr {
   background: #ededed;
   float: left;
   font-size: 12px;
-  line-height: 1;
   margin-bottom: 20px;
   width: 100%;
 }
@@ -775,46 +779,61 @@ tfoot tr {
   border-left: 1px solid #c6c6c6;
   float: left;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 .topbar-menu li:first-child {
   border-left: 0 none;
 }
-.topbar-menu a,
-.topbar-menu h3 {
+.topbar-menu a {
   display: block;
-  font-size: 12px;
-  font-weight: normal;
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
   margin: 0;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 8px 10px 7px 10px;
   text-decoration: none;
+  cursor: pointer;
+}
+.topbar-menu .dropdown-holder:hover,
+.topbar-menu .dropdown-holder:focus,
+.topbar-menu a:focus {
+  background: #d9d9d9;
 }
 .dropdown-holder {
   position: relative;
 }
-.dropdown-holder:hover {
-  background: #d9d9d9;
-}
-.dropdown-holder:hover .dropdown {
-  display: block;
-}
 .dropdown {
-  background: #d9d9d9;
   position: absolute;
+  left: -1px;
   display: none;
 }
 .dropdown li {
   border-left: 0 none;
   border-top: 1px solid #c6c6c6;
   clear: both;
-  line-height: 1;
+  width: 100%;
+}
+.dropdown a {
+  background: #d9d9d9;
+  white-space: nowrap;
+}
+.dropdown a:hover {
+  background: #C6C6C6;
+  white-space: nowrap;
 }
 .dropdown li:first-child {
   border-top: 0 none;
+}
+.dropdown-holder:hover .dropdown,
+.dropdown-holder a:focus + .dropdown,
+.dropdown:focus {
+  display: block;
+}
+.dropdown.align-right {
+  left: auto;
+  right: -1px;
+}
+li:first-child .dropdown.left-align {
+  left: 0;
+}
+li:last-child .dropdown.align-right {
+  right: 0;
 }
 /*
 	Show the current zone border color.
