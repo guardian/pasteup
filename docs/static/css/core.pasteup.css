@@ -810,7 +810,17 @@ li:last-child .dropdown.align-right {
 */
 .factbox {
   background-color: #F3F3F3;
-  padding: 5px 10px;
+  padding: 5px;
+}
+.factbox-heading {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.factbox-image {
+  margin: 10px -5px;
 }
 /*
 	Show the current zone border color.

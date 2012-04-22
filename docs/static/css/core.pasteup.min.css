@@ -115,7 +115,9 @@ tfoot tr{background-color:F5F5F5;border-top:1px dotted #999;font-size:11px;line-
 .dropdown.align-right{left:auto;right:-1px;}
 li:first-child .dropdown.left-align{left:0;}
 li:last-child .dropdown.align-right{right:0;}
-@media screen and (max-width:600px){.topbar ul{float:none;border:none;} .topbar li{float:none;border:none;border-bottom:1px solid #c6c6c6;} .dropdown{position:static;width:100%;}}.factbox{background-color:#F3F3F3;padding:5px 10px;}
+@media screen and (max-width:600px){.topbar ul{float:none;border:none;} .topbar li{float:none;border:none;border-bottom:1px solid #c6c6c6;} .dropdown{position:static;width:100%;}}.factbox{background-color:#F3F3F3;padding:5px;}
+.factbox-heading{font-family:arial,sans-serif;font-size:12px;line-height:15px;font-weight:bold;margin-bottom:0;}
+.factbox-image{margin:10px -5px;}
 .zone-news .zone-border{border-color:#D61D00;}
 .zone-sport .zone-border{border-color:green;}
 .zone-comment .zone-border{border-color:#0061A6;}
