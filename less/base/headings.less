@@ -2,38 +2,56 @@
 	Headings
 */
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+// Base headings
+h1, h2, h3, h4, h5, h6 {
 	font-family: georgia, serif;
-	font-weight: normal;
 	margin: 0;
 }
 
-h1, .h1 {
+h1, .article-heading {
 	font-size: 24px;
 	line-height: 30px;
-	margin-bottom: 10px;
+	font-weight: normal;
 }
-h2, .h2 {
-	font-size: 21px;
-	line-height: 25px;
-	margin-bottom: 10px;
-}
-h3, .h3 {
+h2, .sub-heading {
 	font-size: 18px;
-	line-height: 20px;
-	margin-bottom: 5px;
+	line-height: 25px; 
+	font-weight: normal;
 }
-h4, .h4 {
+h3, .related-heading {
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+}
+h4, .trailblock-heading {
 	font-size: 14px;
 	line-height: 20px;
-	margin-bottom: 5px;
+	font-weight: bold;
 }
-h5, .h5 {
-	font-size: 15px;
+h5, .article-base-heading {
+	font-size: 14px;
 	line-height: 20px;
+	font-weight: bold;
+	font-family: arial, sans-serif;
 }
-h6, .h6 {
+h6, .base-heading {
+	color: #000;
 	font-size: 12px;
 	line-height: 15px;
+	font-weight: bold;
+	font-family: arial, sans-serif;
+}
+
+// Heading helpers
+.hd {
+	background-color: #ededed; // light grey
+	padding: 4px 5px 14px;
+	margin-bottom: 5px;
+	clear: both;
+}
+.hd .sub-heading {
+	line-height: 20px;
+}
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr {
+	border: none !important;
 }

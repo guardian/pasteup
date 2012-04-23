@@ -1,4 +1,4 @@
-// I've vaguely implemented a vertical rhythm based on 5px.
+// Vertical rhythm based on 5px.
 // Line heights and all vertical padding and margins are all factors of 5px.
 
 body {
@@ -16,13 +16,26 @@ p {
 .article-body {
 	font-size: 14px;
 	line-height: 20px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+}
+.article-body p {
+	margin-bottom: 15px;
+}
+
+blockquote {
+	border-left: 10px solid #D3D3D3;
+	margin: 1em 40px 1em 30px;
+	padding-left: 10px;
 }
 
 figcaption {
 	color: #666;
 }
-code {
+
+dt {
 	font-weight: bold;
+}
+
+small {
+    font-size: 11px;
+    line-height: 14px;
 }

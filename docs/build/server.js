@@ -16,6 +16,7 @@ app.configure(function() {
 	// but perhaps this should be allowed
 	app.use('/css', express.static(__dirname + '/../static/css'));
 	app.use('/js', express.static(__dirname + '/../static/js'));
+	app.use('/img', express.static(__dirname + '/../static/img'));
 	app.use('/docs', express.static(__dirname + '/..'));
 });
 

@@ -15,8 +15,8 @@
         </script>
         <script data-main="/js/main.min" src="/js/require.js"></script>
         <style>
-            .pasteup-wrapper {
-                width: 90%;
+            .doc-holder {
+                width: 940px;
                 margin: 0 auto;
             }
             .pasteup-mod {
@@ -30,10 +30,16 @@
             	padding-bottom: 2px;
             	border-bottom: 1px solid #666;
             }
+            .pasteup-mod-code {
+                margin-top: 20px;
+                float: left;
+                width: 63%;
+            }
             .pasteup-textarea {
-            	width: 100%;
-            	height: 8em;
-            	margin-top: 20px;
+                margin-top: 20px;
+            	width: 35%;
+                height: 200px;
+                float: right;
             	padding: 0.5em;
             	border: 1px solid #999;
             	font-family: monospace;
@@ -42,12 +48,42 @@
         </style>
     </head>
     <body>
-    	<div class="pasteup-wrapper">
-    		<h1 class="h1">Pasteup</h1>
-    		    		<div class="pasteup-mod">
-				<p class="pasteup-title">factbox.html</p>
-				<div class="pasteup-mod-code">
-					<div class="factbox zone-border zone-border-small">
+        <div class="doc-holder">
+            <div class="row">
+                <div class="col-12">
+                    <div class="topbar">
+                        <ul class="topbar-menu pull-left">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="styleguide.html">Styleguide</a></li>
+                            <li><a href="base.html">Base CSS</a></li>
+                            <li><a href="layout.html">Layout CSS</a></li>
+                            <li><a href="modules.html">Module CSS</a></li>
+                        </ul>
+                        <ul class="topbar-menu pull-right">
+                            <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
+                            <li class="dropdown-holder">
+                                <a href="#code-menu">Code</a>
+                                <ul id="code-menu" class="dropdown align-right">
+                                    <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                                    <li><a href="#">HTML styleguide</a></li>
+                                    <li><a href="#">CSS styleguide</a></li>
+                                    <li><a href="#">JavaScript styleguide</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /.12-col -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+                    <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
+            		<h1 class="h1">Pasteup Module Library</h1>
+            		            		<div class="pasteup-mod">
+                        <div class="hd zone-border zone-border-medium">
+                            <h2 class="sub-heading">factbox.html</h2>
+                        </div>
+        				<div class="pasteup-mod-code">
+        					<div class="factbox zone-border zone-border-small">
 	<h1 class="factbox-heading">Factbox title</h3>
 	<p>Factbox text goes here. Factbox text goes here.</p>
 	<div class="factbox-image">
@@ -55,8 +91,8 @@
 	</div>
 	<p><a href="#">Factbox link</a></p>
 </div>
-				</div>
-				<textarea class="pasteup-textarea">&lt;div class=&quot;factbox zone-border zone-border-small&quot;&gt;
+        				</div>
+        				<textarea class="pasteup-textarea">&lt;div class=&quot;factbox zone-border zone-border-small&quot;&gt;
 	&lt;h1 class=&quot;factbox-heading&quot;&gt;Factbox title&lt;/h3&gt;
 	&lt;p&gt;Factbox text goes here. Factbox text goes here.&lt;/p&gt;
 	&lt;div class=&quot;factbox-image&quot;&gt;
@@ -64,11 +100,13 @@
 	&lt;/div&gt;
 	&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Factbox link&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</textarea>
-			</div>
-			    		<div class="pasteup-mod">
-				<p class="pasteup-title">form.html</p>
-				<div class="pasteup-mod-code">
-					<form class="form" action="#">
+        			</div>
+        			            		<div class="pasteup-mod">
+                        <div class="hd zone-border zone-border-medium">
+                            <h2 class="sub-heading">form.html</h2>
+                        </div>
+        				<div class="pasteup-mod-code">
+        					<form class="form" action="#">
                     <h5 class="h3 zone-border h-backed">Form title</h2>
                         <fieldset>
                             <div class="field">
@@ -170,8 +208,8 @@
                             </div>
                         </fieldset>
                     </form>
-				</div>
-				<textarea class="pasteup-textarea">&lt;form class=&quot;form&quot; action=&quot;#&quot;&gt;
+        				</div>
+        				<textarea class="pasteup-textarea">&lt;form class=&quot;form&quot; action=&quot;#&quot;&gt;
                     &lt;h5 class=&quot;h3 zone-border h-backed&quot;&gt;Form title&lt;/h2&gt;
                         &lt;fieldset&gt;
                             &lt;div class=&quot;field&quot;&gt;
@@ -273,11 +311,13 @@
                             &lt;/div&gt;
                         &lt;/fieldset&gt;
                     &lt;/form&gt;</textarea>
-			</div>
-			    		<div class="pasteup-mod">
-				<p class="pasteup-title">nav-sections.html</p>
-				<div class="pasteup-mod-code">
-					<nav>
+        			</div>
+        			            		<div class="pasteup-mod">
+                        <div class="hd zone-border zone-border-medium">
+                            <h2 class="sub-heading">nav-sections.html</h2>
+                        </div>
+        				<div class="pasteup-mod-code">
+        					<nav>
 	<ul class="nav-sections" role="navigation">
 		<li class="zone-news"><a href="/" class="zone-text">News</a></li>
 		<li class="zone-sport"><a href="/" class="zone-text">Sport</a></li>
@@ -295,8 +335,8 @@
 		<li><a href="/">Jobs</a></li>
 	</ul>
 </nav>
-				</div>
-				<textarea class="pasteup-textarea">&lt;nav&gt;
+        				</div>
+        				<textarea class="pasteup-textarea">&lt;nav&gt;
 	&lt;ul class=&quot;nav-sections&quot; role=&quot;navigation&quot;&gt;
 		&lt;li class=&quot;zone-news&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
 		&lt;li class=&quot;zone-sport&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;zone-text&quot;&gt;Sport&lt;/a&gt;&lt;/li&gt;
@@ -314,11 +354,13 @@
 		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Jobs&lt;/a&gt;&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/nav&gt;</textarea>
-			</div>
-			    		<div class="pasteup-mod">
-				<p class="pasteup-title">topbar.html</p>
-				<div class="pasteup-mod-code">
-					<div class="topbar">
+        			</div>
+        			            		<div class="pasteup-mod">
+                        <div class="hd zone-border zone-border-medium">
+                            <h2 class="sub-heading">topbar.html</h2>
+                        </div>
+        				<div class="pasteup-mod-code">
+        					<div class="topbar">
 	<h2 class="h">Menu heading</h2>
 	<ul class="topbar-menu pull-left">
 		<li class="dropdown-holder">
@@ -356,8 +398,8 @@
 		</li>
 	</ul>
 </div>
-				</div>
-				<textarea class="pasteup-textarea">&lt;div class=&quot;topbar&quot;&gt;
+        				</div>
+        				<textarea class="pasteup-textarea">&lt;div class=&quot;topbar&quot;&gt;
 	&lt;h2 class=&quot;h&quot;&gt;Menu heading&lt;/h2&gt;
 	&lt;ul class=&quot;topbar-menu pull-left&quot;&gt;
 		&lt;li class=&quot;dropdown-holder&quot;&gt;
@@ -395,7 +437,9 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/div&gt;</textarea>
-			</div>
-			</div>
+        			</div>
+        			</div><!-- /.12-col -->
+            </div><!-- /.row -->
+		</div><!-- /.doc-holder -->
 	</body>
 </html>

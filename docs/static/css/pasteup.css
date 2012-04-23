@@ -42,7 +42,6 @@
 }
 .row {
   clear: both;
-  margin-left: -20px;
   zoom: 1;
 }
 .row:before,
@@ -193,9 +192,6 @@ b,
 strong {
   font-weight: bold;
 }
-blockquote {
-  margin: 1em 40px;
-}
 /*
  * Addresses styling not present in S5, Chrome
  */
@@ -250,9 +246,6 @@ q:after {
   content: '';
   content: none;
 }
-small {
-  font-size: 75%;
-}
 /*
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
@@ -291,7 +284,8 @@ dd {
 menu,
 ol,
 ul {
-  padding: 0 0 0 40px;
+  padding: 0;
+  margin-left: 25px;
 }
 /*
  * Corrects list images handled incorrectly in IE7
@@ -499,10 +493,10 @@ table {
   float: right;
 }
 .margin-top {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .margin-bottom {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .h {
   position: absolute !important;
@@ -511,8 +505,17 @@ table {
 }
 ol.unstyled,
 ul.unstyled {
-  padding-left: 0;
+  margin-left: 0;
   list-style: none;
+}
+.dl-horizontal dt {
+  float: left;
+  clear: left;
+  width: 150px;
+  text-align: right;
+}
+.dl-horizontal dd {
+  margin-left: 160px;
 }
 .cf:before,
 .cf:after {
@@ -533,20 +536,20 @@ ul.unstyled {
 .caption {
   color: #666;
 }
-.h-backed {
-  background-color: #ededed;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 10px;
-  padding-bottom: 20px;
+.dotted-border {
+  border-top: 1px dotted #666;
+  padding-top: 2px;
 }
 .zone-border {
-  border-top: 3px solid #0061A6;
-  padding-top: 5px;
-}
-.zone-border-small {
-  border-top-width: 1px;
+  border-top: 1px solid #0061A6;
   padding-top: 2px;
+}
+.zone-border-medium {
+  border-top-width: 3px;
+}
+.zone-border-large {
+  border-top-width: 10px;
+  padding-top: 5px;
 }
 .zone-color {
   color: #0061A6;
@@ -567,14 +570,24 @@ p {
 .article-body {
   font-size: 14px;
   line-height: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+}
+.article-body p {
+  margin-bottom: 15px;
+}
+blockquote {
+  border-left: 10px solid #D3D3D3;
+  margin: 1em 40px 1em 30px;
+  padding-left: 10px;
 }
 figcaption {
   color: #666;
 }
-code {
+dt {
   font-weight: bold;
+}
+small {
+  font-size: 11px;
+  line-height: 14px;
 }
 /*
 	Headings
@@ -584,50 +597,65 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h6 {
   font-family: georgia, serif;
-  font-weight: normal;
   margin: 0;
 }
 h1,
-.h1 {
+.article-heading {
   font-size: 24px;
   line-height: 30px;
-  margin-bottom: 10px;
+  font-weight: normal;
 }
 h2,
-.h2 {
-  font-size: 21px;
+.sub-heading {
+  font-size: 18px;
   line-height: 25px;
-  margin-bottom: 10px;
+  font-weight: normal;
 }
 h3,
-.h3 {
-  font-size: 18px;
+.related-heading {
+  font-size: 16px;
   line-height: 20px;
-  margin-bottom: 5px;
+  font-weight: bold;
 }
 h4,
-.h4 {
+.trailblock-heading {
   font-size: 14px;
   line-height: 20px;
-  margin-bottom: 5px;
+  font-weight: bold;
 }
 h5,
-.h5 {
-  font-size: 15px;
+.article-base-heading {
+  font-size: 14px;
   line-height: 20px;
+  font-weight: bold;
+  font-family: arial, sans-serif;
 }
 h6,
-.h6 {
+.base-heading {
+  color: #000;
   font-size: 12px;
   line-height: 15px;
+  font-weight: bold;
+  font-family: arial, sans-serif;
+}
+.hd {
+  background-color: #ededed;
+  padding: 4px 5px 14px;
+  margin-bottom: 5px;
+  clear: both;
+}
+.hd .sub-heading {
+  line-height: 20px;
+}
+h1 abbr,
+h2 abbr,
+h3 abbr,
+h4 abbr,
+h5 abbr,
+h6 abbr {
+  border: none !important;
 }
 /*
 	Links
@@ -788,7 +816,7 @@ table caption {
   text-align: left;
   padding: 10px 6px 20px 6px;
   border-bottom: 1px solid #999;
-  border-top: 1px solid #D61D00;
+  border-top: 1px solid #0061A6;
 }
 tfoot tr {
   background-color: F5F5F5;
@@ -802,6 +830,7 @@ tfoot tr {
   font-size: 12px;
   margin-bottom: 20px;
   width: 100%;
+  border-radius: 0 0 20px 20px;
 }
 .topbar ul {
   background: #ededed;
@@ -916,7 +945,7 @@ li:last-child .dropdown.align-right {
   border-color: #0061A6;
 }
 .zone-culture .zone-border {
-  border-color: #D61D00;
+  border-color: #D1008B;
 }
 .zone-business .zone-border {
   border-color: #3246AB;
@@ -946,7 +975,7 @@ li:last-child .dropdown.align-right {
   background-color: #0061A6;
 }
 .zone-culture .zone-background {
-  background-color: #D61D00;
+  background-color: #D1008B;
 }
 .zone-business .zone-background {
   background-color: #3246AB;

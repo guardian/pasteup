@@ -10,7 +10,7 @@
 .col-3{width:220px;}
 .col-2{width:140px;}
 .col-1{width:60px;}
-.row{clear:both;margin-left:-20px;zoom:1;}
+.row{clear:both;zoom:1;}
 .row:before,.row:after{content:"";display:table;}
 .row:after{clear:both;}
 .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11{float:left;margin-left:20px;}
@@ -27,7 +27,6 @@ a:focus{outline:thin dotted;}
 a:hover,a:active{outline:0;}
 abbr[title]{border-bottom:1px dotted;}
 b,strong{font-weight:bold;}
-blockquote{margin:1em 40px;}
 dfn{font-style:italic;}
 mark{background:#ff0;color:#000;}
 p,pre{margin:1em 0;}
@@ -35,13 +34,12 @@ pre,code,kbd,samp{font-family:monospace, serif;_font-family:'courier new',monosp
 pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
 q{quotes:none;}
 q:before,q:after{content:'';content:none;}
-small{font-size:75%;}
 sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
 sup{top:-0.5em;}
 sub{bottom:-0.25em;}
 dl,menu,ol,ul{margin:1em 0;}
 dd{margin:0 0 0 40px;}
-menu,ol,ul{padding:0 0 0 40px;}
+menu,ol,ul{padding:0;margin-left:25px;}
 nav ul,nav ol{list-style:none;list-style-image:none;}
 img{border:0;-ms-interpolation-mode:bicubic;max-width:100%;}
 svg:not(:root){overflow:hidden;}
@@ -60,32 +58,41 @@ textarea{overflow:auto;vertical-align:top;}
 table{border-collapse:collapse;border-spacing:0;}
 .pull-left{float:left;}
 .pull-right{float:right;}
-.margin-top{margin-top:20px;}
-.margin-bottom{margin-bottom:20px;}
+.margin-top{margin-top:15px;}
+.margin-bottom{margin-bottom:15px;}
 .h{position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);}
-ol.unstyled,ul.unstyled{padding-left:0;list-style:none;}
+ol.unstyled,ul.unstyled{margin-left:0;list-style:none;}
+.dl-horizontal dt{float:left;clear:left;width:150px;text-align:right;}
+.dl-horizontal dd{margin-left:160px;}
 .cf:before,.cf:after{content:"";display:table;}
 .cf:after{clear:both;}
 .cf{zoom:1;}
 .standfirst{font-size:16px;line-height:20px;color:#666;}
 .caption{color:#666;}
-.h-backed{background-color:#ededed;padding-left:5px;padding-right:5px;padding-top:10px;padding-bottom:20px;}
-.zone-border{border-top:3px solid #0061A6;padding-top:5px;}
-.zone-border-small{border-top-width:1px;padding-top:2px;}
+.dotted-border{border-top:1px dotted #666;padding-top:2px;}
+.zone-border{border-top:1px solid #0061A6;padding-top:2px;}
+.zone-border-medium{border-top-width:3px;}
+.zone-border-large{border-top-width:10px;padding-top:5px;}
 .zone-color{color:#0061A6;}
 .zone-background-color{background-color:#0061A6;}
 body{color:#333;background-color:#FFF;font-size:12px;line-height:15px;font-family:arial,sans-serif;}
 p{margin:0 0 5px;}
-.article-body{font-size:14px;line-height:20px;margin-top:10px;margin-bottom:10px;}
+.article-body{font-size:14px;line-height:20px;}
+.article-body p{margin-bottom:15px;}
+blockquote{border-left:10px solid #D3D3D3;margin:1em 40px 1em 30px;padding-left:10px;}
 figcaption{color:#666;}
-code{font-weight:bold;}
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:georgia, serif;font-weight:normal;margin:0;}
-h1,.h1{font-size:24px;line-height:30px;margin-bottom:10px;}
-h2,.h2{font-size:21px;line-height:25px;margin-bottom:10px;}
-h3,.h3{font-size:18px;line-height:20px;margin-bottom:5px;}
-h4,.h4{font-size:14px;line-height:20px;margin-bottom:5px;}
-h5,.h5{font-size:15px;line-height:20px;}
-h6,.h6{font-size:12px;line-height:15px;}
+dt{font-weight:bold;}
+small{font-size:11px;line-height:14px;}
+h1,h2,h3,h4,h5,h6{font-family:georgia, serif;margin:0;}
+h1,.article-heading{font-size:24px;line-height:30px;font-weight:normal;}
+h2,.sub-heading{font-size:18px;line-height:25px;font-weight:normal;}
+h3,.related-heading{font-size:16px;line-height:20px;font-weight:bold;}
+h4,.trailblock-heading{font-size:14px;line-height:20px;font-weight:bold;}
+h5,.article-base-heading{font-size:14px;line-height:20px;font-weight:bold;font-family:arial,sans-serif;}
+h6,.base-heading{color:#000;font-size:12px;line-height:15px;font-weight:bold;font-family:arial,sans-serif;}
+.hd{background-color:#ededed;padding:4px 5px 14px;margin-bottom:5px;clear:both;}
+.hd .sub-heading{line-height:20px;}
+h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none !important;}
 a,a:link,a:visited{color:#005689;text-decoration:none;}
 a:hover,a:focus{text-decoration:underline;}
 a:active{color:white;background-color:#005689;}
@@ -115,9 +122,9 @@ tbody:hover tr:hover,tr.highlighted-row{background-color:#FFF3A5;}
 th{background-color:#D8D8D8;border-bottom:1px solid #999;font-weight:bold;text-align:left;}
 th,td{padding:10px;border-right:1px solid #B9B9B9;}
 th:last-child,td:last-child{border-right:none;}
-table caption{background-color:#CCC;text-align:left;padding:10px 6px 20px 6px;border-bottom:1px solid #999;border-top:1px solid #D61D00;}
+table caption{background-color:#CCC;text-align:left;padding:10px 6px 20px 6px;border-bottom:1px solid #999;border-top:1px solid #0061A6;}
 tfoot tr{background-color:F5F5F5;border-top:1px dotted #999;font-size:11px;line-height:14px;}
-.topbar{background:#ededed;float:left;font-size:12px;margin-bottom:20px;width:100%;}
+.topbar{background:#ededed;float:left;font-size:12px;margin-bottom:20px;width:100%;border-radius:0 0 20px 20px;}
 .topbar ul{background:#ededed;list-style:none;margin:0;padding:0;}
 .topbar-menu li{border-left:1px solid #c6c6c6;float:left;list-style:none;}
 .topbar-menu li:first-child{border-left:0 none;}
@@ -139,7 +146,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-news .zone-border{border-color:#D61D00;}
 .zone-sport .zone-border{border-color:green;}
 .zone-comment .zone-border{border-color:#0061A6;}
-.zone-culture .zone-border{border-color:#D61D00;}
+.zone-culture .zone-border{border-color:#D1008B;}
 .zone-business .zone-border{border-color:#3246AB;}
 .zone-money .zone-border{border-color:#8F1AB6;}
 .zone-lifestyle .zone-border{border-color:#AD532F;}
@@ -148,7 +155,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-news .zone-background{background-color:#D61D00;}
 .zone-sport .zone-background{background-color:green;}
 .zone-comment .zone-background{background-color:#0061A6;}
-.zone-culture .zone-background{background-color:#D61D00;}
+.zone-culture .zone-background{background-color:#D1008B;}
 .zone-business .zone-background{background-color:#3246AB;}
 .zone-money .zone-background{background-color:#8F1AB6;}
 .zone-lifestyle .zone-background{background-color:#AD532F;}

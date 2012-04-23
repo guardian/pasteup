@@ -1,51 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
-        <title>Pasteup Module Library | The Guardian</title>
+        <title>Pasteup | Guardian News &amp; Media</title>
+        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian’s globally recognised design language is turned into code for the web, and the starting point when styling Guardian branded products for both internal teams and third parties." />
+        <meta name="author" content="the Guardian" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products" />
-        <meta name="author" content="The Guardian" />
-    
-        <link rel="stylesheet" href="../css/pasteup.min.css" />
-        <script>
-        var require = {
-            paths: {'secondary': 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min'}
-        }
-        </script>
-        <script data-main="/js/main.min" src="/js/require.js"></script>
+        <script>document.getElementsByTagName('html')[0].className += ' has-js';</script>
+
+        <!-- Include core base and module styles -->
+        <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
+
+        <!-- Add layout styles for browsers over 50em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 50em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
+            <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
+        <![endif]-->
+
         <style>
             .doc-holder {
                 width: 940px;
                 margin: 0 auto;
             }
-            .pasteup-mod {
-            	padding: 30px 0;
-            	clear: both;
-            }
-            .pasteup-title {
-            	font-size: 16px;
-            	font-weight: normal;
-            	margin-bottom: 30px;
-            	padding-bottom: 2px;
-            	border-bottom: 1px solid #666;
-            }
-            .pasteup-mod-code {
-                margin-top: 20px;
-                float: left;
-                width: 63%;
-            }
-            .pasteup-textarea {
-                margin-top: 20px;
-            	width: 35%;
-                height: 200px;
-                float: right;
-            	padding: 0.5em;
-            	border: 1px solid #999;
-            	font-family: monospace;
-            	box-sizing: border-box;
+            .large-margin-top {
+                margin-top: 60px;
             }
         </style>
+        
     </head>
 
     <body>
@@ -75,30 +61,23 @@
                         </ul>
                     </div>
 
-                </div><!-- /.12-col -->
+                </div>
             </div><!-- /.row -->
 
             <div class="row">
                 <div class="col-12">
                     <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
-            		<h1 class="h1">Pasteup Module Library</h1>
-
-            		{{#modules}}
-
-            		<div class="pasteup-mod">
-                        <div class="hd zone-border zone-border-medium">
-                            <h2 class="sub-heading">{{name}}</h2>
-                        </div>
-        				<div class="pasteup-mod-code">
-        					{{{code}}}
-        				</div>
-        				<textarea class="pasteup-textarea">{{code}}</textarea>
-        			</div>
-
-        			{{/modules}}
-
-                </div><!-- /.12-col -->
+                    <h1>Layout CSS</h1>
+                </div>
             </div><!-- /.row -->
-		</div><!-- /.doc-holder -->
-	</body>
+            <div class="row">
+                <div class="col-12">
+                    
+                </div><!-- /.col-12 -->
+
+            </div><!-- /.row -->
+        </div><!-- /.doc-holder -->
+        
+    </body>
+
 </html>

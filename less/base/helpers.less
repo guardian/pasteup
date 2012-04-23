@@ -7,10 +7,10 @@
 	float: right;
 }
 .margin-top {
-	margin-top: 20px;
+	margin-top: 15px;
 }
 .margin-bottom {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 // Accessible hidden content.
@@ -23,8 +23,17 @@
 // Some list helpers
 ol.unstyled, 
 ul.unstyled {
-	padding-left: 0;
+	margin-left: 0;
 	list-style: none;	
+}
+.dl-horizontal dt {
+	float: left;
+	clear: left;
+	width: 150px;
+	text-align: right;
+}
+.dl-horizontal dd {
+	margin-left: 160px;
 }
 
 // Micro clearfix
@@ -57,24 +66,23 @@ ul.unstyled {
 	color: #666;
 }
 
-// Some generic style helpers
-.h-backed {
-	background-color: #ededed; // light grey
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 10px;
-	padding-bottom: 20px;
+.dotted-border {
+	border-top: 1px dotted #666;
+	padding-top: 2px;
 }
 
 // Zone helpers for adding zone colors in various places.
 // Default zone color is red  for news.
 .zone-border {
-	border-top: 3px solid #0061A6; // blue by default
-	padding-top: 5px;
-}
-.zone-border-small {
-	border-top-width: 1px;
+	border-top: 1px solid #0061A6; // blue by default
 	padding-top: 2px;
+}
+.zone-border-medium {
+	border-top-width: 3px;
+}
+.zone-border-large {
+	border-top-width: 10px;
+	padding-top: 5px;
 }
 .zone-color {
 	color:#0061A6; // blue by default
