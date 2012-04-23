@@ -1,18 +1,25 @@
 Introduction
 ============
 
-Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products.
+Pasteup is where design meets development. It is where the Guardian’s globally recognised design language is turned into code for the web, and the starting point when styling Guardian branded products for both internal teams and third parties.
 
 **Why Pasteup?** It's a newspaper term for "the assemblage of pages by pasting type onto page mockups, which are then photographed to be made into metal plates for the printing press" (courtesy of John E McIntyre). This is quite a nice metaphor for how client-side development builds the Guardian's pages. Plus it sounds cool.
 
-Swim-laning CSS
+Getting started
 ---------------
 
-Pasteup gives us an opportunity to extract the common patterns from across the Guardian's web apps into a central shared repository. Over time it give us a number of benefits:
+    > ./setup.sh      # Installs build/server dependencies, including nodejs and npm.
+    > cd docs/build
+    > node server.js  # Starts server on http://localhost:3000
 
- - Encourages re-use - everyone knows where to get code that implements the core Guardian designs. These styles don't get forked and inconsistent (unless that's desirable).
- - Decoupled from app code - The Guardian design language stays isolated and can evolve separately to the applications it sits on top of; although they may incorporate it in their build/deploy processes.
- - Testing - if these components are isolated from our product codebases it makes them easier to unit test distinct modules, and regression test the code.
- - Third-parties - allows us to more easily explain how to implement Guardian branding to partners (in conjunction with improved Third-Party Toolkit).
- - Refactor core R2 pages - As the bootstrap develops it will get to the point where it can replace many of the core stylesheets used in R2 and other existing applications.
- - General CSS refactor - As we move code into the bootstrap it gives us an opportunity to create tests for it, and safely refactor it to use more modern best-practice coding style and methodology.
+You should now be able to reach the docs homepage at http://localhost:3000/docs/index.html. Any changes you make in the `/less`, `/js`, or `/content` directories will trigger a full build, and immediatley be available for viewing on localhost.
+
+LESS
+----
+
+Pasteup uses LESS to build and minify CSS. Sometimes, if you ask nicely you can use a CSS variable - or maybe even a mixin.
+
+RequireJS
+---------
+
+Pasteup uses RequireJS and the AMD pattern to split JavaScript into modules, along with the built in optimizer to build production versions of these modules.
