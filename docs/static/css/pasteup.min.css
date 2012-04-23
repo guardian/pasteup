@@ -133,7 +133,7 @@ tfoot tr{background-color:F5F5F5;border-top:1px dotted #999;font-size:11px;line-
 .dropdown-holder{position:relative;}
 .dropdown{position:absolute;left:-1px;display:none;}
 .dropdown li{border-left:0 none;border-top:1px solid #c6c6c6;clear:both;width:100%;}
-.dropdown a{background:#d9d9d9;white-space:nowrap;}
+.dropdown a{background:#d9d9d9;padding:4px 10px 3px 10px;white-space:nowrap;}
 .dropdown a:hover{background:#C6C6C6;white-space:nowrap;}
 .dropdown li:first-child{border-top:0 none;}
 .dropdown-holder:hover .dropdown,.dropdown-holder a:focus+.dropdown,.dropdown:focus{display:block;}

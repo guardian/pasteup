@@ -795,6 +795,7 @@ tfoot tr {
 }
 .dropdown a {
   background: #d9d9d9;
+  padding: 4px 10px 3px 10px;
   white-space: nowrap;
 }
 .dropdown a:hover {
