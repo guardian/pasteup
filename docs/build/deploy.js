@@ -20,7 +20,7 @@ var s3_sync_cmd = 's3cmd sync\
                      --guess-mime-type\
                     {{#gzip}} --add-header "Content-Encoding: gzip" {{/gzip}}\
                      --add-header "Expires: {{expiry_date}}"\
-                      {{directory}} s3://{{s3bucket}}{{s3dir}}';
+                      {{directory}} s3://pasteup{{s3dir}}';
 
 /* Check the build number we're about to deploy */
 process.stdout.write('\nYou are deploying version: ' + getVersionNumber());
@@ -57,7 +57,6 @@ function sendDeployCommands(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/docs',
-                    's3bucket': s3bucket,
                     's3dir': '/',
                     'expiry_date': getNearFutureExpiryDate()
                 }),
@@ -70,7 +69,6 @@ function sendDeployCommands(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
-                    's3bucket': s3bucket,
                     's3dir': '/',
                     'expiry_date': getNearFutureExpiryDate(),
                     'gzip': true
@@ -84,7 +82,6 @@ function sendDeployCommands(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
-                    's3bucket': s3bucket,
                     's3dir': '/' + version + '/',
                     'expiry_date': getFarFutureExpiryDate(),
                     'gzip': true
@@ -98,7 +95,6 @@ function sendDeployCommands(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/css',
-                    's3bucket': s3bucket,
                     's3dir': '/',
                     'expiry_date': getNearFutureExpiryDate(),
                     'gzip': true
@@ -112,7 +108,6 @@ function sendDeployCommands(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/css',
-                    's3bucket': s3bucket,
                     's3dir': '/' + version + '/',
                     'expiry_date': getFarFutureExpiryDate(),
                     'gzip': true
