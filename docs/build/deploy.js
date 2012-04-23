@@ -13,15 +13,15 @@ var fs       = require('fs'),
 
 var s3bucket  = 'pasteup',
     tmp_dir   = '../../deploy_tmp',
-    tmp_v_dir = tmp_dir + '/' + getVersionNumber();
+    tmp_v_dir = '../../deploy_tmp_'+ getVersionNumber();
 
 var s3_sync_cmd = 's3cmd sync\
                      --recursive\
                      --acl-public\
                      --guess-mime-type\
-                     --add-header "Content-Encoding: gzip"\
+                    {{#gzip}} --add-header "Content-Encoding: gzip" {{/gzip}}\
                      --add-header "Expires: {{expiry_date}}"\
-                      {{directory}}/ s3://{{s3bucket}}/';
+                      {{directory}} s3://{{s3bucket}}{{s3dir}}';
 
 /* Check the build number we're about to deploy */
 process.stdout.write('\nYou are deploying version: ' + getVersionNumber());
@@ -43,32 +43,118 @@ function doDeploy() {
 
     gzipCssAndJs(function() {
         // After files are gzipped...
-        child_pr.exec(
-            // Send tmp_dir to s3.
-            mustache.to_html(s3_sync_cmd, {'directory': tmp_dir, 's3bucket': s3bucket, 'expiry_date': getExpiryDate()}),
-            function(error, stdout, stderr) {
-                if (error !== null) {
-                    if (stdout) {
-                        throw new Error("Error: " + error);
-                    }
-                }
-                if (stdout !== null) {
-                    process.stdout.write(stdout);
-                }
-                if (stderr !== null) {
-                    process.stderr.write(stderr);
-                    if (stderr.indexOf('s3cmd') > -1) {
-                        process.stderr.write('ERROR: Have you installed and configured s3cmd?\n');
-                        process.stderr.write('http://s3tools.org/s3cmd\n\n');
-                    }
-                }
-                // Remove the tmp dir. TODO: Deal with output?
-                child_pr.exec('rm -rf ' + tmp_dir, function() {
+        sendDeployCommands(function() {
+            // Finally remove all the temp dirs and exit.
+            child_pr.exec('rm -rf ' + tmp_dir, function() {
+                child_pr.exec('rm -rf ' + tmp_v_dir, function() {
                     process.exit();
                 });
-            }
-        );
+            });
+        });
     });
+}
+
+function sendDeployCommands(callback) {
+    var version = getVersionNumber();
+    async.parallel([
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': tmp_dir + '/docs',
+                    's3bucket': s3bucket,
+                    's3dir': '/',
+                    'expiry_date': getNearFutureExpiryDate()
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        },
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': tmp_dir + '/js',
+                    's3bucket': s3bucket,
+                    's3dir': '/',
+                    'expiry_date': getNearFutureExpiryDate(),
+                    'gzip': true
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        },
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': tmp_dir + '/js',
+                    's3bucket': s3bucket,
+                    's3dir': '/' + version + '/',
+                    'expiry_date': getFarFutureExpiryDate(),
+                    'gzip': true
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        },
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': tmp_dir + '/css',
+                    's3bucket': s3bucket,
+                    's3dir': '/',
+                    'expiry_date': getNearFutureExpiryDate(),
+                    'gzip': true
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        },
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': tmp_dir + '/css',
+                    's3bucket': s3bucket,
+                    's3dir': '/' + version + '/',
+                    'expiry_date': getFarFutureExpiryDate(),
+                    'gzip': true
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        }
+        ],
+        function() {
+            callback();
+        });
+    
+}
+
+function deploy(command, callback) {
+    child_pr.exec(
+        command,
+        function(error, stdout, stderr) {
+            if (error !== null) {
+                if (stdout) {
+                    throw new Error("Error: " + error);
+                }
+            }
+            if (stdout !== null) {
+                process.stdout.write(stdout);
+            }
+            if (stderr !== null) {
+                process.stderr.write(stderr);
+                if (stderr.indexOf('s3cmd') > -1) {
+                    process.stderr.write('ERROR: Have you installed and configured s3cmd?\n');
+                    process.stderr.write('http://s3tools.org/s3cmd\n\n');
+                }
+            }
+            callback();
+        }
+    );
 }
 
 function copyPasteupTo(dest) {
@@ -136,8 +222,14 @@ function getVersionNumber() {
     return data['versions'].pop();
 }
 
-function getExpiryDate() {
+function getFarFutureExpiryDate() {
     var d = new Date();
     d.setYear(d.getFullYear() + 10);
+    return d.toGMTString();
+}
+
+function getNearFutureExpiryDate() {
+    var d = new Date();
+    d.setMinutes(d.getMinutes() + 1)
     return d.toGMTString();
 }

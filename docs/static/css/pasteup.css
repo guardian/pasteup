@@ -151,7 +151,7 @@ button,
 input,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: arial, sans-serif;
 }
 /*
  * Addresses margins handled incorrectly in IE6/7
@@ -475,16 +475,6 @@ textarea {
   vertical-align: top;
   /* 2 */
 
-}
-/* =============================================================================
-   Tables
-   ========================================================================== */
-/*
- * Remove most spacing between table cells
- */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 .pull-left {
   float: left;
