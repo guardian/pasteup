@@ -12,8 +12,7 @@ var fs       = require('fs'),
 
 
 var s3bucket  = 'pasteup',
-    tmp_dir   = '../../deploy_tmp',
-    tmp_v_dir = '../../deploy_tmp_'+ getVersionNumber();
+    tmp_dir   = '../../deploy_tmp';
 
 var s3_sync_cmd = 's3cmd sync\
                      --recursive\
@@ -39,16 +38,13 @@ stdin.once('data', function(val) {
 
 function doDeploy() {
     copyPasteupTo(tmp_dir);
-    copyPasteupTo(tmp_v_dir);
 
     gzipCssAndJs(function() {
         // After files are gzipped...
         sendDeployCommands(function() {
             // Finally remove all the temp dirs and exit.
             child_pr.exec('rm -rf ' + tmp_dir, function() {
-                child_pr.exec('rm -rf ' + tmp_v_dir, function() {
-                    process.exit();
-                });
+                process.exit();
             });
         });
     });
@@ -189,20 +185,6 @@ function gzipCssAndJs(callback) {
         function(callback) {
             fs.readdirSync(__dirname + '/' + tmp_dir + '/css').forEach(function(name) {
                 gzipFile(__dirname + '/' + tmp_dir + '/css/' + name, function() {
-                    callback();
-                });
-            });
-        },
-        function(callback) {
-            fs.readdirSync(__dirname + '/' + tmp_v_dir + '/js').forEach(function(name) {
-                gzipFile(__dirname + '/' + tmp_v_dir + '/js/' + name, function() {
-                    callback();
-                });
-            });
-        },
-        function(callback) {
-            fs.readdirSync(__dirname + '/' + tmp_v_dir + '/css').forEach(function(name) {
-                gzipFile(__dirname + '/' + tmp_v_dir + '/css/' + name, function() {
                     callback();
                 });
             });
