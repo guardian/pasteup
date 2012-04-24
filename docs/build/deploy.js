@@ -22,26 +22,12 @@ var s3_sync_cmd = 's3cmd sync\
                      --add-header "Expires: {{expiry_date}}"\
                       {{directory}} s3://pasteup{{s3dir}}';
 
-/* Check the build number we're about to deploy */
-process.stdout.write('\nYou are deploying version: ' + getVersionNumber());
-process.stdout.write('\nIs this the correct version number? (y/n)\n');
-var stdin = process.openStdin();
-stdin.setEncoding('utf8');
-stdin.once('data', function(val) {
-    if (val.trim() === 'y') {
-        doDeploy();
-    } else {
-        process.stdout.write("\nSo update the version number in ../../version\n\n");
-        process.exit();
-    }
-}).resume();
-
-function doDeploy() {
+function doFullDeploy() {
     copyPasteupTo(tmp_dir);
 
     gzipCssAndJs(function() {
         // After files are gzipped...
-        sendDeployCommands(function() {
+        sendDeployCommands(true, function() {
             // Finally remove all the temp dirs and exit.
             child_pr.exec('rm -rf ' + tmp_dir, function() {
                 process.exit();
@@ -50,53 +36,30 @@ function doDeploy() {
     });
 }
 
-function sendDeployCommands(callback) {
+function doVersionDeploy() {
+    copyPasteupTo(tmp_dir);
+
+    gzipCssAndJs(function() {
+        // After files are gzipped...
+        sendDeployCommands(false, function() {
+            // Finally remove all the temp dirs and exit.
+            child_pr.exec('rm -rf ' + tmp_dir, function() {
+                process.exit();
+            });
+        });
+    });
+}
+
+function sendDeployCommands(full_deploy, callback) {
     var version = getVersionNumber();
-    async.parallel([
-        function(callback) {
-            deploy(
-                mustache.to_html(s3_sync_cmd, {
-                    'directory': tmp_dir + '/docs',
-                    's3dir': '/',
-                    'expiry_date': getNearFutureExpiryDate()
-                }),
-                function() { 
-                    callback();
-                }
-            );
-        },
-        function(callback) {
-            deploy(
-                mustache.to_html(s3_sync_cmd, {
-                    'directory': tmp_dir + '/js',
-                    's3dir': '/',
-                    'expiry_date': getNearFutureExpiryDate(),
-                    'gzip': true
-                }),
-                function() { 
-                    callback();
-                }
-            );
-        },
+
+    var deploys = [
         function(callback) {
             deploy(
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
                     's3dir': '/' + version + '/',
                     'expiry_date': getFarFutureExpiryDate(),
-                    'gzip': true
-                }),
-                function() { 
-                    callback();
-                }
-            );
-        },
-        function(callback) {
-            deploy(
-                mustache.to_html(s3_sync_cmd, {
-                    'directory': tmp_dir + '/css',
-                    's3dir': '/',
-                    'expiry_date': getNearFutureExpiryDate(),
                     'gzip': true
                 }),
                 function() { 
@@ -117,10 +80,55 @@ function sendDeployCommands(callback) {
                 }
             );
         }
-        ],
-        function() {
-            callback();
-        });
+    ];
+
+
+    if (full_deploy) {
+        deploys = deploys.concat(
+            function(callback) {
+                deploy(
+                    mustache.to_html(s3_sync_cmd, {
+                        'directory': tmp_dir + '/docs',
+                        's3dir': '/',
+                        'expiry_date': getNearFutureExpiryDate()
+                    }),
+                    function() { 
+                        callback();
+                    }
+                );
+            },
+            function(callback) {
+                deploy(
+                    mustache.to_html(s3_sync_cmd, {
+                        'directory': tmp_dir + '/js',
+                        's3dir': '/',
+                        'expiry_date': getNearFutureExpiryDate(),
+                        'gzip': true
+                    }),
+                    function() { 
+                        callback();
+                    }
+                );
+            },
+            function(callback) {
+                deploy(
+                    mustache.to_html(s3_sync_cmd, {
+                        'directory': tmp_dir + '/css',
+                        's3dir': '/',
+                        'expiry_date': getNearFutureExpiryDate(),
+                        'gzip': true
+                    }),
+                    function() { 
+                        callback();
+                    }
+                );
+            }
+        )
+    }
+
+    async.parallel(deploys, function() {
+        callback();
+    });
     
 }
 
@@ -209,4 +217,38 @@ function getNearFutureExpiryDate() {
     var d = new Date();
     d.setMinutes(d.getMinutes() + 1)
     return d.toGMTString();
+}
+
+if (!module.parent) {
+    var deploy_type_arg = process.argv[2],
+        full_flag = '--full',
+        version_flag = '--version';
+    
+    // Check that a deploy type argument has been specified.
+    if (deploy_type_arg === full_flag || deploy_type_arg === version_flag) {
+
+        // Check the build number we're about to deploy
+        process.stdout.write('\nYou are deploying version: ' + getVersionNumber());
+        process.stdout.write('\nIs this the correct version number? (y/n)\n');
+        var stdin = process.openStdin();
+        stdin.setEncoding('utf8');
+        stdin.once('data', function(val) {
+            if (val.trim() === 'y') {
+                if (deploy_type_arg === full_flag) {
+                    doFullDeploy();
+                } else {
+                    doVersionDeploy();
+                }
+                //doDeploy();
+            } else {
+                process.stdout.write("\nSo update the version number in ../../version\n\n");
+                process.exit();
+            }
+        }).resume();
+
+    } else {
+        process.stdout.write('Error: Choose full or version deploy with --full, or --version argument.\n\n');
+        process.exit();
+    }
+
 }

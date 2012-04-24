@@ -43,6 +43,7 @@
 .row {
   clear: both;
   zoom: 1;
+  margin-left: -20px;
 }
 .row:before,
 .row:after {
@@ -63,16 +64,10 @@
 .col-8,
 .col-9,
 .col-10,
-.col-11 {
+.col-11,
+.col-12 {
   float: left;
   margin-left: 20px;
-}
-.col-12 {
-  margin-left: 0;
-}
-/* Columns at the start of their container */
-.start-col {
-  margin-left: 0;
 }
 /*
 .row [class*="col-"]:first-child {
