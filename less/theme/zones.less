@@ -1,6 +1,24 @@
-/*
-	Show the current zone border color.
-*/
+// Zone helpers for adding zone colors in various places.
+// Default zone color is red  for news.
+.zone-border {
+	border-top: 1px solid #0061A6; // blue by default
+	padding-top: 2px;
+}
+.zone-border-medium {
+	border-top-width: 3px;
+}
+.zone-border-large {
+	border-top-width: 10px;
+	padding-top: 5px;
+}
+.zone-color {
+	color:#0061A6; // blue by default
+}
+.zone-background-color {
+	background-color: #0061A6; // blue by default
+}
+
+// Show the current zone border color.
 .zone-news .zone-border {
 	border-color: #D61D00; // red
 }
@@ -32,11 +50,42 @@
 /*
 	Show the current zone background color.
 */
+.zone-news .zone-color {
+	color: #D61D00; // red
+}
+.zone-sport .zone-color {
+	color: #008000; // green
+}
+.zone-comment .zone-color {
+	color: #0061A6; // blue
+}
+.zone-culture .zone-color {
+	color: #D1008B; // pink
+}
+.zone-business .zone-color {
+	color: #3246AB; // navy blue
+}
+.zone-money .zone-color {
+	color: #8F1AB6; // purple
+}
+.zone-lifestyle .zone-color {
+	color: #AD532F; // lifestyle
+}
+.zone-travel .zone-color {
+	color: #066EC9; // light blue
+}
+.zone-environment .zone-color {
+	color: #4A7801; // eco green
+}
+
+/*
+	Show the current zone background color.
+*/
 .zone-news .zone-background {
 	background-color: #D61D00; // red
 }
 .zone-sport .zone-background {
-	background-color: green; // green
+	background-color: #008000; // green
 }
 .zone-comment .zone-background {
 	background-color: #0061A6; // blue

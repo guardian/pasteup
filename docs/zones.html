@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <title>Pasteup | Guardian News &amp; Media</title>
+        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian’s globally recognised design language is turned into code for the web, and the starting point when styling Guardian branded products for both internal teams and third parties." />
+        <meta name="author" content="the Guardian" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>document.getElementsByTagName('html')[0].className += ' has-js';</script>
+
+        <!-- Include core base and module styles -->
+        <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
+
+        <!-- Add layout styles for browsers over 50em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 50em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
+            <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
+        <![endif]-->
+
+        <style>
+            .doc-holder {
+                width: 940px;
+                margin: 0 auto;
+            }
+            .example {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 10px 20px;
+                margin: 10px 0 30px;
+            }
+            .zone-background {
+                color: #FFF;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <div class="doc-holder">
+
+            <div class="topbar">
+                <ul class="topbar-menu pull-left">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="styleguide.html">Styleguide</a></li>
+                    <li><a href="base.html">Base CSS</a></li>
+                    <li><a href="layout.html">Layout CSS</a></li>
+                    <li><a href="modules.html">Module CSS</a></li>
+                </ul>
+                <ul class="topbar-menu pull-right">
+                    <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
+                    <li class="dropdown-holder">
+                        <a href="#code-menu">Code</a>
+                        <ul id="code-menu" class="dropdown align-right">
+                            <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                            <li><a href="#">HTML styleguide</a></li>
+                            <li><a href="#">CSS styleguide</a></li>
+                            <li><a href="#">JavaScript styleguide</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
+            <h1>Zone CSS</h1>
+            <div class="hd zone-border zone-border-medium margin-top">
+                <h2 class="sub-heading">Zone colours</h2>
+            </div>
+            <p>Zones are areas of the site that are identified by a particular colour. Pasteup implements the following zone colors:</p>
+            <table class="condensed margin-top margin-bottom">
+                <tr><th>Name</th><th>CSS class value</th><th>Colour hex value</th><th>Colour</th></tr>
+                <tr><td>news</td><td><code>zone-news</code></td><td><code>#D61D00</code></td><td>red</td></tr>
+                <tr><td>sport</td><td><code>zone-sport</code></td><td><code>#008000</code></td><td>green</td></tr>
+                <tr><td>comment</td><td><code>zone-comment</code></td><td><code>#0061A6</code></td><td>blue</td></tr>
+                <tr><td>culture</td><td><code>zone-culture</code></td><td><code>#D1008B</code></td><td>pink</td></tr>
+                <tr><td>business</td><td><code>zone-business</code></td><td><code>#3246AB</code></td><td>navy blue</td></tr>
+                <tr><td>money</td><td><code>zone-money</code></td><td><code>#8F1AB6</code></td><td>purple</td></tr>
+                <tr><td>lifestyle</td><td><code>zone-lifestyle</code></td><td><code>#AD532F</code></td><td>lifestyle</td></tr>
+                <tr><td>travel</td><td><code>zone-travel</code></td><td><code>#066EC9</code></td><td>light blue</td></tr>
+                <tr><td>environment</td><td><code>zone-environment</code></td><td><code>#4A7801</code></td><td>eco green</td></tr>
+            </table>
+            <p>These can be used by applying the class value shown above to a containing element of the area of the page you want to styled as a particular zone. This is typically on the <code>&lt;body&gt;</code> element of the page.</p>
+            <p><pre><code>&lt;body class="zone-culture"&gt;</code></pre></p>
+
+            <div class="hd zone-border zone-border-medium margin-top">
+                <h2 class="sub-heading">Zone text colour</h2>
+            </div>
+            <p>Change the text colour of the text in any element to the appropriate zone colour, by adding a class value of <code>zone-color</code>.
+
+            <div class="row">
+                <div class="col-4 start-col dotted-border">
+                    <h3 class="article-base-heading">Normal zone border</h3>
+                    <p><pre><code>&lt;div class="zone-news"&gt;
+    &lt;p class="zone-color"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-news">
+                        <p class="zone-color">Element text colour</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Medium zone border</h3>
+                    <p><p><pre><code>&lt;div class="zone-environment"&gt;
+    &lt;p class="zone-color"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-environment">
+                        <p class="zone-color">Element text colour</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Large zone border</h3>
+                    <p><pre><code>&lt;div class="zone-culture"&gt;
+    &lt;p class="zone-color"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-culture">
+                        <p class="zone-color">Element text colour</p>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+
+            <div class="hd zone-border zone-border-medium margin-top">
+                <h2 class="sub-heading">Zone borders</h2>
+            </div>
+            <p>Show a border on the top of any element by adding a class value of <code>zone-border</code>. This will add a 1px border of the appropriate zone colour, or if no zone is defined it will show the default blue (#0061A6) as seen on this page.</p>
+            <p>This can be extended by adding some <strong>additional</strong> class values:</p>
+            <ul>
+                <li><code>zone-border-medium</code> - will increase the border width to 3px.</li>
+                <li><code>zone-border-large</code> - will increase the border width to 10px.</li>
+            </ul>
+
+            <div class="row">
+                <div class="col-4 start-col dotted-border">
+                    <h3 class="article-base-heading">Normal zone border</h3>
+                    <p><pre><code>&lt;p class="zone-border"&gt;</code></pre></p>
+                    <div class="example">
+                        <p class="zone-border">Your element</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Medium zone border</h3>
+                    <p><pre><code>&lt;p class="zone-border zone-border-medium"&gt;</code></pre></p>
+                    <div class="example">
+                        <p class="zone-border zone-border-medium">Your element</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Large zone border</h3>
+                    <p><pre><code>&lt;p class="zone-border zone-border-large"&gt;</code></pre></p>
+                    <div class="example">
+                       <p class="zone-border zone-border-large">Your element</p>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="hd zone-border zone-border-medium margin-top">
+                <h2 class="sub-heading">Zone background colour</h2>
+            </div>
+            <p>Change the background colour of any element to the appropriate zone colour, by adding a class value of <code>zone-background</code>.
+
+            <div class="row">
+                <div class="col-4 start-col dotted-border">
+                    <h3 class="article-base-heading">Normal zone border</h3>
+                    <p><pre><code>&lt;div class="zone-news"&gt;
+    &lt;p class="zone-background"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-news">
+                        <p class="zone-background">Element background colour</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Medium zone border</h3>
+                    <p><p><pre><code>&lt;div class="zone-environment"&gt;
+    &lt;p class="zone-background"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-environment">
+                        <p class="zone-background">Element background colour</p>
+                    </div>
+                </div>
+                <div class="col-4 dotted-border">
+                    <h3 class="article-base-heading">Large zone border</h3>
+                    <p><pre><code>&lt;div class="zone-culture"&gt;
+    &lt;p class="zone-background"&gt;
+&lt;/div&gt;</code></pre></p>
+                    <div class="example zone-culture">
+                        <p class="zone-background">Element background colour</p>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+
+
+
+        </div><!-- /.doc-holder -->
+        
+    </body>
+
+</html>

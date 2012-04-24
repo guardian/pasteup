@@ -59,7 +59,7 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getFarFutureExpiryDate(),
+                    'expiry_date': getNearFutureExpiryDate(), // This will change once live.
                     'gzip': true
                 }),
                 function() { 
@@ -72,7 +72,7 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/css',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getFarFutureExpiryDate(),
+                    'expiry_date': getNearFutureExpiryDate(), // This will change once live.
                     'gzip': true
                 }),
                 function() { 
