@@ -19,6 +19,7 @@ var s3_sync_cmd = 's3cmd sync\
                      --acl-public\
                      --guess-mime-type\
                     {{#gzip}} --add-header "Content-Encoding: gzip" {{/gzip}}\
+                    {{#mime}} --mime-type "{{mime}}" {{/mime}}\
                      --add-header "Expires: {{expiry_date}}"\
                       {{directory}} s3://pasteup{{s3dir}}';
 
@@ -74,6 +75,19 @@ function sendDeployCommands(full_deploy, callback) {
                     's3dir': '/' + version + '/',
                     'expiry_date': getNearFutureExpiryDate(), // This will change once live.
                     'gzip': true
+                }),
+                function() { 
+                    callback();
+                }
+            );
+        },
+        function(callback) {
+            deploy(
+                mustache.to_html(s3_sync_cmd, {
+                    'directory': '../../versions',
+                    's3dir': '/',
+                    'expiry_date': getNearFutureExpiryDate(),
+                    'mime': 'application/json'
                 }),
                 function() { 
                     callback();
