@@ -16,17 +16,13 @@
         <!-- Include core base and module styles -->
         <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
 
-        <!-- Add layout styles for browsers over 50em or less than IE9, but not IE mobile or IE6. -->
-        <link rel="stylesheet" media="all and (min-width: 50em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!-- Add layout styles for browsers over 30em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 30em)" type="text/css" href="/css/layout.pasteup.min.css" />
         <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
             <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
         <![endif]-->
 
         <style>
-            .doc-holder {
-                width: 940px;
-                margin: 0 auto;
-            }
             .example {
                 border: 1px solid #ccc;
                 border-radius: 5px;
@@ -41,7 +37,7 @@
     </head>
 
     <body>
-        <div class="doc-holder">
+        <div class="fluid-wrap">
 
             <div class="topbar">
                 <ul class="topbar-menu pull-left">
@@ -92,7 +88,7 @@
             </div>
             <p>Change the text colour of the text in any element to the appropriate zone colour, by adding a class value of <code>zone-color</code>.
 
-            <div class="row">
+            <div class="fluid-row">
                 <div class="col-4 start-col dotted-border">
                     <h3 class="article-base-heading">News text colour</h3>
                     <p><pre><code>&lt;div class="zone-news"&gt;
@@ -133,7 +129,7 @@
                 <li><code>zone-border-large</code> - will increase the border width to 10px.</li>
             </ul>
 
-            <div class="row">
+            <div class="fluid-row">
                 <div class="col-4 start-col dotted-border">
                     <h3 class="article-base-heading">Normal zone border</h3>
                     <p><pre><code>&lt;p class="zone-border"&gt;</code></pre></p>
@@ -162,7 +158,7 @@
             </div>
             <p>Change the background colour of any element to the appropriate zone colour, by adding a class value of <code>zone-background</code>.
 
-            <div class="row">
+            <div class="fluid-row">
                 <div class="col-4 start-col dotted-border">
                     <h3 class="article-base-heading">News zone background</h3>
                     <p><pre><code>&lt;div class="zone-news"&gt;
@@ -192,11 +188,6 @@
                 </div>
             </div><!-- /.row -->
 
-
-
-
-        </div><!-- /.doc-holder -->
-        
+        </div><!-- /.fluid-wrap -->
     </body>
-
 </html>

@@ -39,4 +39,11 @@
  * Avoid ID selectors, as they complicate specificity and hinder reuse.
  * Avoid element selectors as they tightly couple CSS to document structure.
 
+## LESS Syntax
+
+ * Avoid LESS syntax except for global level colour variables.
+ * Do not use mixins except for cross-browser vendor prefixing.
+ * Do not use nested rules.
+ * Do not use functions and operations.
+
 

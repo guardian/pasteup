@@ -18,6 +18,7 @@ var s3_sync_cmd = 's3cmd sync\
                      --recursive\
                      --acl-public\
                      --guess-mime-type\
+                    {{#safe_cache}} --add-header "Cache-Control: max-age=60" {{/safe_cache}}\
                     {{#gzip}} --add-header "Content-Encoding: gzip" {{/gzip}}\
                     {{#mime}} --mime-type "{{mime}}" {{/mime}}\
                      --add-header "Expires: {{expiry_date}}"\
@@ -60,8 +61,9 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getNearFutureExpiryDate(), // This will change once live.
-                    'gzip': true
+                    'expiry_date': getFarFutureExpiryDate(), // This will change once live.
+                    'gzip': true,
+                    'safe_cache': true
                 }),
                 function() { 
                     callback();
@@ -73,8 +75,9 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/css',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getNearFutureExpiryDate(), // This will change once live.
-                    'gzip': true
+                    'expiry_date': getFarFutureExpiryDate(), // This will change once live.
+                    'gzip': true,
+                    'safe_cache': true
                 }),
                 function() { 
                     callback();
@@ -87,7 +90,8 @@ function sendDeployCommands(full_deploy, callback) {
                     'directory': '../../versions',
                     's3dir': '/',
                     'expiry_date': getNearFutureExpiryDate(),
-                    'mime': 'application/json'
+                    'mime': 'application/json',
+                    'safe_cache': true
                 }),
                 function() { 
                     callback();
@@ -104,7 +108,8 @@ function sendDeployCommands(full_deploy, callback) {
                     mustache.to_html(s3_sync_cmd, {
                         'directory': tmp_dir + '/docs',
                         's3dir': '/',
-                        'expiry_date': getNearFutureExpiryDate()
+                        'expiry_date': getNearFutureExpiryDate(),
+                        'safe_cache': true
                     }),
                     function() { 
                         callback();
@@ -117,7 +122,8 @@ function sendDeployCommands(full_deploy, callback) {
                         'directory': tmp_dir + '/js',
                         's3dir': '/',
                         'expiry_date': getNearFutureExpiryDate(),
-                        'gzip': true
+                        'gzip': true,
+                        'safe_cache': true
                     }),
                     function() { 
                         callback();
@@ -130,7 +136,8 @@ function sendDeployCommands(full_deploy, callback) {
                         'directory': tmp_dir + '/css',
                         's3dir': '/',
                         'expiry_date': getNearFutureExpiryDate(),
-                        'gzip': true
+                        'gzip': true,
+                        'safe_cache': true
                     }),
                     function() { 
                         callback();

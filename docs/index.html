@@ -16,17 +16,13 @@
         <!-- Include core base and module styles -->
         <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
 
-        <!-- Add layout styles for browsers over 50em or less than IE9, but not IE mobile or IE6. -->
-        <link rel="stylesheet" media="all and (min-width: 50em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!-- Add layout styles for browsers over 30em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 30em)" type="text/css" href="/css/layout.pasteup.min.css" />
         <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
             <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
         <![endif]-->
 
         <style>
-            .doc-holder {
-                width: 940px;
-                margin: 0 auto;
-            }
             .large-margin-top {
                 margin-top: 60px;
             }
@@ -35,42 +31,34 @@
     </head>
 
     <body>
-        <div class="doc-holder">
-            <div class="row">
-                <div class="col-12">
+        <div class="fluid-wrap">
 
-                    <div class="topbar">
-                        <ul class="topbar-menu pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="styleguide.html">Styleguide</a></li>
-                            <li><a href="base.html">Base CSS</a></li>
-                            <li><a href="layout.html">Layout</a></li>
-                            <li><a href="modules.html">Modules</a></li>
-                            <li><a href="zones.html">Zones</a></li>
+            <div class="topbar">
+                <ul class="topbar-menu pull-left">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="styleguide.html">Styleguide</a></li>
+                    <li><a href="base.html">Base CSS</a></li>
+                    <li><a href="layout.html">Layout</a></li>
+                    <li><a href="modules.html">Modules</a></li>
+                    <li><a href="zones.html">Zones</a></li>
+                </ul>
+                <ul class="topbar-menu pull-right">
+                    <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
+                    <li class="dropdown-holder">
+                        <a href="#code-menu">Code</a>
+                        <ul id="code-menu" class="dropdown align-right">
+                            <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                            <li><a href="#">HTML styleguide</a></li>
+                            <li><a href="#">CSS styleguide</a></li>
+                            <li><a href="#">JavaScript styleguide</a></li>
                         </ul>
-                        <ul class="topbar-menu pull-right">
-                            <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
-                            <li class="dropdown-holder">
-                                <a href="#code-menu">Code</a>
-                                <ul id="code-menu" class="dropdown align-right">
-                                    <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
-                                    <li><a href="#">HTML styleguide</a></li>
-                                    <li><a href="#">CSS styleguide</a></li>
-                                    <li><a href="#">JavaScript styleguide</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                    </li>
+                </ul>
+            </div>
 
-                </div>
-            </div><!-- /.row -->
+            <h1><img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif"></h1>
 
-            <div class="row">
-                <div class="col-12">
-                    <h1><img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif"></h1>
-                </div>
-            </div><!-- /.row -->
-            <div class="row">
+            <div class="fluid-row">
                 <div class="col-8 start-col">
                     <h2><strong>Pasteup</strong> is where design meets development. It is where the Guardian&rsquo;s globally recognised design language is turned into code for the web, and the starting point when styling GNM branded products for both internal teams and third parties.</h2>
                 </div>
@@ -83,7 +71,7 @@
                 </div>
             </div><!-- /.row -->
 
-            <div class="row large-margin-top">
+            <div class="fluid-row large-margin-top">
                 <div class="col-8 start-col article-body">
                     <div class="hd zone-border zone-border-medium">
                         <h2 class="sub-heading">Documentation</h2>
@@ -129,7 +117,7 @@
                 </div>
 
             </div><!-- /.row -->
-        </div><!-- /.doc-holder -->
+        </div><!-- /.fluid-wrap -->
     	
 	</body>
 

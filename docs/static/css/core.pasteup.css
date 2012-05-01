@@ -61,6 +61,15 @@ img {
 svg:not(:root) {
   overflow: hidden;
 }
+.wrap {
+  width: 940px;
+  margin: 0 auto;
+}
+.fluid-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
 .pull-left {
   float: left;
 }

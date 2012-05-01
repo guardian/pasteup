@@ -2,12 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Pasteup Module Library | The Guardian</title>
+        <title>Pasteup | Guardian News &amp; Media</title>
+        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian’s globally recognised design language is turned into code for the web, and the starting point when styling Guardian branded products for both internal teams and third parties." />
+        <meta name="author" content="the Guardian" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Pasteup is where design meets development. It is where the Guardian's design language is turned into code, and the starting point for styling Guardian branded web products" />
-        <meta name="author" content="The Guardian" />
-    
-        <link rel="stylesheet" href="../css/pasteup.min.css" />
+        <script>document.getElementsByTagName('html')[0].className += ' has-js';</script>
+
+        <!-- Include core base and module styles -->
+        <link rel="stylesheet" type="text/css" href="/css/core.pasteup.min.css" />
+
+        <!-- Add layout styles for browsers over 30em or less than IE9, but not IE mobile or IE6. -->
+        <link rel="stylesheet" media="all and (min-width: 30em)" type="text/css" href="/css/layout.pasteup.min.css" />
+        <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
+            <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
+        <![endif]-->
+
         <script>
         var require = {
             paths: {'secondary': 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min'}
@@ -15,10 +26,6 @@
         </script>
         <script data-main="/js/main.min" src="/js/require.js"></script>
         <style>
-            .doc-holder {
-                width: 940px;
-                margin: 0 auto;
-            }
             .pasteup-mod {
             	padding: 30px 0;
             	clear: both;
@@ -49,59 +56,50 @@
     </head>
 
     <body>
-        <div class="doc-holder">
-            <div class="row">
-                <div class="col-12">
+        <div class="fluid-wrap">
 
-                    <div class="topbar">
-                        <ul class="topbar-menu pull-left">
-                            <ul class="topbar-menu pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="styleguide.html">Styleguide</a></li>
-                            <li><a href="base.html">Base CSS</a></li>
-                            <li><a href="layout.html">Layout</a></li>
-                            <li><a href="modules.html">Modules</a></li>
-                            <li><a href="zones.html">Zones</a></li>
+            <div class="topbar">
+                <ul class="topbar-menu pull-left">
+                    <ul class="topbar-menu pull-left">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="styleguide.html">Styleguide</a></li>
+                    <li><a href="base.html">Base CSS</a></li>
+                    <li><a href="layout.html">Layout</a></li>
+                    <li><a href="modules.html">Modules</a></li>
+                    <li><a href="zones.html">Zones</a></li>
+                </ul>
+                </ul>
+                <ul class="topbar-menu pull-right">
+                    <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
+                    <li class="dropdown-holder">
+                        <a href="#code-menu">Code</a>
+                        <ul id="code-menu" class="dropdown align-right">
+                            <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                            <li><a href="#">HTML styleguide</a></li>
+                            <li><a href="#">CSS styleguide</a></li>
+                            <li><a href="#">JavaScript styleguide</a></li>
                         </ul>
-                        </ul>
-                        <ul class="topbar-menu pull-right">
-                            <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
-                            <li class="dropdown-holder">
-                                <a href="#code-menu">Code</a>
-                                <ul id="code-menu" class="dropdown align-right">
-                                    <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
-                                    <li><a href="#">HTML styleguide</a></li>
-                                    <li><a href="#">CSS styleguide</a></li>
-                                    <li><a href="#">JavaScript styleguide</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                    </li>
+                </ul>
+            </div>
 
-                </div><!-- /.12-col -->
-            </div><!-- /.row -->
+            <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
+            <h1 class="h1">Pasteup Module Library</h1>
 
-            <div class="row">
-                <div class="col-12">
-                    <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
-            		<h1 class="h1">Pasteup Module Library</h1>
+    		{{#modules}}
 
-            		{{#modules}}
+    		<div class="pasteup-mod">
+                <div class="hd zone-border zone-border-medium">
+                    <h2 class="sub-heading">{{name}}</h2>
+                </div>
+				<div class="pasteup-mod-code">
+					{{{code}}}
+				</div>
+				<textarea class="pasteup-textarea">{{code}}</textarea>
+			</div>
 
-            		<div class="pasteup-mod">
-                        <div class="hd zone-border zone-border-medium">
-                            <h2 class="sub-heading">{{name}}</h2>
-                        </div>
-        				<div class="pasteup-mod-code">
-        					{{{code}}}
-        				</div>
-        				<textarea class="pasteup-textarea">{{code}}</textarea>
-        			</div>
+			{{/modules}}
 
-        			{{/modules}}
-
-                </div><!-- /.12-col -->
-            </div><!-- /.row -->
-		</div><!-- /.doc-holder -->
+		</div><!-- /.fluid-wrap -->
 	</body>
 </html>
