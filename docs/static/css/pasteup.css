@@ -250,7 +250,12 @@ body {
   margin: 0;
 }
 p,
-pre {
+pre,
+dd,
+dl,
+menu,
+ul,
+ol {
   margin: 0 0 10px;
 }
 .article-body p,
@@ -672,6 +677,34 @@ table.condensed th,
 table.condensed td {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+dt {
+  font-weight: bold;
+}
+menu,
+ol,
+ul {
+  padding: 0;
+  margin-left: 25px;
+}
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+ol.unstyled,
+ul.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+.dl-horizontal dt {
+  float: left;
+  clear: left;
+  width: 150px;
+  text-align: right;
+}
+.dl-horizontal dd {
+  margin-left: 160px;
 }
 .topbar {
   background: #ededed;
