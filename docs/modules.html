@@ -15,12 +15,6 @@
         <!--[if (lt IE 9) & (!IEMobile) & (gt IE6)]>
             <link rel="stylesheet" type="text/css" href="/css/layout.min.css" />
         <![endif]-->
-        <script>
-        var require = {
-            paths: {'secondary': 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min'}
-        }
-        </script>
-        <script data-main="/js/main.min" src="/js/require.js"></script>
         <style>
             .pasteup-mod {
             	padding: 30px 0;
@@ -52,29 +46,29 @@
     </head>
     <body>
         <div class="fluid-wrap">
-            <div class="topbar">
-                <ul class="topbar-menu pull-left">
+            <div class="topbar" data-show-link="Go to documentation&hellip;">
+                <div class="topbar-menu-container">
                     <ul class="topbar-menu pull-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="styleguide.html">Styleguide</a></li>
-                    <li><a href="base.html">Base CSS</a></li>
-                    <li><a href="layout.html">Layout</a></li>
-                    <li><a href="modules.html">Modules</a></li>
-                    <li><a href="zones.html">Zones</a></li>
-                </ul>
-                </ul>
-                <ul class="topbar-menu pull-right">
-                    <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
-                    <li class="dropdown-holder">
-                        <a href="#code-menu">Code</a>
-                        <ul id="code-menu" class="dropdown align-right">
-                            <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
-                            <li><a href="#">HTML styleguide</a></li>
-                            <li><a href="#">CSS styleguide</a></li>
-                            <li><a href="#">JavaScript styleguide</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="styleguide.html">Styleguide</a></li>
+                        <li><a href="base.html">Base CSS</a></li>
+                        <li><a href="layout.html">Layout</a></li>
+                        <li><a href="modules.html">Modules</a></li>
+                        <li><a href="zones.html">Zones</a></li>
+                    </ul>
+                    <ul class="topbar-menu pull-right">
+                        <li><a href="https://github.com/guardian/pasteup/issues">Submit a bug</a></li>
+                        <li class="dropdown-holder">
+                            <a href="#code-menu">Code</a>
+                            <ul id="code-menu" class="dropdown align-right">
+                                <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/html/README.md">HTML styleguide</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/less/README.md">CSS/LESS styleguide</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/js/README.md">JavaScript styleguide</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif">
             <h1 class="h1">Pasteup Module Library</h1>
@@ -84,81 +78,85 @@
                 </div>
 				<div class="pasteup-mod-code">
 					<div class="topbar">
-	<h2 class="h">Menu heading</h2>
-	<ul class="topbar-menu pull-left">
-		<li class="dropdown-holder">
-			<a href="#menu1">Menu item: <span>current</span></a>
-			<ul id="menu1" class="dropdown align-right">
-				<li><a href="#">Menu item</a></li>
-			</ul>
-		</li>
-		<li><a href="#">Menu item</a></li>
-		<li><a href="#">Menu item</a></li>
-		<li class="dropdown-holder">
-			<a href="#menu2">Menu item</a>
-			<ul id="menu2" class="dropdown">
-				<li><a href="#">Menu item</a></li>
-				<li><a href="#">Menu item with longer text</a></li>
-			</ul>
-		</li>
-	</ul>
-	
-	<h2 class="h">Menu heading</h2>
-	<ul class="topbar-menu pull-right">
-		<li class="dropdown-holder">
-			<a href="#menu3">Menu item</a>
-			<ul id="menu3" class="dropdown align-right">
-				<li><a href="#">Menu item with longer text</a></li>
-				<li><a href="#">Menu item</a></li>
-			</ul>
-		</li>
-		<li class="dropdown-holder">
-			<a href="#menu4">Menu item</a>
-			<ul id="menu4" class="dropdown align-right">
-				<li><a href="#">Menu item</a></li>
-				<li><a href="#">Menu item with longer text</a></li>
-			</ul>
-		</li>
-	</ul>
+	<div class="topbar-menu-container">
+		<h2 class="h">Menu heading</h2>
+		<ul class="topbar-menu pull-left">
+			<li class="dropdown-holder">
+				<a href="#menu1">Menu item: <span>current</span></a>
+				<ul id="menu1" class="dropdown align-right">
+					<li><a href="#">Menu item</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Menu item</a></li>
+			<li><a href="#">Menu item</a></li>
+			<li class="dropdown-holder">
+				<a href="#menu2">Menu item</a>
+				<ul id="menu2" class="dropdown">
+					<li><a href="#">Menu item</a></li>
+					<li><a href="#">Menu item with longer text</a></li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2 class="h">Menu heading</h2>
+		<ul class="topbar-menu pull-right">
+			<li class="dropdown-holder">
+				<a href="#menu3">Menu item</a>
+				<ul id="menu3" class="dropdown align-right">
+					<li><a href="#">Menu item with longer text</a></li>
+					<li><a href="#">Menu item</a></li>
+				</ul>
+			</li>
+			<li class="dropdown-holder">
+				<a href="#menu4">Menu item</a>
+				<ul id="menu4" class="dropdown align-right">
+					<li><a href="#">Menu item</a></li>
+					<li><a href="#">Menu item with longer text</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 </div>
 				</div>
 				<textarea class="pasteup-textarea">&lt;div class=&quot;topbar&quot;&gt;
-	&lt;h2 class=&quot;h&quot;&gt;Menu heading&lt;/h2&gt;
-	&lt;ul class=&quot;topbar-menu pull-left&quot;&gt;
-		&lt;li class=&quot;dropdown-holder&quot;&gt;
-			&lt;a href=&quot;#menu1&quot;&gt;Menu item: &lt;span&gt;current&lt;/span&gt;&lt;/a&gt;
-			&lt;ul id=&quot;menu1&quot; class=&quot;dropdown align-right&quot;&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/li&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-		&lt;li class=&quot;dropdown-holder&quot;&gt;
-			&lt;a href=&quot;#menu2&quot;&gt;Menu item&lt;/a&gt;
-			&lt;ul id=&quot;menu2&quot; class=&quot;dropdown&quot;&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
-	
-	&lt;h2 class=&quot;h&quot;&gt;Menu heading&lt;/h2&gt;
-	&lt;ul class=&quot;topbar-menu pull-right&quot;&gt;
-		&lt;li class=&quot;dropdown-holder&quot;&gt;
-			&lt;a href=&quot;#menu3&quot;&gt;Menu item&lt;/a&gt;
-			&lt;ul id=&quot;menu3&quot; class=&quot;dropdown align-right&quot;&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/li&gt;
-		&lt;li class=&quot;dropdown-holder&quot;&gt;
-			&lt;a href=&quot;#menu4&quot;&gt;Menu item&lt;/a&gt;
-			&lt;ul id=&quot;menu4&quot; class=&quot;dropdown align-right&quot;&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
+	&lt;div class=&quot;topbar-menu-container&quot;&gt;
+		&lt;h2 class=&quot;h&quot;&gt;Menu heading&lt;/h2&gt;
+		&lt;ul class=&quot;topbar-menu pull-left&quot;&gt;
+			&lt;li class=&quot;dropdown-holder&quot;&gt;
+				&lt;a href=&quot;#menu1&quot;&gt;Menu item: &lt;span&gt;current&lt;/span&gt;&lt;/a&gt;
+				&lt;ul id=&quot;menu1&quot; class=&quot;dropdown align-right&quot;&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+			&lt;li class=&quot;dropdown-holder&quot;&gt;
+				&lt;a href=&quot;#menu2&quot;&gt;Menu item&lt;/a&gt;
+				&lt;ul id=&quot;menu2&quot; class=&quot;dropdown&quot;&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		
+		&lt;h2 class=&quot;h&quot;&gt;Menu heading&lt;/h2&gt;
+		&lt;ul class=&quot;topbar-menu pull-right&quot;&gt;
+			&lt;li class=&quot;dropdown-holder&quot;&gt;
+				&lt;a href=&quot;#menu3&quot;&gt;Menu item&lt;/a&gt;
+				&lt;ul id=&quot;menu3&quot; class=&quot;dropdown align-right&quot;&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;dropdown-holder&quot;&gt;
+				&lt;a href=&quot;#menu4&quot;&gt;Menu item&lt;/a&gt;
+				&lt;ul id=&quot;menu4&quot; class=&quot;dropdown align-right&quot;&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Menu item with longer text&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
 &lt;/div&gt;</textarea>
 			</div>
 			    		<div class="pasteup-mod">
@@ -439,5 +437,6 @@
                     &lt;/form&gt;</textarea>
 			</div>
 			</div><!-- /.fluid-wrap -->
+        <script data-main="/js/main.min" src="/js/require.js"></script>
 	</body>
 </html>

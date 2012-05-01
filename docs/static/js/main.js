@@ -1,12 +1,8 @@
-require(['primary'], function() {
-	
-	console.log("the main");
+require(['detect', 'topbar'], function(detect, topbar) {
 
-	var secondary = 'secondary';
-	require([secondary], function() {
-		
-		console.log('now secondary is loaded');
-
-	})
+	// If we look mobile, then hide the topbar.
+	if (detect.getLayoutMode() === "base") {
+		topbar.addLink();
+	}
 
 });

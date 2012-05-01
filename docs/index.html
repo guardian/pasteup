@@ -33,27 +33,29 @@
     <body>
         <div class="fluid-wrap">
 
-            <div class="topbar">
-                <ul class="topbar-menu pull-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="styleguide.html">Styleguide</a></li>
-                    <li><a href="base.html">Base CSS</a></li>
-                    <li><a href="layout.html">Layout</a></li>
-                    <li><a href="modules.html">Modules</a></li>
-                    <li><a href="zones.html">Zones</a></li>
-                </ul>
-                <ul class="topbar-menu pull-right">
-                    <li><a href="https://github.com/guardian/pasteup/issues?direction=desc&sort=created&state=closed">Submit a bug</a></li>
-                    <li class="dropdown-holder">
-                        <a href="#code-menu">Code</a>
-                        <ul id="code-menu" class="dropdown align-right">
-                            <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
-                            <li><a href="#">HTML styleguide</a></li>
-                            <li><a href="#">CSS styleguide</a></li>
-                            <li><a href="#">JavaScript styleguide</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="topbar" data-show-link="Go to documentation&hellip;">
+                <div class="topbar-menu-container">
+                    <ul class="topbar-menu pull-left">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="styleguide.html">Styleguide</a></li>
+                        <li><a href="base.html">Base CSS</a></li>
+                        <li><a href="layout.html">Layout</a></li>
+                        <li><a href="modules.html">Modules</a></li>
+                        <li><a href="zones.html">Zones</a></li>
+                    </ul>
+                    <ul class="topbar-menu pull-right">
+                        <li><a href="https://github.com/guardian/pasteup/issues">Submit a bug</a></li>
+                        <li class="dropdown-holder">
+                            <a href="#code-menu">Code</a>
+                            <ul id="code-menu" class="dropdown align-right">
+                                <li><a href="https://github.com/guardian/pasteup">Github repo</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/html/README.md">HTML styleguide</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/less/README.md">CSS/LESS styleguide</a></li>
+                                <li><a href="https://github.com/guardian/pasteup/blob/master/js/README.md">JavaScript styleguide</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <h1><img src="http://static.guim.co.uk/static/60ed206dbccc8b808a7792d47862f9cfb7cd3d67/common/images/logos/the-guardian/titlepiece.gif"></h1>
@@ -118,7 +120,8 @@
 
             </div><!-- /.row -->
         </div><!-- /.fluid-wrap -->
-    	
+        
+    	<script data-main="/js/main.min" src="/js/require.js"></script>
 	</body>
 
 </html>

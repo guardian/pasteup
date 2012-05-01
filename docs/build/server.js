@@ -17,7 +17,7 @@ app.configure(function() {
 	app.use('/css', express.static(__dirname + '/../static/css'));
 	app.use('/js', express.static(__dirname + '/../static/js'));
 	app.use('/img', express.static(__dirname + '/../static/img'));
-	app.use('/docs', express.static(__dirname + '/..'));
+	app.use('/', express.static(__dirname + '/..'));
 });
 
 // Routing
@@ -30,7 +30,7 @@ app.get('/', function(req, res, next) {
 // watch and compile changes to LESS / JS
 watch.add('../../less', true)
 	.add('../../js', true)
-	.add('../../content', true).onChange(function(file, prev, curr, action) {
+	.add('../../html', true).onChange(function(file, prev, curr, action) {
     console.log('\n * ' + file + ' has been changed. Recompiling.\n');
     build.go();
 });

@@ -12,7 +12,7 @@ var fs        = require('fs'),
 
 var build = {
 	TEMPLATE_DIR: 'templates',
-    MODULE_DIR: '../../content/module',
+    MODULE_DIR: '../../html/module',
     MODULE_LIB: '../modules.html',
     MODULE_PAGES_DIR: '../modules/',
 
@@ -84,7 +84,7 @@ var build = {
     },
 
 	/*
-	Get all the modules in /content/modules,
+	Get all the modules in /html/modules,
 	and add them all to the module library doc.
 	*/
 	buildModuleLibrary: function(callback) {
@@ -106,7 +106,7 @@ var build = {
 	},
 
 	/*
-	Get all the modules in /content/modules,
+	Get all the modules in /html/modules,
 	and create a page for each on in doc/modules.
 	*/
 	buildModulePages: function (callback) {

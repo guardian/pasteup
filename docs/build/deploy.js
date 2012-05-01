@@ -106,7 +106,7 @@ function sendDeployCommands(full_deploy, callback) {
             function(callback) {
                 deploy(
                     mustache.to_html(s3_sync_cmd, {
-                        'directory': tmp_dir + '/docs',
+                        'directory': tmp_dir + '/docs/',
                         's3dir': '/',
                         'expiry_date': getNearFutureExpiryDate(),
                         'safe_cache': true

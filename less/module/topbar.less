@@ -4,7 +4,7 @@
 	font-size: 12px;
 	margin-bottom: 20px;
 	width: 100%;
-	border-radius: 0 0 20px 20px;
+	position: ;
 }
 .topbar ul {
 	background: #ededed; // light grey
@@ -12,26 +12,26 @@
 	margin: 0;
 	padding: 0;
 }
-.topbar-menu li {
+.topbar li {
 	border-left: 1px solid #c6c6c6; // grey
 	float: left;
 	list-style: none;
 }
-.topbar-menu li:first-child {
+.topbar li:first-child {
 	border-left: 0 none;
 }
 
-.topbar-menu a {
+.topbar a, {
 	display: block;
 	margin: 0;
 	padding: 8px 10px 7px 10px;
 	text-decoration: none;
 	cursor: pointer;
 }
-.topbar-menu a:hover,
-.topbar-menu a:focus,
-.topbar-menu .dropdown-holder:hover,
-.topbar-menu .dropdown-holder:focus {
+.topbar a:hover,
+.topbar a:focus,
+.topbar .dropdown-holder:hover,
+.topbar .dropdown-holder:focus {
 	background: #d9d9d9; // hover grey
 }
 
@@ -96,4 +96,10 @@ li:last-child .dropdown.align-right {
 		position: static;
 		width: 100%;
 	}
+}
+
+// Some styles for small screen nav roll-up.
+
+.topbar-show {
+	display: block;
 }
