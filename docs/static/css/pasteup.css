@@ -110,7 +110,7 @@
 }
 .fluid-row [class*="col-"] {
   float: left;
-  margin-left: 2.127659574%%;
+  margin-left: 2.127659574%;
 }
 .fluid-row [class*="col-"]:first-child {
   margin-left: 0;
@@ -183,7 +183,7 @@ svg:not(:root) {
   margin: 0 auto;
 }
 .fluid-wrap {
-  max-width: 960px;
+  max-width: 940px;
   margin: 0 auto;
   padding: 0 10px;
 }

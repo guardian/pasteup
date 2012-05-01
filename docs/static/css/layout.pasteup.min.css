@@ -30,5 +30,5 @@
 .fluid-row{clear:both;zoom:1;}
 .fluid-row:before,.fluid-row:after{content:"";display:table;}
 .fluid-row:after{clear:both;}
-.fluid-row [class*="col-"]{float:left;margin-left:2.127659574%%;}
+.fluid-row [class*="col-"]{float:left;margin-left:2.127659574%;}
 .fluid-row [class*="col-"]:first-child{margin-left:0;}

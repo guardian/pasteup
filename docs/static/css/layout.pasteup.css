@@ -110,7 +110,7 @@
 }
 .fluid-row [class*="col-"] {
   float: left;
-  margin-left: 2.127659574%%;
+  margin-left: 2.127659574%;
 }
 .fluid-row [class*="col-"]:first-child {
   margin-left: 0;
