@@ -20,7 +20,7 @@ svg:not(:root){overflow:hidden;}
 html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
 body{color:#333;background-color:#FFF;font-size:12px;line-height:15px;font-family:arial,sans-serif;margin:0;}
 p,pre{margin:0 0 10px;}
-.article-body{font-size:14px;line-height:20px;}
+.article-body p,.article-body li,.article-body dl{font-size:14px;line-height:20px;}
 .article-body p{margin-bottom:15px;}
 blockquote{border-left:10px solid #D3D3D3;margin:1em 40px 1em 30px;padding-left:10px;}
 figcaption{color:#666;}

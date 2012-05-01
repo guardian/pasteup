@@ -253,7 +253,9 @@ p,
 pre {
   margin: 0 0 10px;
 }
-.article-body {
+.article-body p,
+.article-body li,
+.article-body dl {
   font-size: 14px;
   line-height: 20px;
 }
