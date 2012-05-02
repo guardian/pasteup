@@ -78,7 +78,7 @@ h2,.sub-heading{font-size:18px;line-height:25px;font-weight:normal;}
 h3,.related-heading{font-size:16px;line-height:20px;font-weight:bold;}
 h4,.trailblock-heading{font-size:14px;line-height:20px;font-weight:bold;}
 h5,.article-base-heading{font-size:14px;line-height:20px;font-weight:bold;font-family:arial,sans-serif;}
-h6,.base-heading{color:#000;font-size:12px;line-height:15px;font-weight:bold;font-family:arial,sans-serif;}
+h6,.base-heading{font-size:12px;line-height:15px;font-weight:bold;font-family:arial,sans-serif;}
 .hd{background-color:#ededed;padding:4px 5px 14px;margin-bottom:10px;clear:both;}
 .hd .sub-heading{line-height:20px;}
 h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none !important;}
@@ -157,7 +157,8 @@ li:last-child .dropdown.align-right{right:0;}
 .factbox{background-color:#F3F3F3;padding:5px;}
 .factbox-heading{font-family:arial,sans-serif;font-size:12px;line-height:15px;font-weight:bold;margin-bottom:0;}
 .factbox-image{margin:10px -5px;}
-.footer{font-size:11px;line-height:14px;margin:15px 0;}
+.footer{font-size:11px;line-height:14px;margin:15px 0;padding-top:5px;clear:both;}
+.footer p,.footer ul,.footer ol,.footer menu,.footer dl{margin:2px 0 2px 0;}
 .zone-border{border-top:1px solid #0061A6;padding-top:2px;}
 .zone-border-medium{border-top-width:3px;}
 .zone-border-large{border-top-width:10px;padding-top:5px;}
