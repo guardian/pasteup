@@ -2,6 +2,7 @@
 
 ## General
 
+ * Use UTF-8 encoding.
  * Indents are four spaces.
  * Opening braces are prefixed by a space.
  * Lines with nothing on them should have no whitespace.

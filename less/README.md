@@ -2,6 +2,7 @@
 
 ## General
 
+ * Use UTF-8 encoding.
  * Indents are four spaces.
  * Lines with nothing on them should have no whitespace.
  * There should be no whitespace at the end of a line.
