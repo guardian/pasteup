@@ -580,6 +580,19 @@ ul.unstyled {
   margin-left: 0;
   list-style: none;
 }
+.inline {
+  margin-left: 0;
+}
+.inline li,
+.inline li {
+  display: inline;
+}
+.inline.with-separators li:after {
+  content: " | ";
+}
+.inline.with-separators li:last-child:after {
+  content: none;
+}
 .dl-horizontal dt {
   float: left;
   clear: left;
@@ -700,6 +713,11 @@ li:last-child .dropdown.align-right {
 }
 .factbox-image {
   margin: 10px -5px;
+}
+.footer {
+  font-size: 11px;
+  line-height: 14px;
+  margin: 15px 0;
 }
 .zone-border {
   border-top: 1px solid #0061A6;
