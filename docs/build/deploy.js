@@ -200,14 +200,14 @@ function gzipFile(name, callback) {
 function gzipCssAndJs(callback) {
     async.parallel([
         function(callback) {
-            fs.readdirSync(__dirname + '/' + tmp_dir + '/js').forEach(function(name) {
+            wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/js').forEach(function(name) {
                 gzipFile(__dirname + '/' + tmp_dir + '/js/' + name, function() {
                     callback();
                 });
             });
         },
         function(callback) {
-            fs.readdirSync(__dirname + '/' + tmp_dir + '/css').forEach(function(name) {
+            wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/css').forEach(function(name) {
                 gzipFile(__dirname + '/' + tmp_dir + '/css/' + name, function() {
                     callback();
                 });
