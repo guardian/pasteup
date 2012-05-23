@@ -61,7 +61,7 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/js',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getFarFutureExpiryDate(), // This will change once live.
+                    'expiry_date': getFarFutureExpiryDate(),
                     'gzip': true,
                     'safe_cache': true
                 }),
@@ -75,7 +75,7 @@ function sendDeployCommands(full_deploy, callback) {
                 mustache.to_html(s3_sync_cmd, {
                     'directory': tmp_dir + '/css',
                     's3dir': '/' + version + '/',
-                    'expiry_date': getFarFutureExpiryDate(), // This will change once live.
+                    'expiry_date': getFarFutureExpiryDate(),
                     'gzip': true,
                     'safe_cache': true
                 }),
@@ -200,16 +200,26 @@ function gzipFile(name, callback) {
 function gzipCssAndJs(callback) {
     async.parallel([
         function(callback) {
-            wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/js').forEach(function(name) {
+            var zipped = 0;
+            var file_list = wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/js');
+            file_list.forEach(function(name) {
                 gzipFile(__dirname + '/' + tmp_dir + '/js/' + name, function() {
-                    callback();
+                    zipped++;
+                    if (zipped >= file_list.length) {
+                        callback();
+                    }
                 });
             });
         },
         function(callback) {
-            wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/css').forEach(function(name) {
+            var zipped = 0;
+            var file_list = wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/css');
+            file_list.forEach(function(name) {
                 gzipFile(__dirname + '/' + tmp_dir + '/css/' + name, function() {
-                    callback();
+                    zipped++;
+                    if (zipped >= file_list.length) {
+                        callback();
+                    }
                 });
             });
         }
