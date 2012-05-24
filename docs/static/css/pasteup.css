@@ -812,6 +812,34 @@ li:last-child .dropdown.align-right {
 .topbar-show {
   display: block;
 }
+.nav-sections {
+  float: left;
+  font-family: Georgia;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.nav-sections li {
+  border-left: 1px solid #c6c6c6;
+  float: left;
+}
+.nav-sections li:first-child {
+  border: 0 none;
+}
+.nav-sections a {
+  display: block;
+  line-height: 24px;
+  padding: 0 5px;
+  text-decoration: none;
+  color: #333;
+}
+.nav-sections a:hover,
+.nav-sections a:focus,
+.nav-sections a:active {
+  color: #FFF;
+  background-color: #333;
+}
 /*
 	Factbox:
 	https://sites.google.com/a/guardian.co.uk/bootstrap/-archive/factboxes.pdf?attredirects=0&d=1
@@ -858,7 +886,7 @@ li:last-child .dropdown.align-right {
 .zone-color {
   color: #0061A6;
 }
-.zone-background-color {
+.zone-background {
   background-color: #0061A6;
 }
 .zone-news .zone-border {
@@ -921,30 +949,57 @@ li:last-child .dropdown.align-right {
 /*
 	Show the current zone background color.
 */
-.zone-news .zone-background {
+.zone-news .zone-background,
+.zone-news .zone-background-hover:hover,
+.zone-news .zone-background-hover:focus,
+.zone-news .zone-background-hover:active {
   background-color: #D61D00;
 }
-.zone-sport .zone-background {
+.zone-sport .zone-background,
+.zone-sport .zone-background-hover:hover,
+.zone-sport .zone-background-hover:focus,
+.zone-sport .zone-background-hover:active {
   background-color: #008000;
 }
-.zone-comment .zone-background {
+.zone-comment .zone-background,
+.zone-comment .zone-background-hover:hover,
+.zone-comment .zone-background-hover:focus,
+.zone-comment .zone-background-hover:active {
   background-color: #0061A6;
 }
-.zone-culture .zone-background {
+.zone-culture .zone-background,
+.zone-culture .zone-background-hover:hover,
+.zone-culture .zone-background-hover:focus,
+.zone-culture .zone-background-hover:active {
   background-color: #D1008B;
 }
-.zone-business .zone-background {
+.zone-business .zone-background,
+.zone-business .zone-background-hover:hover,
+.zone-business .zone-background-hover:focus,
+.zone-business .zone-background-hover:active {
   background-color: #3246AB;
 }
-.zone-money .zone-background {
+.zone-money .zone-background,
+.zone-money .zone-background-hover:hover,
+.zone-money .zone-background-hover:focus,
+.zone-money .zone-background-hover:active {
   background-color: #8F1AB6;
 }
-.zone-lifestyle .zone-background {
+.zone-lifestyle .zone-background,
+.zone-lifestyle .zone-background-hover:hover,
+.zone-lifestyle .zone-background-hover:focus,
+.zone-lifestyle .zone-background-hover:active {
   background-color: #AD532F;
 }
-.zone-travel .zone-background {
+.zone-travel .zone-background,
+.zone-travel .zone-background-hover:hover,
+.zone-travel .zone-background-hover:focus,
+.zone-travel .zone-background-hover:active {
   background-color: #066EC9;
 }
-.zone-environment .zone-background {
+.zone-environment .zone-background,
+.zone-environment .zone-background-hover:hover,
+.zone-environment .zone-background-hover:focus,
+.zone-environment .zone-background-hover:active {
   background-color: #4A7801;
 }
