@@ -44,11 +44,12 @@
 				<p class="pasteup-title">site-search.html</p>
 				<div class="pasteup-mod-code">
 					<div class="site-search">
-	<form method="get" action="http://www.guardian.co.uk/search" target="_TOP" onsubmit="return searchWeb('http://gnm41174.int.gnl/www.guardian.co.uk/websearch', 'http://gnm41174.int.gnl/www.guardian.co.uk/search');" >
+	<form method="get" action="http://www.guardian.co.uk/search" target="_TOP">
 		<input type="text" name="q" placeholder="Your search terms&hellip;"/>
 		<select name="section">
 			<option value="entiresite">Entire site</option>
 			<option value="theguardian">From the Guardian</option>
+			<option value="search-contributions">User comments</option>
 			<option value="web">Web</option>
 		</select>
 		<input type="submit" value="Search" />
@@ -57,6 +58,6 @@
 				</div>
 			</div>
 		</div>
-        <script data-main="/js/main.min" src="/js/require.js"></script>
+        <script data-main="/js/main.min" src="/js/lib/requirejs/1.0.8/require.min.js"></script>
 	</body>
 </html>

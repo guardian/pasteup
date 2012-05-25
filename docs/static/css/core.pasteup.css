@@ -77,10 +77,16 @@ svg:not(:root) {
   float: right;
 }
 .margin-top {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 .margin-bottom {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+.border-top {
+  border-top: 1px solid #BEBEBE;
+}
+.border-bottom {
+  border-bottom: 1px solid #BEBEBE;
 }
 .h {
   position: absolute !important;
@@ -100,18 +106,6 @@ svg:not(:root) {
 }
 .cf {
   zoom: 1;
-}
-.standfirst {
-  font-size: 16px;
-  line-height: 20px;
-  color: #666;
-}
-.caption {
-  color: #666;
-}
-.dotted-border {
-  border-top: 1px dotted #666;
-  padding-top: 2px;
 }
 html {
   font-size: 100%;
@@ -219,6 +213,18 @@ sub {
 }
 figure {
   margin: 0;
+}
+.standfirst {
+  font-size: 16px;
+  line-height: 20px;
+  color: #666;
+}
+.caption {
+  color: #666;
+}
+.dotted-border {
+  border-top: 1px dotted #666;
+  padding-top: 2px;
 }
 /*
 	Headings
@@ -437,6 +443,13 @@ textarea {
 input[type="checkbox"] {
   margin-bottom: 1em;
 }
+select {
+  padding: 1px;
+}
+input[type="submit"],
+button {
+  padding: 1px 0;
+}
 button,
 .button {
   background-color: #0061A6;
@@ -447,11 +460,6 @@ button,
   border: none;
   outline: none;
   padding: 0 7px;
-}
-button.plain,
-input.plain {
-  background: none;
-  color: ;
 }
 /* Form layout */
 .field {
@@ -693,11 +701,24 @@ li:last-child .dropdown.align-right {
 .topbar-show {
   display: block;
 }
+.section-pulldown {
+  margin-top: 5px;
+}
+.site-search {
+  margin-top: 7px;
+}
+.site-search [name="section"] {
+  padding: 3px 0;
+}
+.site-search [type="submit"] {
+  padding: 3px 0;
+}
 .nav-sections {
   float: left;
+  clear: both;
   font-family: Georgia;
   font-size: 16px;
-  margin: 0;
+  margin: 15px 0 0 0;
   padding: 0;
   width: 100%;
 }
