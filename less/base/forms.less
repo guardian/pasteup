@@ -99,11 +99,6 @@ fieldset {
 	padding: 0;
 	margin: 0;
 }
-label {
-	display: block;
-	margin-top: 1em;
-	margin-bottom: 0.2em;
-}
 .inline-message {
 	display: inline-block;
 	padding: 0.4em 5px;
@@ -131,9 +126,7 @@ input[type="checkbox"] {
 }
 
 button,
-.button,
-input[type="button"],
-input[type="submit"] {
+.button {
 	background-color: #0061A6;
 	color: white;
 	display: inline-block;
@@ -142,6 +135,12 @@ input[type="submit"] {
 	border: none;
 	outline: none;
 	padding: 0 7px;
+}
+
+button.plain,
+input.plain {
+	background: none;
+	color:;
 }
 
 /* Form layout */

@@ -414,11 +414,6 @@ fieldset {
   padding: 0;
   margin: 0;
 }
-label {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 0.2em;
-}
 .inline-message {
   display: inline-block;
   padding: 0.4em 5px;
@@ -443,9 +438,7 @@ input[type="checkbox"] {
   margin-bottom: 1em;
 }
 button,
-.button,
-input[type="button"],
-input[type="submit"] {
+.button {
   background-color: #0061A6;
   color: white;
   display: inline-block;
@@ -454,6 +447,11 @@ input[type="submit"] {
   border: none;
   outline: none;
   padding: 0 7px;
+}
+button.plain,
+input.plain {
+  background: none;
+  color: ;
 }
 /* Form layout */
 .field {
@@ -790,7 +788,7 @@ li:last-child .dropdown.align-right {
 .zone-money .zone-border {
   border-color: #8F1AB6;
 }
-.zone-lifestyle .zone-border {
+.zone-life-and-style .zone-border {
   border-color: #AD532F;
 }
 .zone-travel .zone-border {
@@ -820,7 +818,7 @@ li:last-child .dropdown.align-right {
 .zone-money .zone-color {
   color: #8F1AB6;
 }
-.zone-lifestyle .zone-color {
+.zone-life-and-style .zone-color {
   color: #AD532F;
 }
 .zone-travel .zone-color {
@@ -868,10 +866,10 @@ li:last-child .dropdown.align-right {
 .zone-money .zone-background-hover:active {
   background-color: #8F1AB6;
 }
-.zone-lifestyle .zone-background,
-.zone-lifestyle .zone-background-hover:hover,
-.zone-lifestyle .zone-background-hover:focus,
-.zone-lifestyle .zone-background-hover:active {
+.zone-life-and-style .zone-background,
+.zone-life-and-style .zone-background-hover:hover,
+.zone-life-and-style .zone-background-hover:focus,
+.zone-life-and-style .zone-background-hover:active {
   background-color: #AD532F;
 }
 .zone-travel .zone-background,

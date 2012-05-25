@@ -41,26 +41,19 @@
     <body>
     	<div class="fluid-wrap">
     		<div class="pasteup-mod">
-				<p class="pasteup-title">nav-sections.html</p>
+				<p class="pasteup-title">site-search.html</p>
 				<div class="pasteup-mod-code">
-					<nav>
-	<ul class="nav-sections" role="navigation">
-		<li class="zone-news"><a href="/" class="zone-color zone-background-hover">News</a></li>
-		<li class="zone-sport"><a href="/" class="zone-color zone-background-hover">Sport</a></li>
-		<li class="zone-comment"><a href="/" class="zone-color zone-background-hover">Comment</a></li>
-		<li class="zone-culture"><a href="/" class="zone-color zone-background-hover">Culture</a></li>
-		<li class="zone-business"><a href="/" class="zone-color zone-background-hover">Business</a></li>
-		<li class="zone-money"><a href="/" class="zone-color zone-background-hover">Money</a></li>
-		<li class="zone-sport"><a href="/" class="zone-color zone-background-hover">London 2012</a></li>
-		<li class="zone-lifeandstyle"><a href="/" class="zone-color zone-background-hover">Life &#38; style</a></li>
-		<li class="zone-travel"><a href="/" class="zone-color zone-background-hover">Travel</a></li>
-		<li class="zone-environment"><a href="/" class="zone-color zone-background-hover">Environment</a></li>
-		<li><a href="/">Video</a></li>
-		<li><a href="/">Apps</a></li>
-		<li><a href="/">Offers</a></li>
-		<li><a href="/">Jobs</a></li>
-	</ul>
-</nav>
+					<div class="site-search">
+	<form method="get" action="http://www.guardian.co.uk/search" target="_TOP" onsubmit="return searchWeb('http://gnm41174.int.gnl/www.guardian.co.uk/websearch', 'http://gnm41174.int.gnl/www.guardian.co.uk/search');" >
+		<input type="text" name="q" placeholder="Your search terms&hellip;"/>
+		<select name="section">
+			<option value="entiresite">Entire site</option>
+			<option value="theguardian">From the Guardian</option>
+			<option value="web">Web</option>
+		</select>
+		<input type="submit" value="Search" />
+	</form>
+</div><!-- /.site-search -->
 				</div>
 			</div>
 		</div>

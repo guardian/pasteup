@@ -100,12 +100,12 @@ input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-se
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 textarea{overflow:auto;vertical-align:top;}
 fieldset{border:none;padding:0;margin:0;}
-label{display:block;margin-top:1em;margin-bottom:0.2em;}
 .inline-message{display:inline-block;padding:0.4em 5px;margin-left:0.5em;margin-right:0.5em;font-style:normal;}
 .error{background-color:#F7D2CC;}
 input[type="email"],input[type="password"],input[type="text"],input[type="url"],input[type="search"],textarea{border:1px solid #999;min-height:14px;padding:0.4em 5px 0.4em 5px;}
 input[type="checkbox"]{margin-bottom:1em;}
-button,.button,input[type="button"],input[type="submit"]{background-color:#0061A6;color:white;display:inline-block;height:2.4em;line-height:2.4em;border:none;outline:none;padding:0 7px;}
+button,.button{background-color:#0061A6;color:white;display:inline-block;height:2.4em;line-height:2.4em;border:none;outline:none;padding:0 7px;}
+button.plain,input.plain{background:none;color:;}
 .field{margin-bottom:15px;clear:both;}
 .field-label{display:block;float:left;width:25%;margin:0.4em 0 0 0;}
 .field-inputs{width:70%;margin-left:30%;}
@@ -175,7 +175,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-culture .zone-border{border-color:#D1008B;}
 .zone-business .zone-border{border-color:#3246AB;}
 .zone-money .zone-border{border-color:#8F1AB6;}
-.zone-lifestyle .zone-border{border-color:#AD532F;}
+.zone-life-and-style .zone-border{border-color:#AD532F;}
 .zone-travel .zone-border{border-color:#066EC9;}
 .zone-environment .zone-border{border-color:#4A7801;}
 .zone-news .zone-color{color:#D61D00;}
@@ -184,7 +184,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-culture .zone-color{color:#D1008B;}
 .zone-business .zone-color{color:#3246AB;}
 .zone-money .zone-color{color:#8F1AB6;}
-.zone-lifestyle .zone-color{color:#AD532F;}
+.zone-life-and-style .zone-color{color:#AD532F;}
 .zone-travel .zone-color{color:#066EC9;}
 .zone-environment .zone-color{color:#4A7801;}
 .zone-news .zone-background,.zone-news .zone-background-hover:hover,.zone-news .zone-background-hover:focus,.zone-news .zone-background-hover:active{background-color:#D61D00;}
@@ -193,6 +193,6 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-culture .zone-background,.zone-culture .zone-background-hover:hover,.zone-culture .zone-background-hover:focus,.zone-culture .zone-background-hover:active{background-color:#D1008B;}
 .zone-business .zone-background,.zone-business .zone-background-hover:hover,.zone-business .zone-background-hover:focus,.zone-business .zone-background-hover:active{background-color:#3246AB;}
 .zone-money .zone-background,.zone-money .zone-background-hover:hover,.zone-money .zone-background-hover:focus,.zone-money .zone-background-hover:active{background-color:#8F1AB6;}
-.zone-lifestyle .zone-background,.zone-lifestyle .zone-background-hover:hover,.zone-lifestyle .zone-background-hover:focus,.zone-lifestyle .zone-background-hover:active{background-color:#AD532F;}
+.zone-life-and-style .zone-background,.zone-life-and-style .zone-background-hover:hover,.zone-life-and-style .zone-background-hover:focus,.zone-life-and-style .zone-background-hover:active{background-color:#AD532F;}
 .zone-travel .zone-background,.zone-travel .zone-background-hover:hover,.zone-travel .zone-background-hover:focus,.zone-travel .zone-background-hover:active{background-color:#066EC9;}
 .zone-environment .zone-background,.zone-environment .zone-background-hover:hover,.zone-environment .zone-background-hover:focus,.zone-environment .zone-background-hover:active{background-color:#4A7801;}
