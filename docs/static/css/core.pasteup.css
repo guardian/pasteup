@@ -307,9 +307,6 @@ a:active {
   color: white;
   background-color: #005689;
 }
-p a {
-  font-weight: bold;
-}
 a:focus {
   outline: thin dotted;
 }

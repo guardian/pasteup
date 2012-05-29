@@ -53,7 +53,6 @@ h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none !important;}
 a,a:link,a:visited{color:#005689;text-decoration:none;}
 a:hover,a:focus{text-decoration:underline;}
 a:active{color:white;background-color:#005689;}
-p a{font-weight:bold;}
 a:focus{outline:thin dotted;}
 a:hover,a:active{outline:0;}
 form{margin:0;}
