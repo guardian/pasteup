@@ -132,9 +132,10 @@ var build = {
                 var f = fs.readFileSync('../../js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
-                    console.log('JavaScript has failed our JSHint rules. Please fix errors.\n');
+                    console.log('JS Hint error.\n');
+                    console.log(name);
                     console.log(jshint.errors);
-                    process.exit();
+                    //process.exit();
                 }
             }
         })
@@ -154,7 +155,7 @@ var build = {
 module.exports = build;
 
 if (!module.parent) {
-	//build.lintJavaScript();
+	build.lintJavaScript();
 	build.go();
 	//build.lintCss();
 }

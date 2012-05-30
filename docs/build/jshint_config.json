@@ -18,6 +18,8 @@
     "predef"        : [ // Custom globals.
         // "_",           // Underscore JS
         // "jQ"           // R2 jQuery
+        "require",
+        "define"
     ],
 
     // Development.

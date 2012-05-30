@@ -6,51 +6,51 @@
 
 define(function() {
 
-	var hidden = true,
-		topbar = document.querySelector('.topbar'),
-		menuContainer = document.querySelector('.topbar-menu-container');
+    var hidden = true,
+        topbar = document.querySelector('.topbar'),
+        menuContainer = document.querySelector('.topbar-menu-container');
 
     function addLink() {
-    	var linkText = topbar.getAttribute('data-show-link');
-    	if (linkText && window.innerWidth <= 600) {
+        var linkText = topbar.getAttribute('data-show-link');
+        if (linkText && window.innerWidth <= 600) {
 
-    		// Hide the menus if we're small screen.
-    		menuContainer.style.display = 'none';
+            // Hide the menus if we're small screen.
+            menuContainer.style.display = 'none';
 
-			// Create the link
-			var showLink = document.createElement('a');
-			showLink.href = '#';
-			showLink.className = 'topbar-show';
-			showLink.innerHTML = linkText;
-			showLink.onclick = function() {
-				toggle();
-				return false;
-			}
+            // Create the link
+            var showLink = document.createElement('a');
+            showLink.href = '#';
+            showLink.className = 'topbar-show';
+            showLink.innerHTML = linkText;
+            showLink.onclick = function() {
+                toggle();
+                return false;
+            };
 
-			// Append it to the document, and then hide menu.
-			menuContainer.parentElement.insertBefore(showLink, menuContainer);
-    	}
+            // Append it to the document, and then hide menu.
+            menuContainer.parentElement.insertBefore(showLink, menuContainer);
+        }
     }
 
     function toggle() {
-    	if (hidden) {
-    		show();
-    	} else {
-    		hide();
-    	}
+        if (hidden) {
+            show();
+        } else {
+            hide();
+        }
     }
 
     function show() {
-    	menuContainer.style.display = 'block';
-    	hidden = false;
+        menuContainer.style.display = 'block';
+        hidden = false;
     }
 
     function hide() {
-    	menuContainer.style.display = 'none';
-    	hidden = true;
+        menuContainer.style.display = 'none';
+        hidden = true;
     }
 
     return {
-    	addLink: addLink
-    }
+        addLink: addLink
+    };
 });

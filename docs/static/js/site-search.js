@@ -6,11 +6,11 @@
 
 define(function() {
 
-	var url = 'http://www.guardian.co.uk/web'
+	var url = 'http://www.guardian.co.uk/web';
 	var val_to_url = {
 		'web': 'http://www.guardian.co.uk/websearch',
 		'search-contributions': 'http://www.guardian.co.uk/discussion/search/comments/'
-	}
+	};
 
 	var form = document.querySelector('.site-search form'),
 		select = form.querySelector('select');
