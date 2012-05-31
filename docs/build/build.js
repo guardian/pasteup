@@ -145,7 +145,8 @@ var build = {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
         wrench.readdirSyncRecursive('../static/css').forEach(function(name) {
             var f = fs.readFileSync('../static/css/' + name, 'utf8');
-            var result = csslint.verify(f, config_json.ruleset);
+            var result = csslint.verify(f, config_json);
+            console.log(name);
             console.log(result);
         });
     }

@@ -657,10 +657,11 @@
 	<form method="get" action="http://www.guardian.co.uk/search" target="_TOP">
 		<input type="text" name="q" placeholder="Your search terms&hellip;"/>
 		<select name="section">
-			<option value="entiresite">Entire site</option>
-			<option value="theguardian">From the Guardian</option>
-			<option value="search-contributions">User comments</option>
-			<option value="web">Web</option>
+			<!-- A site-search form can submit to a number of endpoints. These are contained in the value attr of the option. -->
+			<option value="http://www.guardian.co.uk/search">Entire site</option>
+			<option value="http://www.guardian.co.uk/search">From the Guardian</option>
+			<option value="http://www.guardian.co.uk/discussion/search/comments/">User comments</option>
+			<option value="http://www.guardian.co.uk/websearch">Web</option>
 		</select>
 		<input type="submit" value="Search" />
 	</form>
@@ -670,10 +671,11 @@
 	&lt;form method=&quot;get&quot; action=&quot;http://www.guardian.co.uk/search&quot; target=&quot;_TOP&quot;&gt;
 		&lt;input type=&quot;text&quot; name=&quot;q&quot; placeholder=&quot;Your search terms&hellip;&quot;/&gt;
 		&lt;select name=&quot;section&quot;&gt;
-			&lt;option value=&quot;entiresite&quot;&gt;Entire site&lt;/option&gt;
-			&lt;option value=&quot;theguardian&quot;&gt;From the Guardian&lt;/option&gt;
-			&lt;option value=&quot;search-contributions&quot;&gt;User comments&lt;/option&gt;
-			&lt;option value=&quot;web&quot;&gt;Web&lt;/option&gt;
+			&lt;!-- A site-search form can submit to a number of endpoints. These are contained in the value attr of the option. --&gt;
+			&lt;option value=&quot;http://www.guardian.co.uk/search&quot;&gt;Entire site&lt;/option&gt;
+			&lt;option value=&quot;http://www.guardian.co.uk/search&quot;&gt;From the Guardian&lt;/option&gt;
+			&lt;option value=&quot;http://www.guardian.co.uk/discussion/search/comments/&quot;&gt;User comments&lt;/option&gt;
+			&lt;option value=&quot;http://www.guardian.co.uk/websearch&quot;&gt;Web&lt;/option&gt;
 		&lt;/select&gt;
 		&lt;input type=&quot;submit&quot; value=&quot;Search&quot; /&gt;
 	&lt;/form&gt;
