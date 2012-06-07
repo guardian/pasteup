@@ -581,6 +581,24 @@ a.button {
   -webkit-box-shadow: 0 2px 5px 2px #ededed;
   -moz-box-shadow: 0 2px 5px 2px #ededed;
 }
+button:hover,
+.button:hover,
+a.button:hover,
+button:focus,
+.button:focus,
+a.button:focus {
+  background-color: #004372;
+  border-color: #004372;
+}
+button:active,
+.button:active,
+a.button:active {
+  background-color: #004878;
+  border-color: #004878;
+  -webkit-box-shadow: 0 2px 5px 2px #000;
+  -moz-box-shadow: 0 2px 5px 2px #000;
+  box-shadow: inset 0 0 8px #000;
+}
 /* Form layout */
 .field {
   margin-bottom: 15px;
