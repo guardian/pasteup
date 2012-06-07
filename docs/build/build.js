@@ -91,13 +91,13 @@ var build = {
 	    process.stdout.write('\n * Building module library');
 	    var modules = [];
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
+	    	var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
 	        modules.push({
 	            'name': name,
 	            'code': f
 	        });
 	    });
-
+	    
 	    // Get template file, and render modules into template.
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/library.html');
 	    var output = mustache.to_html(template.toString(), {'modules': modules});

@@ -889,7 +889,7 @@ li:last-child .dropdown.align-right {
   margin: 2px 0 2px 0;
 }
 .zone-border {
-  border-top-color: 1px solid #0061A6;
+  border-color: #0061A6;
   border-top-style: solid;
   border-top-width: 1px;
   padding-top: 2px;
@@ -904,8 +904,10 @@ li:last-child .dropdown.align-right {
 .zone-color {
   color: #0061A6;
 }
-.zone-background {
+.zone-background,
+a.zone-background {
   background-color: #0061A6;
+  color: #fff;
 }
 .zone-news .zone-border {
   border-color: #D61D00;

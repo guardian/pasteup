@@ -131,16 +131,21 @@ li:last-child .dropdown.align-right{right:0;}
 .nav-sections li:first-child{border:0 none;}
 .nav-sections a{display:block;line-height:24px;padding:0 5px;text-decoration:none;color:#333;}
 .nav-sections a:hover,.nav-sections a:focus,.nav-sections a:active{color:#FFF;background-color:#333;}
+.nav-tags{background-color:#ededed;clear:both;float:left;font-family:Georgia;font-size:16px;list-style:none;margin:15px 0 0 0;padding:0;width:100%;}
+.nav-tags li{border-left:1px solid #ededed;float:left;list-style:none;}
+.nav-tags li:first-child{border:0 none;}
+.nav-tags a{display:block;line-height:24px;padding:0 5px;position:relative;text-decoration:none;}
+.nav-tags a:hover,.nav-tags a:focus,.nav-tags a:active{color:#fff;background-color:#333;}
 .factbox{background-color:#F3F3F3;padding:5px;}
 .factbox-heading{font-family:arial,sans-serif;font-size:12px;line-height:15px;font-weight:bold;margin-bottom:0;}
 .factbox-image{margin:10px -5px;}
 .footer{font-size:11px;line-height:14px;margin:15px 0;padding-top:5px;clear:both;}
 .footer p,.footer ul,.footer ol,.footer menu,.footer dl{margin:2px 0 2px 0;}
-.zone-border{border-top-color:1px solid #0061A6;border-top-style:solid;border-top-width:1px;padding-top:2px;}
+.zone-border{border-color:#0061A6;border-top-style:solid;border-top-width:1px;padding-top:2px;}
 .zone-border-medium{border-top-width:3px;}
 .zone-border-large{border-top-width:10px;padding-top:5px;}
 .zone-color{color:#0061A6;}
-.zone-background{background-color:#0061A6;}
+.zone-background,a.zone-background{background-color:#0061A6;color:#fff;}
 .zone-news .zone-border{border-color:#D61D00;}
 .zone-sport .zone-border{border-color:green;}
 .zone-comment .zone-border,.zone-commentisfree .zone-border{border-color:#0061A6;}
