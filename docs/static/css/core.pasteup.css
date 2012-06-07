@@ -450,14 +450,19 @@ button {
 button,
 .button,
 a.button {
-  background-color: #0061A6;
-  color: white;
+  background-color: #005689;
+  border: 1px solid #005689;
+  box-shadow: 0 2px 5px 2px #ededed;
+  color: #fff;
   display: inline-block;
-  height: 2.4em;
-  line-height: 2.4em;
-  border: none;
+  font-size: 14px;
+  font-weight: bold;
   outline: none;
-  padding: 0 7px;
+  padding: 5px 20px;
+  text-align: center;
+  text-shadow: 0 2px 0 #004372;
+  -webkit-box-shadow: 0 2px 5px 2px #ededed;
+  -moz-box-shadow: 0 2px 5px 2px #ededed;
 }
 /* Form layout */
 .field {
