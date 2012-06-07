@@ -889,7 +889,9 @@ li:last-child .dropdown.align-right {
   margin: 2px 0 2px 0;
 }
 .zone-border {
-  border-top: 1px solid #0061A6;
+  border-top-color: 1px solid #0061A6;
+  border-top-style: solid;
+  border-top-width: 1px;
   padding-top: 2px;
 }
 .zone-border-medium {
@@ -911,7 +913,8 @@ li:last-child .dropdown.align-right {
 .zone-sport .zone-border {
   border-color: green;
 }
-.zone-comment .zone-border {
+.zone-comment .zone-border,
+.zone-commentisfree .zone-border {
   border-color: #0061A6;
 }
 .zone-culture .zone-border {
@@ -941,7 +944,8 @@ li:last-child .dropdown.align-right {
 .zone-sport .zone-color {
   color: #008000;
 }
-.zone-comment .zone-color {
+.zone-comment .zone-color,
+.zone-commentisfree .zone-color {
   color: #0061A6;
 }
 .zone-culture .zone-color {
@@ -981,6 +985,12 @@ li:last-child .dropdown.align-right {
 .zone-comment .zone-background-hover:hover,
 .zone-comment .zone-background-hover:focus,
 .zone-comment .zone-background-hover:active {
+  background-color: #0061A6;
+}
+.zone-commentisfree .zone-background,
+.zone-commentisfree .zone-background-hover:hover,
+.zone-commentisfree .zone-background-hover:focus,
+.zone-commentisfree .zone-background-hover:active {
   background-color: #0061A6;
 }
 .zone-culture .zone-background,

@@ -448,40 +448,16 @@ button {
   padding: 1px 0;
 }
 button,
-.button,
-a.button {
-  background-color: #005689;
-  border: 1px solid #005689;
-  box-shadow: 0 2px 5px 2px #ededed;
+.button {
+  background-color: #0061A6;
   color: white;
   display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 5px 20px;
+  height: 2.4em;
+  line-height: 2.4em;
+  border: none;
   outline: none;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: 0 2px 0 #004372;
-
-  -webkit-box-shadow: 0 2px 5px 2px #ededed;
-     -moz-box-shadow: 0 2px 5px 2px #ededed;
+  padding: 0 7px;
 }
-button:focus,
-button:hover,
-.button:focus
-.button:hover {
-  background-color: #004372;
-  border-color: #004372;
-}
-button:active,
-.button:active {
-  background-color: #004878;
-  border-color: #004878;
-  -webkit-box-shadow: 0 2px 5px 2px #000;
-  -moz-box-shadow: 0 2px 5px 2px #000;
-  box-shadow: inset 0 0 8px #000;
-}
-
 /* Form layout */
 .field {
   margin-bottom: 15px;
@@ -796,7 +772,9 @@ li:last-child .dropdown.align-right {
   margin: 2px 0 2px 0;
 }
 .zone-border {
-  border-top: 1px solid #0061A6;
+  border-top-color: 1px solid #0061A6;
+  border-top-style: solid;
+  border-top-width: 1px;
   padding-top: 2px;
 }
 .zone-border-medium {
@@ -818,7 +796,8 @@ li:last-child .dropdown.align-right {
 .zone-sport .zone-border {
   border-color: green;
 }
-.zone-comment .zone-border {
+.zone-comment .zone-border,
+.zone-commentisfree .zone-border {
   border-color: #0061A6;
 }
 .zone-culture .zone-border {
@@ -848,7 +827,8 @@ li:last-child .dropdown.align-right {
 .zone-sport .zone-color {
   color: #008000;
 }
-.zone-comment .zone-color {
+.zone-comment .zone-color,
+.zone-commentisfree .zone-color {
   color: #0061A6;
 }
 .zone-culture .zone-color {
@@ -888,6 +868,12 @@ li:last-child .dropdown.align-right {
 .zone-comment .zone-background-hover:hover,
 .zone-comment .zone-background-hover:focus,
 .zone-comment .zone-background-hover:active {
+  background-color: #0061A6;
+}
+.zone-commentisfree .zone-background,
+.zone-commentisfree .zone-background-hover:hover,
+.zone-commentisfree .zone-background-hover:focus,
+.zone-commentisfree .zone-background-hover:active {
   background-color: #0061A6;
 }
 .zone-culture .zone-background,
