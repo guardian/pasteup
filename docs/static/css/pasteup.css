@@ -565,7 +565,8 @@ button {
   padding: 1px 0;
 }
 button,
-.button {
+.button,
+a.button {
   background-color: #0061A6;
   color: white;
   display: inline-block;
