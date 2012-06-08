@@ -132,10 +132,9 @@ var build = {
                 var f = fs.readFileSync('../../js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
-                    console.log('JS Hint error.\n');
-                    console.log(name);
-                    console.log(jshint.errors);
-                    //process.exit();
+                    console.log('\nFile:  ',name);
+                    console.log("------------------------");
+                    build.printJSHintErrors(jshint.errors);
                 }
             }
         })
@@ -149,6 +148,15 @@ var build = {
             console.log(name);
             console.log(result);
         });
+    },
+
+    printJSHintErrors: function(errors) {
+    	for (var i = 0, j = errors.length; i<j; ++i) {
+    		var error = errors[i];
+    		console.log('Error: ', error.reason);
+    		console.log('        Line: ', error.line);
+    		console.log('        Char: ', error.character);
+    	}
     }
 
 }

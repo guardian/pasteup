@@ -32,8 +32,13 @@ watch.add('../../less', true)
 	.add('../../js', true)
 	.add('../../html', true).onChange(function(file, prev, curr, action) {
     console.log('\n * ' + file + ' has been changed. Recompiling.\n');
+    build.lintJavaScript();
     build.go();
 });
+
+// Run a build before starting
+build.lintJavaScript();
+build.go();
 
 // run server
 app.listen(SERVER_PORT, SERVER_HOST);
