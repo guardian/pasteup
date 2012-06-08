@@ -73,7 +73,9 @@ input[type="email"],input[type="password"],input[type="text"],input[type="url"],
 input[type="checkbox"]{margin-bottom:1em;}
 select{padding:1px;}
 input[type="submit"],button{padding:1px 0;}
-button,.button{background-color:#0061A6;color:white;display:inline-block;height:2.4em;line-height:2.4em;border:none;outline:none;padding:0 7px;}
+button,.button,a.button{background-color:#005689;border:1px solid #005689;box-shadow:0 2px 5px 2px #ededed;color:#fff;display:inline-block;font-size:14px;font-weight:bold;outline:none;padding:5px 20px;text-align:center;text-shadow:0 2px 0 #004372;-webkit-box-shadow:0 2px 5px 2px #ededed;-moz-box-shadow:0 2px 5px 2px #ededed;}
+button:hover,.button:hover,a.button:hover,button:focus,.button:focus,a.button:focus{background-color:#004372;border-color:#004372;}
+button:active,.button:active,a.button:active{background-color:#004878;border-color:#004878;-webkit-box-shadow:0 2px 5px 2px #000;-moz-box-shadow:0 2px 5px 2px #000;box-shadow:inset 0 0 8px #000;}
 .field{margin-bottom:15px;clear:both;}
 .field-label{display:block;float:left;width:25%;margin:0.4em 0 0 0;}
 .field-inputs{width:70%;margin-left:30%;}
@@ -131,19 +133,24 @@ li:last-child .dropdown.align-right{right:0;}
 .nav-sections li:first-child{border:0 none;}
 .nav-sections a{display:block;line-height:24px;padding:0 5px;text-decoration:none;color:#333;}
 .nav-sections a:hover,.nav-sections a:focus,.nav-sections a:active{color:#FFF;background-color:#333;}
+.nav-tags{background-color:#ededed;clear:both;float:left;font-family:Georgia;font-size:16px;list-style:none;margin:15px 0 0 0;padding:0;width:100%;}
+.nav-tags li{border-left:1px solid #ededed;float:left;list-style:none;}
+.nav-tags li:first-child{border:0 none;}
+.nav-tags a{display:block;line-height:24px;padding:0 5px;position:relative;text-decoration:none;}
+.nav-tags a:hover,.nav-tags a:focus,.nav-tags a:active{color:#fff;background-color:#333;}
 .factbox{background-color:#F3F3F3;padding:5px;}
 .factbox-heading{font-family:arial,sans-serif;font-size:12px;line-height:15px;font-weight:bold;margin-bottom:0;}
 .factbox-image{margin:10px -5px;}
 .footer{font-size:11px;line-height:14px;margin:15px 0;padding-top:5px;clear:both;}
 .footer p,.footer ul,.footer ol,.footer menu,.footer dl{margin:2px 0 2px 0;}
-.zone-border{border-top:1px solid #0061A6;padding-top:2px;}
+.zone-border{border-color:#0061A6;border-top-style:solid;border-top-width:1px;padding-top:2px;}
 .zone-border-medium{border-top-width:3px;}
 .zone-border-large{border-top-width:10px;padding-top:5px;}
 .zone-color{color:#0061A6;}
-.zone-background{background-color:#0061A6;}
+.zone-background,a.zone-background{background-color:#0061A6;color:#fff;}
 .zone-news .zone-border{border-color:#D61D00;}
 .zone-sport .zone-border{border-color:green;}
-.zone-comment .zone-border{border-color:#0061A6;}
+.zone-comment .zone-border,.zone-commentisfree .zone-border{border-color:#0061A6;}
 .zone-culture .zone-border{border-color:#D1008B;}
 .zone-business .zone-border{border-color:#3246AB;}
 .zone-money .zone-border{border-color:#8F1AB6;}
@@ -152,7 +159,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-environment .zone-border{border-color:#4A7801;}
 .zone-news .zone-color{color:#D61D00;}
 .zone-sport .zone-color{color:#008000;}
-.zone-comment .zone-color{color:#0061A6;}
+.zone-comment .zone-color,.zone-commentisfree .zone-color{color:#0061A6;}
 .zone-culture .zone-color{color:#D1008B;}
 .zone-business .zone-color{color:#3246AB;}
 .zone-money .zone-color{color:#8F1AB6;}
@@ -162,6 +169,7 @@ li:last-child .dropdown.align-right{right:0;}
 .zone-news .zone-background,.zone-news .zone-background-hover:hover,.zone-news .zone-background-hover:focus,.zone-news .zone-background-hover:active{background-color:#D61D00;}
 .zone-sport .zone-background,.zone-sport .zone-background-hover:hover,.zone-sport .zone-background-hover:focus,.zone-sport .zone-background-hover:active{background-color:#008000;}
 .zone-comment .zone-background,.zone-comment .zone-background-hover:hover,.zone-comment .zone-background-hover:focus,.zone-comment .zone-background-hover:active{background-color:#0061A6;}
+.zone-commentisfree .zone-background,.zone-commentisfree .zone-background-hover:hover,.zone-commentisfree .zone-background-hover:focus,.zone-commentisfree .zone-background-hover:active{background-color:#0061A6;}
 .zone-culture .zone-background,.zone-culture .zone-background-hover:hover,.zone-culture .zone-background-hover:focus,.zone-culture .zone-background-hover:active{background-color:#D1008B;}
 .zone-business .zone-background,.zone-business .zone-background-hover:hover,.zone-business .zone-background-hover:focus,.zone-business .zone-background-hover:active{background-color:#3246AB;}
 .zone-money .zone-background,.zone-money .zone-background-hover:hover,.zone-money .zone-background-hover:focus,.zone-money .zone-background-hover:active{background-color:#8F1AB6;}

@@ -1,7 +1,9 @@
 // Zone helpers for adding zone colors in various places.
 // Default zone color is blue.
 .zone-border {
-	border-top: 1px solid #0061A6; // blue by default
+	border-color: #0061A6; // blue by default
+	border-top-style: solid;
+	border-top-width: 1px;
 	padding-top: 2px;
 }
 .zone-border-medium {
@@ -14,8 +16,10 @@
 .zone-color {
 	color:#0061A6; // blue by default
 }
-.zone-background {
+.zone-background,
+a.zone-background { // TODO: Not sure if this is the best way as we might have to do this for all
 	background-color: #0061A6; // blue by default
+	color: #fff; // white by default
 }
 
 // Show the current zone border color.
@@ -25,7 +29,8 @@
 .zone-sport .zone-border {
 	border-color: green; // green
 }
-.zone-comment .zone-border {
+.zone-comment .zone-border,
+.zone-commentisfree .zone-border {
 	border-color: #0061A6; // blue
 }
 .zone-culture .zone-border {
@@ -56,7 +61,8 @@
 .zone-sport .zone-color {
 	color: #008000; // green
 }
-.zone-comment .zone-color {
+.zone-comment .zone-color,
+.zone-commentisfree .zone-color {
 	color: #0061A6; // blue
 }
 .zone-culture .zone-color {
@@ -97,6 +103,12 @@
 .zone-comment .zone-background-hover:hover,
 .zone-comment .zone-background-hover:focus,
 .zone-comment .zone-background-hover:active {
+	background-color: #0061A6; // blue
+}
+.zone-commentisfree .zone-background,
+.zone-commentisfree .zone-background-hover:hover,
+.zone-commentisfree .zone-background-hover:focus,
+.zone-commentisfree .zone-background-hover:active {
 	background-color: #0061A6; // blue
 }
 .zone-culture .zone-background,
