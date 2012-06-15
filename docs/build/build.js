@@ -132,9 +132,9 @@ var build = {
                 var f = fs.readFileSync('../../js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
-                    console.log('JavaScript has failed our JSHint rules. Please fix errors.\n');
-                    console.log(jshint.errors);
-                    process.exit();
+                    console.log('\nFile:  ',name);
+                    console.log("------------------------");
+                    build.printJSHintErrors(jshint.errors);
                 }
             }
         })
@@ -144,9 +144,19 @@ var build = {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
         wrench.readdirSyncRecursive('../static/css').forEach(function(name) {
             var f = fs.readFileSync('../static/css/' + name, 'utf8');
-            var result = csslint.verify(f, config_json.ruleset);
+            var result = csslint.verify(f, config_json);
+            console.log(name);
             console.log(result);
         });
+    },
+
+    printJSHintErrors: function(errors) {
+    	for (var i = 0, j = errors.length; i<j; ++i) {
+    		var error = errors[i];
+    		console.log('Error: ', error.reason);
+    		console.log('        Line: ', error.line);
+    		console.log('        Char: ', error.character);
+    	}
     }
 
 }
@@ -154,7 +164,7 @@ var build = {
 module.exports = build;
 
 if (!module.parent) {
-	//build.lintJavaScript();
+	build.lintJavaScript();
 	build.go();
 	//build.lintCss();
 }

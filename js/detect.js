@@ -22,10 +22,6 @@ define(function () {
             mode = "extended";
         }
 
-        getLayoutMode = function() {
-            return mode;
-        };
-
         return mode;
     }
 

@@ -6,20 +6,13 @@
 
 define(function() {
 
-	var url = 'http://www.guardian.co.uk/web'
-	var val_to_url = {
-		'web': 'http://www.guardian.co.uk/websearch',
-		'search-contributions': 'http://www.guardian.co.uk/discussion/search/comments/'
-	}
-
 	var form = document.querySelector('.site-search form'),
 		select = form.querySelector('select');
 
 	if (form) {
 		form.addEventListener('submit', function() {
-			var val = select.options[select.selectedIndex].value;
-			if (val_to_url[val]) {
-				url = val_to_url[val];
+			var url = select.options[select.selectedIndex].value;
+			if (url) {
 				form.action = url;
 			}
 		}, false);
