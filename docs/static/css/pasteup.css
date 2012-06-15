@@ -544,6 +544,9 @@ fieldset {
 .error {
   background-color: #F7D2CC;
 }
+.notice {
+  background-color: #e0ecf4;
+}
 input[type="email"],
 input[type="password"],
 input[type="text"],

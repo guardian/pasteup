@@ -427,6 +427,9 @@ fieldset {
 .error {
   background-color: #F7D2CC;
 }
+.notice {
+  background-color: #e0ecf4;
+}
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -775,7 +778,7 @@ li:last-child .dropdown.align-right {
   width: 100%;
 }
 .nav-tags li {
-  border-left: 1px solid #ededed;
+  border-left: 1px solid #bebebe;
   float: left;
   list-style: none;
 }
@@ -970,3 +973,4 @@ a.zone-background {
 .zone-environment .zone-background-hover:active {
   background-color: #4A7801;
 }
+/* Helper for standard Guardian forms */
