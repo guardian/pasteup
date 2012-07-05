@@ -1,30 +1,3 @@
-// Get some globally used var/mixins from somewhere
-// ADH: TODO: I'm not entirely sure they belong inside theme or base, because they aren't theme or base styles as such.
-// @import "theme/variables.less";
-// @import "base/mixins.less";
-
-// Import grids styles
-// Grids comes first. They have no dependencies on base, and can be compiled completely separately. 
-@import "layout/fixed-grid.less";
-@import "layout/fluid-grid.less";
-
-// Import base styles
-@import "base/reset.less";
-@import "base/helpers.less";
-@import "base/type.less";
-@import "base/headings.less";
-@import "base/links.less";
-@import "base/forms.less";
-@import "base/tables.less";
-@import "base/lists.less";
-
-// Import module styles
-@import "module/topbar.less";
-@import "module/section-pulldown.less";
-@import "module/site-search.less";
-@import "module/nav-sections.less";
-@import "module/factbox.less";
-@import "module/footer.less";
-
-// Import themeing
-@import "theme/zones.less";
+// Import everything. Layout first.
+@import "layout.pasteup.less";
+@import "core.pasteup.less";
