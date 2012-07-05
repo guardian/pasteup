@@ -576,7 +576,8 @@ button {
 }
 button,
 .button,
-a.button {
+a.button,
+input[type="submit"].button {
   background-color: #005689;
   border: 1px solid #005689;
   box-shadow: 0 2px 5px 2px #ededed;
@@ -627,6 +628,7 @@ a.button:active {
 .field-inputs label {
   display: block;
   margin: 0.4em;
+  min-height: 15px;
 }
 .field-inputs input[type="email"],
 .field-inputs input[type="password"],
@@ -887,6 +889,38 @@ li:last-child .dropdown.align-right {
 .nav-sections a:focus,
 .nav-sections a:active {
   color: #FFF;
+  background-color: #333;
+}
+.nav-tags {
+  background-color: #ededed;
+  clear: both;
+  float: left;
+  font-family: Georgia;
+  font-size: 16px;
+  list-style: none;
+  margin: 15px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+.nav-tags li {
+  border-left: 1px solid #bebebe;
+  float: left;
+  list-style: none;
+}
+.nav-tags li:first-child {
+  border: 0 none;
+}
+.nav-tags a {
+  display: block;
+  line-height: 24px;
+  padding: 0 5px;
+  position: relative;
+  text-decoration: none;
+}
+.nav-tags a:hover,
+.nav-tags a:focus,
+.nav-tags a:active {
+  color: #fff;
   background-color: #333;
 }
 /*

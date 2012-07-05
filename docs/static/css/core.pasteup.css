@@ -459,7 +459,8 @@ button {
 }
 button,
 .button,
-a.button {
+a.button,
+input[type="submit"].button {
   background-color: #005689;
   border: 1px solid #005689;
   box-shadow: 0 2px 5px 2px #ededed;
@@ -510,6 +511,7 @@ a.button:active {
 .field-inputs label {
   display: block;
   margin: 0.4em;
+  min-height: 15px;
 }
 .field-inputs input[type="email"],
 .field-inputs input[type="password"],
@@ -979,4 +981,3 @@ a.zone-background {
 .zone-environment .zone-background-hover:active {
   background-color: #4A7801;
 }
-/* Helper for standard Guardian forms */
