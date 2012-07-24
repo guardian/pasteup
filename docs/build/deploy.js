@@ -19,7 +19,6 @@ var s3_sync_cmd = 's3cmd sync\
                      --acl-public\
                      --guess-mime-type\
                     {{#safe_cache}} --add-header "Cache-Control: max-age=60" {{/safe_cache}}\
-                    {{#gzip}} --add-header "Content-Encoding: gzip" {{/gzip}}\
                     {{#mime}} --mime-type "{{mime}}" {{/mime}}\
                      --add-header "Expires: {{expiry_date}}"\
                       {{directory}} s3://pasteup{{s3dir}}';
@@ -27,13 +26,10 @@ var s3_sync_cmd = 's3cmd sync\
 function doFullDeploy() {
     copyPasteupTo(tmp_dir);
 
-    gzipCssAndJs(function() {
-        // After files are gzipped...
-        sendDeployCommands(true, function() {
-            // Finally remove all the temp dirs and exit.
-            child_pr.exec('rm -rf ' + tmp_dir, function() {
-                process.exit();
-            });
+    sendDeployCommands(true, function() {
+        // Finally remove all the temp dirs and exit.
+        child_pr.exec('rm -rf ' + tmp_dir, function() {
+            process.exit();
         });
     });
 }
@@ -41,13 +37,10 @@ function doFullDeploy() {
 function doVersionDeploy() {
     copyPasteupTo(tmp_dir);
 
-    gzipCssAndJs(function() {
-        // After files are gzipped...
-        sendDeployCommands(false, function() {
-            // Finally remove all the temp dirs and exit.
-            child_pr.exec('rm -rf ' + tmp_dir, function() {
-                process.exit();
-            });
+    sendDeployCommands(false, function() {
+        // Finally remove all the temp dirs and exit.
+        child_pr.exec('rm -rf ' + tmp_dir, function() {
+            process.exit();
         });
     });
 }
@@ -62,7 +55,6 @@ function sendDeployCommands(full_deploy, callback) {
                     'directory': tmp_dir + '/js',
                     's3dir': '/' + version + '/',
                     'expiry_date': getFarFutureExpiryDate(),
-                    'gzip': true,
                     'safe_cache': true
                 }),
                 function() { 
@@ -76,7 +68,6 @@ function sendDeployCommands(full_deploy, callback) {
                     'directory': tmp_dir + '/css',
                     's3dir': '/' + version + '/',
                     'expiry_date': getFarFutureExpiryDate(),
-                    'gzip': true,
                     'safe_cache': true
                 }),
                 function() { 
@@ -122,7 +113,6 @@ function sendDeployCommands(full_deploy, callback) {
                         'directory': tmp_dir + '/js',
                         's3dir': '/',
                         'expiry_date': getNearFutureExpiryDate(),
-                        'gzip': true,
                         'safe_cache': true
                     }),
                     function() { 
@@ -136,7 +126,6 @@ function sendDeployCommands(full_deploy, callback) {
                         'directory': tmp_dir + '/css',
                         's3dir': '/',
                         'expiry_date': getNearFutureExpiryDate(),
-                        'gzip': true,
                         'safe_cache': true
                     }),
                     function() { 
@@ -189,46 +178,6 @@ function copyPasteupTo(dest) {
 
 }
 
-function gzipFile(name, callback) {
-    child_pr.exec('gzip ' + name, function() {
-        child_pr.exec('mv ' + name + '.gz ' + name, function() {
-            callback();
-        });
-    });
-}
-
-function gzipCssAndJs(callback) {
-    async.parallel([
-        function(callback) {
-            var zipped = 0;
-            var file_list = wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/js');
-            file_list.forEach(function(name) {
-                gzipFile(__dirname + '/' + tmp_dir + '/js/' + name, function() {
-                    zipped++;
-                    if (zipped >= file_list.length) {
-                        callback();
-                    }
-                });
-            });
-        },
-        function(callback) {
-            var zipped = 0;
-            var file_list = wrench.readdirSyncRecursive(__dirname + '/' + tmp_dir + '/css');
-            file_list.forEach(function(name) {
-                gzipFile(__dirname + '/' + tmp_dir + '/css/' + name, function() {
-                    zipped++;
-                    if (zipped >= file_list.length) {
-                        callback();
-                    }
-                });
-            });
-        }
-    ],
-    // parallel callback;
-    function(err, results) {
-        callback();
-    });
-}
 /*
 Returns the most recent version number in /version
 */
