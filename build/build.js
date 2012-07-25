@@ -12,21 +12,29 @@ var fs        = require('fs'),
 
 var build = {
 	TEMPLATE_DIR: 'templates',
-    MODULE_DIR: '../../html/module',
-    MODULE_LIB: '../modules.html',
-    MODULE_PAGES_DIR: '../modules/',
+	DOCS_DIR: '../docs',
+	ARTEFACT_DIR: 'tmp_artefact',
+    MODULE_DIR: '../html/module',
+    MODULE_LIB: 'modules.html',
+    MODULE_PAGES_DIR: 'modules',
 
     go: function() {
     	process.stdout.write('\nBuilding pasteup\n');
-		async.parallel([
+
+    	child_pr.exec('rm -rf ' + __dirname + '/' + build.ARTEFACT_DIR, function() {
+            fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR, '0777');
+    		process.stdout.write('\nCreating artefact dir\n');
+    		async.parallel([
+			build.buildDocumentationPages,
 			build.compileJS,
 			build.compileCSS,
 			build.buildModuleLibrary,
 			build.buildModulePages
-		], function() {
-			process.stdout.write('\n======================');
-		    process.stdout.write('\nPasteup build complete\n\n');
-		});
+			], function() {
+				process.stdout.write('\n======================');
+			    process.stdout.write('\nPasteup build complete\n\n');
+			});
+        });
 	},
 
 	/*
@@ -36,12 +44,13 @@ var build = {
 	*/
 	compileCSS: function(callback) {
 		process.stdout.write('\n * Compiling and optimising LESS to CSS');
+		fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR + '/css', '0777');
 		// get the less files
-		var less_dir = '../../less';
+		var less_dir = '../less';
 		var less_files = fs.readdirSync(less_dir).filter(function(name) { return /\.less$/.test(name); });
 		less_files.forEach(function(name) {
 			var filename = less_dir + '/' + name,
-				out_filename = '../static/css/' + name.replace('.less', '.css'),
+				out_filename = __dirname + '/' + build.ARTEFACT_DIR + '/css/' + name.replace('.less', '.css'),
 				out_filename_compressed = out_filename.replace('.css', '.min.css');
 
 			// read the file's content
@@ -69,18 +78,33 @@ var build = {
 	Use require JS to compile and optimise JS
 	*/
 	compileJS: function(callback) {
-		wrench.copyDirSyncRecursive('../../js', '../static/js');
+		wrench.copyDirSyncRecursive('../js', __dirname + '/' + build.ARTEFACT_DIR + '/js');
     	process.stdout.write('\n * Compiling and optimising JS');
 		var config = {
-		    baseUrl: '../../js',
+		    baseUrl: __dirname + '/' + build.ARTEFACT_DIR + '/js',
 		    name: 'main',
-		    out: '../static/js/main.min.js'
+		    out: __dirname + '/' + build.ARTEFACT_DIR + '/js/main.min.js'
 		};
 
 		requirejs.optimize(config, function(buildResponse) {
 			var contents = fs.readFileSync(config.out, 'utf8');
 			callback();
 		});
+    },
+
+    /* 
+    Get all the documentation pages,
+	and build their HTML files.
+	*/
+    buildDocumentationPages: function(callback) {
+    	process.stdout.write('\n * Building documentation pages');
+    	var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/default.html');
+
+    	fs.readdirSync(__dirname + '/' + build.DOCS_DIR).forEach(function(name) {
+    		var f = fs.readFileSync(__dirname + '/' + build.DOCS_DIR + '/' + name, 'utf8');
+    		var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
+	        fs.writeFileSync(__dirname + '/' + build.ARTEFACT_DIR + '/' + name, output, 'utf8');
+    	});
     },
 
 	/*
@@ -101,7 +125,7 @@ var build = {
 	    // Get template file, and render modules into template.
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/library.html');
 	    var output = mustache.to_html(template.toString(), {'modules': modules});
-	    fs.writeFileSync(__dirname + '/' + build.MODULE_LIB, output, 'utf8');
+	    fs.writeFileSync(__dirname + '/tmp_artefact/' + build.MODULE_LIB, output, 'utf8');
 	    callback();
 	},
 
@@ -111,6 +135,7 @@ var build = {
 	*/
 	buildModulePages: function (callback) {
 	    process.stdout.write('\n * Building module pages');
+	    fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR + '/modules', '0777');
 	    // Get module template.
 	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/module.html');
 
@@ -118,7 +143,7 @@ var build = {
 	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
 	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
 	        var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
-	        fs.writeFileSync(__dirname + '/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf8');
+	        fs.writeFileSync(__dirname + '/tmp_artefact/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf8');
 	    });
 	    callback();
 	},
@@ -164,7 +189,7 @@ var build = {
 module.exports = build;
 
 if (!module.parent) {
-	build.lintJavaScript();
+	//build.lintJavaScript();
 	build.go();
 	//build.lintCss();
 }

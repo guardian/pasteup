@@ -14,30 +14,21 @@ app.configure(function() {
 	// thought we should only serve up JS and CSS for now
 	// this will promote linking to the built files and not hashin in a hack to link to the less files
 	// but perhaps this should be allowed
-	app.use('/css', express.static(__dirname + '/../static/css'));
-	app.use('/js', express.static(__dirname + '/../static/js'));
-	app.use('/img', express.static(__dirname + '/../static/img'));
-	app.use('/', express.static(__dirname + '/..'));
-});
-
-// Routing
-// this is only run if a static file isn't found
-// so pretty muchg 404 everything until we add functionality
-app.get('/', function(req, res, next) {
-	res.send('<h1>No no no, none of that here</h1>', 404);
+	app.use('/', express.static(__dirname + '/tmp_artefact'));
 });
 
 // watch and compile changes to LESS / JS
-watch.add('../../less', true)
-	.add('../../js', true)
-	.add('../../html', true).onChange(function(file, prev, curr, action) {
+watch.add('../less', true)
+	.add('../js', true)
+	.add('../docs', true)
+	.add('../html', true).onChange(function(file, prev, curr, action) {
     console.log('\n * ' + file + ' has been changed. Recompiling.\n');
-    build.lintJavaScript();
+    //build.lintJavaScript();
     build.go();
 });
 
 // Run a build before starting
-build.lintJavaScript();
+//build.lintJavaScript();
 build.go();
 
 // run server
