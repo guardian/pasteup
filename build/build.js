@@ -1,16 +1,13 @@
 var fs        = require('fs'),
     child_pr  = require('child_process'),
     async     = require('async'),
-    mustache  = require('mustache'),
     wrench	  = require('wrench'),
+    mustache  = require('mustache'),
     requirejs = require('requirejs'),
     less      = require('less'),
-    jshint    = require('jshint').JSHINT,
-    csslint   = require('csslint').CSSLint,
-    njson	  = require('norris-json').make(),
     path      = require('path');
 
-var BASE_DIR			= __dirname + '/..'
+var BASE_DIR			= __dirname + '/..',
 	TEMPLATE_DIR 		= BASE_DIR + '/build/templates',
 	DOCS_DIR 			= BASE_DIR + '/docs',
 	ARTEFACT_DIR		= __dirname + '/tmp_artefact',
@@ -42,6 +39,7 @@ var build = {
 			], function(err, results) {
 				console.log('\n----------------------------------');
 			    console.log('Pasteup build complete: ' + (new Date()-start) + 'ms\n');
+			    process.exit(code=0);
 			});
         });
 	},
@@ -186,42 +184,6 @@ var build = {
 		callback(null, "copyVersionFile");
 	},
 
-	lintJavaScript: function () {
-        var config_json = njson.loadSync('jshint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive(BASE_DIR + '/js').forEach(function(name) {
-            if (name.indexOf('lib/') !== 0 &&
-                name.indexOf('.min.js') === -1 &&
-                name.indexOf('.js') !== -1) {
-                var f = fs.readFileSync(BASE_DIR + '/js/' + name, 'utf8');
-                var result = jshint(f, config_json);
-                if (result === false) {
-                    console.log('\nFile:  ',name);
-                    console.log("------------------------");
-                    build.printJSHintErrors(jshint.errors);
-                }
-            }
-        })
-    },
-
-    lintCss: function() {
-        var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive(ARTEFACT_DIR + '/css').forEach(function(name) {
-            var f = fs.readFileSync(ARTEFACT_DIR + '/css/' + name, 'utf8');
-            var result = csslint.verify(f, config_json);
-            console.log(name);
-            console.log(result);
-        });
-    },
-
-    printJSHintErrors: function(errors) {
-    	for (var i = 0, j = errors.length; i<j; ++i) {
-    		var error = errors[i];
-    		console.log('Error: ', error.reason);
-    		console.log('        Line: ', error.line);
-    		console.log('        Char: ', error.character);
-    	}
-    },
-
     getVersionNumber: function() {
 	    var f = fs.readFileSync(VERSIONS, 'utf8');
 	    var data = JSON.parse(f.toString());
@@ -232,7 +194,7 @@ var build = {
 module.exports = build;
 
 if (!module.parent) {
-	//build.lintJavaScript();
+	//lint.lintJavaScript();
 	build.go();
-	//build.lintCss();
+	//lint.lintCss();
 }
