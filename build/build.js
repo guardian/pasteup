@@ -29,7 +29,7 @@ var build = {
     	console.log('==================================');
     	v = build.getVersionNumber();
     	child_pr.exec('rm -rf ' + ARTEFACT_DIR, function() {
-    		console.log(' * Creating build directories');
+    		console.log(' * Creating tmp build directories');
             fs.mkdirSync(ARTEFACT_DIR, '0777');
 			fs.mkdirSync(ARTEFACT_DIR + '/' + v, '0777');
     		async.parallel([
@@ -100,9 +100,13 @@ var build = {
 		    out: ARTEFACT_DIR + '/js/main.min.js'
 		};
 		requirejs.optimize(config, function(buildResponse) {
+			// Move the JS to versioned directory.
 			wrench.copyDirSyncRecursive(ARTEFACT_DIR + '/js', ARTEFACT_DIR + '/' + v + '/js');
-			console.log(' * compileJS: ' + (new Date()-start) + 'ms');
-			callback(null, "compileJS");
+			// Remove the JS libs from versioned directory.
+			child_pr.exec('rm -rf ' + ARTEFACT_DIR + '/' + v + '/js/lib', function() {
+				console.log(' * compileJS: ' + (new Date()-start) + 'ms');
+				callback(null, "compileJS");
+			});
 		});
     },
 
@@ -184,11 +188,11 @@ var build = {
 
 	lintJavaScript: function () {
         var config_json = njson.loadSync('jshint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../js').forEach(function(name) {
+        wrench.readdirSyncRecursive(BASE_DIR + '/js').forEach(function(name) {
             if (name.indexOf('lib/') !== 0 &&
                 name.indexOf('.min.js') === -1 &&
                 name.indexOf('.js') !== -1) {
-                var f = fs.readFileSync('../js/' + name, 'utf8');
+                var f = fs.readFileSync(BASE_DIR + '/js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
                     console.log('\nFile:  ',name);
@@ -201,8 +205,8 @@ var build = {
 
     lintCss: function() {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../css').forEach(function(name) {
-            var f = fs.readFileSync('../css/' + name, 'utf8');
+        wrench.readdirSyncRecursive(ARTEFACT_DIR + '/css').forEach(function(name) {
+            var f = fs.readFileSync(ARTEFACT_DIR + '/css/' + name, 'utf8');
             var result = csslint.verify(f, config_json);
             console.log(name);
             console.log(result);
