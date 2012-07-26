@@ -10,29 +10,38 @@ var fs        = require('fs'),
     njson	  = require('norris-json').make(),
     path      = require('path');
 
+var BASE_DIR			= __dirname + '/..'
+	TEMPLATE_DIR 		= BASE_DIR + '/build/templates',
+	DOCS_DIR 			= BASE_DIR + '/docs',
+	ARTEFACT_DIR		= __dirname + '/tmp_artefact',
+    MODULE_DIR 			= BASE_DIR + '/html/module',
+    MODULE_LIB			= ARTEFACT_DIR + '/modules.html',
+    MODULE_PAGES_DIR	= ARTEFACT_DIR + '/modules',
+    VERSIONS 			= BASE_DIR + '/versions';
+
+var v;
+
 var build = {
-	TEMPLATE_DIR: 'templates',
-	DOCS_DIR: '../docs',
-	ARTEFACT_DIR: 'tmp_artefact',
-    MODULE_DIR: '../html/module',
-    MODULE_LIB: 'modules.html',
-    MODULE_PAGES_DIR: 'modules',
 
     go: function() {
-    	process.stdout.write('\nBuilding pasteup\n');
-
-    	child_pr.exec('rm -rf ' + __dirname + '/' + build.ARTEFACT_DIR, function() {
-            fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR, '0777');
-    		process.stdout.write('\nCreating artefact dir\n');
+    	var start = (new Date());
+    	console.log('\nPASTEUP BUILD');
+    	console.log('==================================');
+    	v = build.getVersionNumber();
+    	child_pr.exec('rm -rf ' + ARTEFACT_DIR, function() {
+    		console.log(' * Creating build directories');
+            fs.mkdirSync(ARTEFACT_DIR, '0777');
+			fs.mkdirSync(ARTEFACT_DIR + '/' + v, '0777');
     		async.parallel([
-			build.buildDocumentationPages,
-			build.compileJS,
-			build.compileCSS,
-			build.buildModuleLibrary,
-			build.buildModulePages
-			], function() {
-				process.stdout.write('\n======================');
-			    process.stdout.write('\nPasteup build complete\n\n');
+    			build.compileCSS,
+				build.compileJS,
+				build.buildDocumentationPages,
+				build.buildModuleLibrary,
+				build.buildModulePages,
+				build.copyVersionFile,
+			], function(err, results) {
+				console.log('\n----------------------------------');
+			    console.log('Pasteup build complete: ' + (new Date()-start) + 'ms\n');
 			});
         });
 	},
@@ -43,14 +52,15 @@ var build = {
 	TODO: see if there is a way to build in this compiler similar r.js
 	*/
 	compileCSS: function(callback) {
-		process.stdout.write('\n * Compiling and optimising LESS to CSS');
-		fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR + '/css', '0777');
+		var start = (new Date());
+		fs.mkdirSync(ARTEFACT_DIR + '/css', '0777');
 		// get the less files
 		var less_dir = '../less';
 		var less_files = fs.readdirSync(less_dir).filter(function(name) { return /\.less$/.test(name); });
-		less_files.forEach(function(name) {
+
+		async.forEach(less_files, function(name, callback) {
 			var filename = less_dir + '/' + name,
-				out_filename = __dirname + '/' + build.ARTEFACT_DIR + '/css/' + name.replace('.less', '.css'),
+				out_filename = ARTEFACT_DIR + '/css/' + name.replace('.less', '.css'),
 				out_filename_compressed = out_filename.replace('.css', '.min.css');
 
 			// read the file's content
@@ -68,27 +78,31 @@ var build = {
 					// write out both compressed and normal CSS
 					fs.writeSync(fd, css, 0, 'utf8');
 					fs.writeSync(fd_compressed, css_compressed, 0, 'utf8');
+					callback();
 				});
 			});
+		}, function() {
+			wrench.copyDirSyncRecursive(ARTEFACT_DIR + '/css', ARTEFACT_DIR + '/' + v + '/css');
+			console.log(' * compileCSS: ' + (new Date()-start) + 'ms');
+			callback(null, 'compileCSS');
 		});
-		callback();
 	},
 
 	/*
 	Use require JS to compile and optimise JS
 	*/
 	compileJS: function(callback) {
-		wrench.copyDirSyncRecursive('../js', __dirname + '/' + build.ARTEFACT_DIR + '/js');
-    	process.stdout.write('\n * Compiling and optimising JS');
+		var start = (new Date());
+		wrench.copyDirSyncRecursive('../js', ARTEFACT_DIR + '/js');
 		var config = {
-		    baseUrl: __dirname + '/' + build.ARTEFACT_DIR + '/js',
+		    baseUrl: ARTEFACT_DIR + '/js',
 		    name: 'main',
-		    out: __dirname + '/' + build.ARTEFACT_DIR + '/js/main.min.js'
+		    out: ARTEFACT_DIR + '/js/main.min.js'
 		};
-
 		requirejs.optimize(config, function(buildResponse) {
-			var contents = fs.readFileSync(config.out, 'utf8');
-			callback();
+			wrench.copyDirSyncRecursive(ARTEFACT_DIR + '/js', ARTEFACT_DIR + '/' + v + '/js');
+			console.log(' * compileJS: ' + (new Date()-start) + 'ms');
+			callback(null, "compileJS");
 		});
     },
 
@@ -97,13 +111,19 @@ var build = {
 	and build their HTML files.
 	*/
     buildDocumentationPages: function(callback) {
-    	process.stdout.write('\n * Building documentation pages');
-    	var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/default.html');
+    	var start = (new Date());
+    	var template = fs.readFileSync(TEMPLATE_DIR + '/default.html').toString();
 
-    	fs.readdirSync(__dirname + '/' + build.DOCS_DIR).forEach(function(name) {
-    		var f = fs.readFileSync(__dirname + '/' + build.DOCS_DIR + '/' + name, 'utf8');
-    		var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
-	        fs.writeFileSync(__dirname + '/' + build.ARTEFACT_DIR + '/' + name, output, 'utf8');
+    	async.forEach(fs.readdirSync(DOCS_DIR), function(name, callback) {
+    		fs.readFile(DOCS_DIR + '/' + name, 'utf8', function(err, f) {
+    			var output = mustache.to_html(template, {'name':name, 'code':f});
+	        	fs.writeFile(ARTEFACT_DIR + '/' + name, output, 'utf8', function() {
+	        		callback();
+	        	});
+    		});
+    	}, function() {
+    		console.log(' * buildDocumentationPages: ' + (new Date()-start) + 'ms');
+    		callback(null, "buildDocumentationPages");
     	});
     },
 
@@ -112,49 +132,63 @@ var build = {
 	and add them all to the module library doc.
 	*/
 	buildModuleLibrary: function(callback) {
-	    process.stdout.write('\n * Building module library');
+	    var start = (new Date());
 	    var modules = [];
-	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	    	var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
-	        modules.push({
-	            'name': name,
-	            'code': f
-	        });
-	    });
-	    
-	    // Get template file, and render modules into template.
-	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/library.html');
-	    var output = mustache.to_html(template.toString(), {'modules': modules});
-	    fs.writeFileSync(__dirname + '/tmp_artefact/' + build.MODULE_LIB, output, 'utf8');
-	    callback();
+
+	    async.forEach(fs.readdirSync(MODULE_DIR), function(name, callback) {
+	    	fs.readFile(MODULE_DIR + '/' + name, 'utf8', function(err, f) {
+	    		modules.push({
+			        'name': name,
+			        'code': f
+			    });
+			    callback();
+	    	});
+    	}, function() {
+			// Get template file, and render modules into template.
+			var template = fs.readFileSync(TEMPLATE_DIR + '/library.html');
+		    var output = mustache.to_html(template.toString(), {'modules': modules});
+		    fs.writeFileSync(MODULE_LIB, output, 'utf8');
+		    console.log(' * buildModuleLibrary: ' + (new Date()-start) + 'ms');
+		    callback(null, "buildModuleLibrary");
+		});
 	},
 
 	/*
 	Get all the modules in /html/modules,
-	and create a page for each on in doc/modules.
+	and create a page for each one in doc/modules.
 	*/
 	buildModulePages: function (callback) {
-	    process.stdout.write('\n * Building module pages');
-	    fs.mkdirSync(__dirname + '/' + build.ARTEFACT_DIR + '/modules', '0777');
+	    var start = (new Date());
+	    fs.mkdirSync(ARTEFACT_DIR + '/modules', '0777');
 	    // Get module template.
-	    var template = fs.readFileSync(__dirname + '/' + build.TEMPLATE_DIR + '/module.html');
+	    var template = fs.readFileSync(TEMPLATE_DIR + '/module.html').toString();
 
 	    // Get each module and create its own page in the docs.
-	    fs.readdirSync(__dirname + '/' + build.MODULE_DIR).forEach(function(name) {
-	        var f = fs.readFileSync(__dirname  + '/'  + build.MODULE_DIR + '/' + name, 'utf8');
-	        var output = mustache.to_html(template.toString(), {'name':name, 'code':f});
-	        fs.writeFileSync(__dirname + '/tmp_artefact/' + build.MODULE_PAGES_DIR + '/' + name, output, 'utf8');
+	    async.forEach(fs.readdirSync(MODULE_DIR), function(name, callback) {
+	    	fs.readFile(MODULE_DIR + '/' + name, 'utf8', function(err, f) {
+	    		var output = mustache.to_html(template, {'name': name, 'code': f});
+	    		fs.writeFile(MODULE_PAGES_DIR + '/' + name, output, 'utf8', function() {
+	    			callback();
+	    		});
+	    	});
+	    }, function() {
+	    	console.log(' * buildModulePages: ' + (new Date()-start) + 'ms');
+	    	callback(null, "buildModulePages");
 	    });
-	    callback();
+	},
+
+	copyVersionFile: function(callback) {
+		fs.writeFileSync(ARTEFACT_DIR + '/versions', fs.readFileSync(VERSIONS));
+		callback(null, "copyVersionFile");
 	},
 
 	lintJavaScript: function () {
         var config_json = njson.loadSync('jshint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../../js').forEach(function(name) {
+        wrench.readdirSyncRecursive('../js').forEach(function(name) {
             if (name.indexOf('lib/') !== 0 &&
                 name.indexOf('.min.js') === -1 &&
                 name.indexOf('.js') !== -1) {
-                var f = fs.readFileSync('../../js/' + name, 'utf8');
+                var f = fs.readFileSync('../js/' + name, 'utf8');
                 var result = jshint(f, config_json);
                 if (result === false) {
                     console.log('\nFile:  ',name);
@@ -167,8 +201,8 @@ var build = {
 
     lintCss: function() {
         var config_json = njson.loadSync('csslint_config.json'); // Using njson because it strips comments from JSON file.
-        wrench.readdirSyncRecursive('../static/css').forEach(function(name) {
-            var f = fs.readFileSync('../static/css/' + name, 'utf8');
+        wrench.readdirSyncRecursive('../css').forEach(function(name) {
+            var f = fs.readFileSync('../css/' + name, 'utf8');
             var result = csslint.verify(f, config_json);
             console.log(name);
             console.log(result);
@@ -182,8 +216,13 @@ var build = {
     		console.log('        Line: ', error.line);
     		console.log('        Char: ', error.character);
     	}
-    }
+    },
 
+    getVersionNumber: function() {
+	    var f = fs.readFileSync(VERSIONS, 'utf8');
+	    var data = JSON.parse(f.toString());
+	    return data['versions'].pop();
+	}
 }
 
 module.exports = build;
