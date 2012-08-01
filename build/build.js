@@ -10,7 +10,7 @@ var fs        = require('fs'),
 var BASE_DIR			= __dirname + '/..',
 	TEMPLATE_DIR 		= BASE_DIR + '/build/templates',
 	DOCS_DIR 			= BASE_DIR + '/docs',
-	ARTEFACT_DIR		= __dirname + '/tmp_artefact',
+	ARTEFACT_DIR		= __dirname + '/deployable_artefact',
     MODULE_DIR 			= BASE_DIR + '/html/module',
     MODULE_LIB			= ARTEFACT_DIR + '/modules.html',
     MODULE_PAGES_DIR	= ARTEFACT_DIR + '/modules',
@@ -37,9 +37,12 @@ var build = {
 				build.buildModulePages,
 				build.copyVersionFile,
 			], function(err, results) {
-				console.log('\n----------------------------------');
-			    console.log('Pasteup build complete: ' + (new Date()-start) + 'ms\n');
-			    process.exit(code=0);
+				// Gzip the file for TC.
+				child_pr.exec('zip -r deployable_artefact.zip deployable_artefact/', function() {
+					console.log('\n----------------------------------');
+			    	console.log('Pasteup build complete: ' + (new Date()-start) + 'ms\n');
+			    	process.exit(code=0);
+				});
 			});
         });
 	},
