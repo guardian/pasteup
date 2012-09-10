@@ -11,14 +11,21 @@ var fs       = require('fs'),
     wrench   = require('wrench'),
     async    = require('async');
 
-var s3bucket_prod  = 'pasteup',
-    s3bucket_qa  = 'pasteup-qa',
-    tmp_dir   = 'deployable_artefact';
+var tmp_dir   = 'deployable_artefact';
 
+// envBuckets for dev-play account. TODO: Move these to PROD aws account.
 var envBuckets = {
     'prod': 'pasteup',
-    'qa': 'pasteup-qa'
+    'qa': 'pasteup-qa-play',
+    'code': 'pasteup-code-play'
 }
+
+// TODO: Move to serving these from real PROD buckets, on aws and aws-dev accounts.
+// var envBuckets = {
+//     'prod': 'pasteup-prod',
+//     'qa': 'pasteup-qa',
+//     'code': 'pasteup-code'
+// }
 
 var s3_sync_cmd = 's3cmd sync\
                      --recursive\
