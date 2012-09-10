@@ -20,7 +20,7 @@ var v;
 
 var build = {
 
-    go: function() {
+    go: function(callback) {
     	var start = (new Date());
     	console.log('\nPASTEUP BUILD');
     	console.log('==================================');
@@ -41,7 +41,9 @@ var build = {
 				child_pr.exec('zip -r deployable_artefact.zip deployable_artefact/', function() {
 					console.log('\n----------------------------------');
 			    	console.log('Pasteup build complete: ' + (new Date()-start) + 'ms\n');
-			    	process.exit(code=0);
+			    	if (callback !== undefined) {
+			    		callback();
+			    	}
 				});
 			});
         });
@@ -198,6 +200,8 @@ module.exports = build;
 
 if (!module.parent) {
 	//lint.lintJavaScript();
-	build.go();
+	build.go(function() {
+		process.exit(code=0);
+	});
 	//lint.lintCss();
 }
