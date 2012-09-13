@@ -14,7 +14,7 @@ app.configure(function() {
 	// thought we should only serve up JS and CSS for now
 	// this will promote linking to the built files and not hashin in a hack to link to the less files
 	// but perhaps this should be allowed
-	app.use('/', express.static(__dirname + '/tmp_artefact'));
+	app.use('/', express.static(__dirname + '/deployable_artefact'));
 });
 
 // watch and compile changes to LESS / JS
