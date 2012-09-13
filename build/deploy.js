@@ -40,8 +40,8 @@ function doFullDeploy(bucket, callback) {
         mustache.to_html(s3_sync_cmd, {
             'directory': tmp_dir + '/',
             's3dir': '',
-            'expiry_date': getNearFutureExpiryDate(),
-            'safe_cache': true,
+            'expiry_date': getFarFutureExpiryDate(),
+            'safe_cache': false,
             'bucket': bucket
         }),
         function() {
@@ -55,8 +55,8 @@ function doVersionDeploy(bucket, version, callback) {
         mustache.to_html(s3_sync_cmd, {
             'directory': tmp_dir + '/' + version + '/',
             's3dir': version,
-            'expiry_date': getNearFutureExpiryDate(),
-            'safe_cache': true,
+            'expiry_date': getFarFutureExpiryDate(),
+            'safe_cache': false,
             'bucket': bucket
         }),
         function() {
@@ -145,7 +145,25 @@ if (!module.parent) {
                     process.exit();
                 }
             });
-        })
+        });
+    program
+        .command('code')
+        .description('Deploy Pasteup to CODE.')
+        .action(function() {
+            if (program.ver) {
+                console.log("Version deployment is not currently supported.");
+            }
+            program.confirm('Confirm deploy to CODE? ', function(ok) {
+                if (ok) {
+                    console.log('Deploying to CODE');
+                    doFullDeploy(envBuckets['code'], function() {
+                        process.exit();
+                    });
+                } else {
+                    process.exit();
+                }
+            });
+        });
 
     program.parse(process.argv);
 
