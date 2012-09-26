@@ -121,10 +121,11 @@ if (!module.parent) {
         .command('prod')
         .description('Deploy Pasteup to production.')
         .action(function() {
-            program.confirm('Confirm deploy to PROD?', function(ok) {
+            program.confirm('Confirm deploy to PROD? ', function(ok) {
                 console.log('Deploying to PROD');
-                //doFullDeploy(envBuckets['prod']);
-                console.log('Not really...  yet.')
+                doFullDeploy(envBuckets['prod'], function() {
+                    process.exit();
+                });
             });
 
         });
