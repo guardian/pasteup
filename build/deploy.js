@@ -7,11 +7,11 @@
 var fs       = require('fs'),
     child_pr = require('child_process'),
     program  = require('commander'),
-    mustache = require('mustache'),
-    wrench   = require('wrench'),
-    async    = require('async');
+    wrench   = require('wrench');
 
 var tmp_dir   = 'deployable_artefact';
+
+var dryrun = false;
 
 // envBuckets for dev-play account. TODO: Move these to PROD aws account.
 var envBuckets = {
@@ -27,45 +27,42 @@ var envBuckets = {
 //     'code': 'pasteup-code'
 // }
 
-var s3_sync_cmd = 's3cmd sync\
-                     --recursive\
-                     --acl-public\
-                     --guess-mime-type\
-                    {{#safe_cache}} --add-header "Cache-Control: max-age=60" {{/safe_cache}}\
-                     --add-header "Expires: {{expiry_date}}"\
-                      {{directory}} s3://{{bucket}}{{s3dir}}';
-
 function doFullDeploy(bucket, callback) {
-    deploy(
-        mustache.to_html(s3_sync_cmd, {
-            'directory': tmp_dir + '/',
-            's3dir': '',
-            'expiry_date': getFarFutureExpiryDate(),
-            'safe_cache': false,
-            'bucket': bucket
-        }),
-        function() {
-            callback();
-        }
-    );
-}
 
-function doVersionDeploy(bucket, version, callback) {
+    // Sync files with far future epxires first.
     deploy(
-        mustache.to_html(s3_sync_cmd, {
-            'directory': tmp_dir + '/' + version + '/',
-            's3dir': version,
-            'expiry_date': getFarFutureExpiryDate(),
-            'safe_cache': false,
-            'bucket': bucket
-        }),
+        's3cmd sync --recursive --acl-public --guess-mime-type ' +
+        '--add-header "Expires: ' + getFarFutureExpiryDate() + '" '
+        + tmp_dir + '/js/lib/ s3://' + bucket + '/js/lib/',
         function() {
-            process.exit();
+            var v = getVersionNumber();
+            deploy(
+                's3cmd sync --recursive --acl-public --guess-mime-type ' +
+                '--add-header "Expires: ' + getFarFutureExpiryDate() + '" '
+                + tmp_dir + '/' + v + '/ s3://' + bucket + '/' + v + '/',
+                function() {
+
+                    // Then sync everything with no expiry (but sensible cache control)
+                    // Files pushed above will not be synced so will keep far-future expiry.
+                    deploy(
+                        's3cmd sync --recursive --acl-public --guess-mime-type ' +
+                        '--add-header "Cache-Control: max-age=3600" '
+                        + tmp_dir + '/ s3://' + bucket,
+                        function() {
+                            callback();
+                        }
+                    );
+                }
+            );
         }
     );
 }
 
 function deploy(command, callback) {
+    if (dryrun) {
+        command = command.replace('s3cmd sync', 's3cmd sync --dry-run');
+    }
+    console.log('\n' + command + '\n' + '-----------------------------');
     child_pr.exec(
         command,
         function(error, stdout, stderr) {
@@ -104,23 +101,18 @@ function getFarFutureExpiryDate() {
     return d.toGMTString();
 }
 
-function getNearFutureExpiryDate() {
-    var d = new Date();
-    d.setMinutes(d.getMinutes() + 1)
-    return d.toGMTString();
-}
-
 if (!module.parent) {
 
+    // TODO: s3cmd has a dry run flag, wrap it so we can test deploys.
 
     program
-        .option('--ver <ver>', 'choose a specfic version directory to deploy');
-
+        .option('--dry', 'dry run the deploy');
 
     program
         .command('prod')
         .description('Deploy Pasteup to production.')
         .action(function() {
+            dryrun = program.dry;
             program.confirm('Confirm deploy to PROD? ', function(ok) {
                 console.log('Deploying to PROD');
                 doFullDeploy(envBuckets['prod'], function() {
@@ -133,9 +125,7 @@ if (!module.parent) {
         .command('qa')
         .description('Deploy Pasteup to QA.')
         .action(function() {
-            if (program.ver) {
-                console.log("Version deployment is not currently supported.");
-            }
+            dryrun = program.dry;
             program.confirm('Confirm deploy to QA? ', function(ok) {
                 if (ok) {
                     console.log('Deploying to QA');
@@ -151,9 +141,7 @@ if (!module.parent) {
         .command('code')
         .description('Deploy Pasteup to CODE.')
         .action(function() {
-            if (program.ver) {
-                console.log("Version deployment is not currently supported.");
-            }
+            dryrun = program.dry;
             program.confirm('Confirm deploy to CODE? ', function(ok) {
                 if (ok) {
                     console.log('Deploying to CODE');
