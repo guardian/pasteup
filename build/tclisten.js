@@ -6,13 +6,13 @@ var http = require('http'),
 http.createServer(function(req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write('<p>Starting deploy...</p>');
-	res.write('<p>Pulling from Github...')
+	res.write('<p>Pulling from Github...');
 	child_pr.exec('git pull', function(error, stdout, stderr) {
 		res.write('<br>' + stdout + '</p>');
-		res.write('<p>Building Pasteup...')
+		res.write('<p>Building Pasteup...');
 		build.go(function() {
 			res.write('<br>Pasteup built</p>');
-			res.write('<p>Deploying to CODE...')
+			res.write('<p>Deploying to CODE...');
 			deploy.doFullDeploy('pasteup-code-play', function() {
 				res.write('<br>Deploy complete</p>');
 				res.write('<b>http://pasteup-code-play.s3.amazonaws.com/index.html</b>');
