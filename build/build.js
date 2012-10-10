@@ -58,7 +58,7 @@ var build = {
 		var start = (new Date());
 		fs.mkdirSync(ARTEFACT_DIR + '/css', '0777');
 		// get the less files
-		var less_dir = '../less';
+		var less_dir = BASE_DIR + '/less';
 		var less_files = fs.readdirSync(less_dir).filter(function(name) { return /\.less$/.test(name); });
 
 		async.forEach(less_files, function(name, callback) {
@@ -96,7 +96,7 @@ var build = {
 	*/
 	compileJS: function(callback) {
 		var start = (new Date());
-		wrench.copyDirSyncRecursive('../js', ARTEFACT_DIR + '/js');
+		wrench.copyDirSyncRecursive(BASE_DIR + '/js', ARTEFACT_DIR + '/js');
 		var config = {
 		    baseUrl: ARTEFACT_DIR + '/js',
 		    name: 'main',
