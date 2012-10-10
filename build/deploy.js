@@ -101,6 +101,10 @@ function getFarFutureExpiryDate() {
     return d.toGMTString();
 }
 
+module.exports = {
+    'doFullDeploy': doFullDeploy
+}
+
 if (!module.parent) {
 
     // TODO: s3cmd has a dry run flag, wrap it so we can test deploys.
