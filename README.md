@@ -9,7 +9,7 @@ Getting started
 ---------------
 
     > ./setup.sh      # Installs build/server dependencies, including nodejs and npm.
-    > cd docs/build
+    > cd build
     > node server.js  # Starts server on http://localhost:3000
 
 You should now be able to reach the docs homepage at http://localhost:3000/docs/index.html. Any changes you make in the `/less`, `/js`, or `/content` directories will trigger a full build, and immediatley be available for viewing on localhost.
