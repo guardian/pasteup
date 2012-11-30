@@ -16,4 +16,4 @@ sudo make install
 
 echo "Installing npm"
 echo "==============================================="
-curl http://npmjs.org/install.sh | sudo sh
+curl -L http://npmjs.org/install.sh | sudo sh
