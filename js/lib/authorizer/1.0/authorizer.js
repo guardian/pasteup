@@ -143,11 +143,7 @@ ensurePackage("guardian.facebook");
     /**
      * Called when the user logs in or checks login status. If the user is fully auth'd to use the app, then
      * it will resolve the authorized promise. It will also trigger one of the following events
-     *
-     * Authorizer.AUTHORIZED: Triggered when the user is not signed into their account
-     * Authorizer.NOT_LOGGED_IN: Triggered when the user is not signed into their account
-     * Authorizer.NOT_AUTHORIZED: Triggered when the user signed into their account but has not authorised the app
-     *
+
      * If the user is logged in, the Authorizer will also fetch user data (see _handleGotUserData)
      *
      * @param response The response from facebook following a call to getLoginStatus or getLogin.
@@ -209,12 +205,11 @@ ensurePackage("guardian.facebook");
     };
 
     /**
-     * Loads the Facebook script using RequireJS or Curl JS
+     * Loads the Facebook script using a Require compatible Script Loader.
      * @private
      */
     Authorizer.prototype._loadFacebookScript = function () {
-        var scriptLoader = require || curl;
-        scriptLoader(['//connect.facebook.net/en_US/all.js'], this._handleScriptLoaded.bind(this))
+        require(['//connect.facebook.net/en_US/all.js'], this._handleScriptLoaded.bind(this))
     };
 
     /**
