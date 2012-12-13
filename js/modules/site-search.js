@@ -6,15 +6,17 @@
 
 define(function() {
 
-	var form = document.querySelector('.site-search form'),
-		select = form.querySelector('select');
-
-	if (form) {
-		form.addEventListener('submit', function() {
-			var url = select.options[select.selectedIndex].value;
-			if (url) {
-				form.action = url;
-			}
-		}, false);
+	var form = document.querySelector('.site-search form');
+	if (!form) {
+		return;
 	}
+	
+	var select = form.querySelector('select');
+
+	form.addEventListener('submit', function() {
+		var url = select.options[select.selectedIndex].value;
+		if (url) {
+			form.action = url;
+		}
+	}, false);
 });

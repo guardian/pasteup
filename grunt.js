@@ -1,14 +1,12 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-  var version = grunt.file.readJSON('versions').versions.pop();
-
   // Project configuration.
   grunt.initConfig({
 
 
     pasteup: {
-      version: version,
+      version: grunt.file.readJSON('versions').versions.pop(),
       dist: "build/deployable_artefact"
     },
 
@@ -28,9 +26,7 @@ less
           "<%= pasteup.dist %>/<%= pasteup.version %>/css/pasteup.min.css": "less/pasteup.less"
         },
         options: {
-          compress: true,
-          version: true,
-          versionNumber: version
+          compress: true
         }
       }
     },
@@ -61,13 +57,13 @@ less
   grunt.loadTasks('build');
 
 
-  // Register custom task for running server.
-  // var connect = require('connect');
-  // grunt.registerTask('server', 'Start a static web server on localhost:3000', function() {
-  //   grunt.log.subhead('Starting development server');
-  //   grunt.log.writeln('Port: 3000');
-  //   connect(connect.static(grunt.config.get('pasteup.dist'))).listen(3000);
-  //   this.async();
-  // });
+  //Register custom task for running server.
+  var connect = require('connect');
+  grunt.registerTask('server', 'Start a static web server on localhost:3000', function() {
+    grunt.log.subhead('Starting development server');
+    grunt.log.writeln('Port: 3000');
+    connect(connect.static(grunt.config.get('pasteup.dist'))).listen(3000);
+    this.async();
+  });
 
 };
