@@ -47,16 +47,16 @@
                     <div class="hd zone-border zone-border-medium">
                         <h3 class="sub-heading">Getting started</h3>
                     </div>
-                    <p>The quickest way to start is to add a link to the <a href="http://pasteup.guim.co.uk/0.0.3/css/pasteup.min.css">main Pasteup CSS</a> file in the <code>&lt;head&gt;</code> of your document</code>. This will style your document with some standard Guardian typography and colours.</p>
+                    <p>The quickest way to start is to add a link to the <a href="http://pasteup.guim.co.uk/<%= pasteupVersion %>/css/pasteup.min.css">main Pasteup CSS</a> file in the <code>&lt;head&gt;</code> of your document</code>. This will style your document with some standard Guardian typography and colours.</p>
                     <img src="/img/code.jpg" class="margin-bottom" />
                     <h3 class="base-heading">Hosting</h3>
                     <p>Pasteup is available on <a href="http://pasteup.guim.co.uk">http://pasteup.guim.co.uk</a> which is hosted on a globally distributed and load balanced <abbr title="Content delivery network">CDN</abbr>. All files are minified, gzipped, and are served with far future Expires headers so they are aggressively cached by browsers.</p>
                     <p>Typically you should link to URLs on this domain, as they are likely to be already cached by users.</p>
                     <h3 class="base-heading">Current production URLs</h3>
                     <ul class="unstyled">
-                        <li><a href="http://pasteup.guim.co.uk/0.0.3/css/pasteup.min.css">http://pasteup.guim.co.uk/0.0.3/css/pasteup.min.css</a></li>
-                        <li><a href="http://pasteup.guim.co.uk/0.0.3/js/require.js">http://pasteup.guim.co.uk/0.0.3/js/require.js</a></li>
-                        <li><a href="http://pasteup.guim.co.uk/0.0.3/js/main.min.js">http://pasteup.guim.co.uk/0.0.3/js/main.min.js</a></li>
+                        <li><a href="http://pasteup.guim.co.uk/<%= pasteupVersion %>/css/pasteup.min.css">http://pasteup.guim.co.uk/<%= pasteupVersion %>/css/pasteup.min.css</a></li>
+                        <li><a href="http://pasteup.guim.co.uk/<%= pasteupVersion %>/js/require.js">http://pasteup.guim.co.uk/<%= pasteupVersion %>/js/require.js</a></li>
+                        <li><a href="http://pasteup.guim.co.uk/<%= pasteupVersion %>/js/main.min.js">http://pasteup.guim.co.uk/<%= pasteupVersion %>/js/main.min.js</a></li>
                     </ul>
                     <h3 class="base-heading">Build</h3>
                     <p>Pasteup is built using <a href="http://lesscss.org/">LESS</a> and the <a href="http://requirejs.org/docs/optimization.html">RequireJS optimizer</a>. If you are using these tools in your project, it should be simple to include specific modules of Pasteup, and integrate them into your build.</p>
