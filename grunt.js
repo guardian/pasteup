@@ -4,7 +4,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-
     pasteup: {
       version: grunt.file.readJSON('versions').versions.pop(),
       dist: "build/deployable_artefact"
@@ -17,8 +16,8 @@ module.exports = function(grunt) {
         }
       }
     },
-less
-    : {
+
+    less: {
       production: {
         files: {
           "<%= pasteup.dist %>/<%= pasteup.version %>/css/core.pasteup.min.css": "less/core.pasteup.less",
@@ -43,27 +42,28 @@ less
           ]
         }
       }
+    },
+
+    watch: {
+      scripts: {
+        files: 'js/**/*.js',
+        tasks: ['requirejs']
+      },
+      less: {
+        files: 'less/**/*.less',
+        tasks: ['less']
+      }
     }
 
   });
 
-  // Register the default task which does everything.
+  // Register the default task which does the full build.
   grunt.registerTask('default', 'less requirejs copy docs');
 
-  // Load contrib tasks.
+  // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadTasks('build');
-
-
-  //Register custom task for running server.
-  var connect = require('connect');
-  grunt.registerTask('server', 'Start a static web server on localhost:3000', function() {
-    grunt.log.subhead('Starting development server');
-    grunt.log.writeln('Port: 3000');
-    connect(connect.static(grunt.config.get('pasteup.dist'))).listen(3000);
-    this.async();
-  });
 
 };
