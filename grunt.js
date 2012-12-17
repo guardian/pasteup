@@ -52,18 +52,27 @@ module.exports = function(grunt) {
       less: {
         files: 'less/**/*.less',
         tasks: ['less']
-      }
+      },
+      docs: {
+        files: 'docs/**/*.html',
+        tasks: ['docs']
+      },
+      templates: {
+        files: 'build/templates/*.html',
+        tasks: ['docs']
+      },
     }
 
   });
 
   // Register the default task which does the full build.
-  grunt.registerTask('default', 'less requirejs copy docs');
+  grunt.registerTask('default', 'less requirejs copy docs server watch');
 
   // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadTasks('build');
 
 };

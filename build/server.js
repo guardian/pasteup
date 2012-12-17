@@ -6,6 +6,6 @@ module.exports = function(grunt) {
     grunt.log.subhead('Starting development server');
     grunt.log.writeln('Port: 3000');
     connect(connect.static(grunt.config.get('pasteup.dist'))).listen(3000);
-    this.async(); // Leave the server running.
+    //this.async(); // Leave the server running.
   });
 }
