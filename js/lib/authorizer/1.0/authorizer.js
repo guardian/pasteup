@@ -1,6 +1,7 @@
 /* Facebook Web Clients 1.0 */
+var guardian = window.guardian || {};
+guardian.facebook = guardian.facebook || {};
 
-ensurePackage("guardian.facebook");
 (function () {
 
     if (guardian.facebook.Authorizer) {
@@ -267,4 +268,3 @@ ensurePackage("guardian.facebook");
     }
 
 })();
-
