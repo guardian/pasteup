@@ -54,13 +54,9 @@ module.exports = function(grunt) {
         tasks: ['less']
       },
       docs: {
-        files: 'docs/**/*.html',
+        files: ['build/templates/*.html', 'docs/**/*.html'],
         tasks: ['docs']
-      },
-      templates: {
-        files: 'build/templates/*.html',
-        tasks: ['docs']
-      },
+      }
     }
 
   });

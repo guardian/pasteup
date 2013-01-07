@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
 	var async	= require('async'),
-  	fs		= require('fs');
+  		fs		= require('fs');
 
   var version = grunt.config.get("pasteup.version");
 
