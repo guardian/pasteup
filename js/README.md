@@ -50,7 +50,7 @@ if ( true ) {
  * Assignments in a declaration are on their own line. Declarations that don't have an assignment are listed together at the start of the declaration. For example:
 
 ```javascript
-var a, b c,
+var a, b, c,
     test = true,
     test2 = false;
 ```
