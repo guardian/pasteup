@@ -12,7 +12,8 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: {
-          "<%= pasteup.dist %>/js/lib/": "js/lib/**"
+          "<%= pasteup.dist %>/js/lib/": "js/lib/**",
+          "<%= pasteup.dist %>/<%= pasteup.version %>/i/": "i/**"
         }
       }
     },
