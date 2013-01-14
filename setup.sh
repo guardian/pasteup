@@ -17,3 +17,11 @@ sudo make install
 echo "Installing npm"
 echo "==============================================="
 curl -L http://npmjs.org/install.sh | sudo sh
+
+echo "Installing grunt"
+echo "==============================================="
+npm install -g grunt
+
+echo "Installing bower"
+echo "==============================================="
+npm install -g bower
