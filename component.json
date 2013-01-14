@@ -1,0 +1,12 @@
+{
+  "name": "pasteup",
+  "version": "0.0.4",
+  "main": [
+    "./js/modules/main.js",
+    "./less/pasteup.less"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twitter/bootstrap.git"
+  }
+}
