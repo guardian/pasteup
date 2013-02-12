@@ -8,5 +8,12 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/guardian/pasteup.git"
-  }
+  },
+  "ignore": [
+    "build/",
+    "docs/",
+    "node_modules/",
+    "grunt.js",
+    "setup.sh"
+  ]
 }
