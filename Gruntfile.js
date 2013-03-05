@@ -11,10 +11,10 @@ module.exports = function(grunt) {
 
     copy: {
       dist: {
-        files: {
-          "<%= pasteup.dist %>/js/lib/": "js/lib/**",
-          "<%= pasteup.dist %>/<%= pasteup.version %>/i/": "i/**"
-        }
+        files: [
+          {src: ['js/lib/**'], dest: '<%= pasteup.dist %>/'},
+          {src: ['i/**'], dest: '<%= pasteup.dist %>/<%= pasteup.version %>/'}
+        ]
       }
     },
 
@@ -63,8 +63,8 @@ module.exports = function(grunt) {
   });
 
   // Register the default task which does the full build.
-  grunt.registerTask('default', 'less requirejs copy docs server watch');
-  grunt.registerTask('build', 'less requirejs copy docs');
+  grunt.registerTask('default', ['less', 'requirejs', 'copy', 'docs', 'server', 'watch']);
+  grunt.registerTask('build', ['less', 'requirejs', 'copy', 'docs']);
 
   // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');
