@@ -90,9 +90,9 @@ function deploy(command, callback) {
 Returns the most recent version number in /version
 */
 function getVersionNumber() {
-    var f = fs.readFileSync(__dirname  + '/../versions', 'utf8');
+    var f = fs.readFileSync(__dirname  + '/../component.json', 'utf8');
     var data = JSON.parse(f.toString());
-    return data['versions'].pop();
+    return data['version'];
 }
 
 function getFarFutureExpiryDate() {
