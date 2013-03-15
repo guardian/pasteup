@@ -32,13 +32,13 @@ function doFullDeploy(bucket, callback) {
     // Sync files with far future epxires first.
     deploy(
         's3cmd sync --recursive --acl-public --guess-mime-type ' +
-        '--add-header "Expires: ' + getFarFutureExpiryDate() + '" '
+        '--add-header "Cache-Control: max-age=315360000" '
         + tmp_dir + '/js/lib/ s3://' + bucket + '/js/lib/',
         function() {
             var v = getVersionNumber();
             deploy(
                 's3cmd sync --recursive --acl-public --guess-mime-type ' +
-                '--add-header "Expires: ' + getFarFutureExpiryDate() + '" '
+                '--add-header "Cache-Control: max-age=315360000" '
                 + tmp_dir + '/' + v + '/ s3://' + bucket + '/' + v + '/',
                 function() {
 
@@ -93,12 +93,6 @@ function getVersionNumber() {
     var f = fs.readFileSync(__dirname  + '/../component.json', 'utf8');
     var data = JSON.parse(f.toString());
     return data['version'];
-}
-
-function getFarFutureExpiryDate() {
-    var d = new Date();
-    d.setYear(d.getFullYear() + 10);
-    return d.toGMTString();
 }
 
 module.exports = {
