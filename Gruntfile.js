@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     pasteup: {
-      version: grunt.file.readJSON('component.json').version,
+      version: grunt.file.readJSON('bower.json').version,
       dist: "build/deployable_artefact"
     },
 
