@@ -4,7 +4,8 @@
             "type":"aws-s3",
             "apps":[ "aws-s3" ],
             "data":{
-                "bucket":"pasteup-qa"
+                "bucket":"pasteup-qa",
+                "cacheControl":"public, max-age=3600"
             }
         }
     },
