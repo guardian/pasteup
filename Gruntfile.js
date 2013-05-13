@@ -60,7 +60,7 @@ module.exports = function(grunt) {
       build: {
         cwd: 'build',
         src: ['<%= pasteup.dist %>/**'],
-        dest: 'build/artifact.zip'
+        dest: '<%= pasteup.dist %>.zip'
       }
     },
 
