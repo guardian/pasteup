@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     pasteup: {
       version: grunt.file.readJSON('bower.json').version,
-      dist: "build/artifacts"
+      dist: "build/packages/pasteup"
     },
 
     copy: {
@@ -59,8 +59,8 @@ module.exports = function(grunt) {
     zip: {
       build: {
         cwd: 'build',
-        src: ['<%= pasteup.dist %>/**'],
-        dest: '<%= pasteup.dist %>.zip'
+        src: ['build/packages/**', 'build/deploy.json'],
+        dest: 'build/artifacts.zip'
       }
     },
 

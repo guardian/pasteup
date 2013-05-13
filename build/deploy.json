@@ -1,7 +1,8 @@
 {
     "packages":{
         "pasteup":{
-            "type":"executable-jar-webapp",
+            "type":"aws-s3",
+            "apps":[ "aws-s3" ],
             "data":{
                 "bucket":"pasteup-qa"
             }
