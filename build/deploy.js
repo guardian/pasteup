@@ -90,7 +90,7 @@ function deploy(command, callback) {
 Returns the most recent version number in /version
 */
 function getVersionNumber() {
-    var f = fs.readFileSync(__dirname  + '/../component.json', 'utf8');
+    var f = fs.readFileSync(__dirname  + '/../bower.json', 'utf8');
     var data = JSON.parse(f.toString());
     return data['version'];
 }
@@ -100,8 +100,6 @@ module.exports = {
 }
 
 if (!module.parent) {
-
-    // TODO: s3cmd has a dry run flag, wrap it so we can test deploys.
 
     program
         .option('--dry', 'dry run the deploy');
