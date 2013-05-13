@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   		fs		= require('fs');
 
   var version = grunt.config.get("pasteup.version").toString();
+  var deployableDir = grunt.config.get("pasteup.dist").toString();
 
 	function buildDocumentationPages(cb) {
 	  var template = grunt.file.read('build/templates/default.html');
@@ -11,7 +12,7 @@ module.exports = function(grunt) {
 	    var ft = grunt.file.read('docs/' + name, 'utf8');
 	    var f = grunt.template.process(ft.toString(), { data: {'pasteupVersion': version} });
 	    var output = grunt.template.process(template, { data: {'name':name, 'code':ft, 'pasteupVersion': version} });
-	    grunt.file.write('build/deployable_artefact/' + name, output);
+	    grunt.file.write(deployableDir + '/' + name, output);
 	    cb();
 	  }, function() {
 	    cb();
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
 	  }, function() {
 	    // Render modules into template.
 	    var output = grunt.template.process(template, { data: {'modules': modules, 'pasteupVersion': version} });
-	    grunt.file.write('build/deployable_artefact/modules.html', output);
+	    grunt.file.write(deployableDir + '/modules.html', output);
 	    cb();
 	  });
 	}
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
 	  async.forEach(fs.readdirSync('html/module'), function(name, cb) {
 	    var module = grunt.file.read('html/module/' + name, 'utf8');
 	    var output = grunt.template.process(template, { data: {'name': name, 'code': module, 'pasteupVersion': version} });
-	    grunt.file.write('build/deployable_artefact/modules/' + name, output);
+	    grunt.file.write(deployableDir + '/modules/' + name, output);
 	    cb();
 	  }, function() {
 	    cb();
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('docs', 'Build the documentation pages.', function() {
     grunt.log.subhead('Building documentation pages');
-    grunt.file.mkdir("build/deployable_artefact/modules");
+    grunt.file.mkdir(deployableDir+ "/modules");
 
     async.parallel([
       buildDocumentationPages,
