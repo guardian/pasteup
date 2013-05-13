@@ -9,7 +9,7 @@ var fs       = require('fs'),
     program  = require('commander'),
     wrench   = require('wrench');
 
-var tmp_dir   = 'deployable_artefact';
+var tmp_dir   = 'artifact';
 
 var dryrun = false;
 

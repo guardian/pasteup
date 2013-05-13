@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     pasteup: {
       version: grunt.file.readJSON('bower.json').version,
-      dist: "build/deployable_artefact"
+      dist: "build/artifacts"
     },
 
     copy: {
@@ -31,6 +31,17 @@ module.exports = function(grunt) {
       }
     },
 
+    sass: {
+      dist: {
+        files: {
+          "<%= pasteup.dist %>/<%= pasteup.version %>/css/responsive-layout.pasteup.min.css": "sass/layout/responsive-grid.scss"
+        },
+        options: {
+          style: 'compressed'
+        },
+      }
+    },
+
     requirejs: {
       compile: {
         options: {
@@ -42,6 +53,14 @@ module.exports = function(grunt) {
             }
           ]
         }
+      }
+    },
+
+    zip: {
+      build: {
+        cwd: 'build',
+        src: ['<%= pasteup.dist %>/**'],
+        dest: '<%= pasteup.dist %>.zip'
       }
     },
 
@@ -64,13 +83,15 @@ module.exports = function(grunt) {
 
   // Register the default task which does the full build.
   grunt.registerTask('default', ['less', 'requirejs', 'copy', 'docs', 'server', 'watch']);
-  grunt.registerTask('build', ['less', 'requirejs', 'copy', 'docs']);
+  grunt.registerTask('build', ['less', 'requirejs', 'copy', 'docs', 'zip']);
 
   // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-zip');
   grunt.loadTasks('build');
 
 };
