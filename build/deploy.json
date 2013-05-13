@@ -10,9 +10,9 @@
     },
     "recipes":{
         "default":{
-            "depends" : ["uploadStaticFiles"]
+            "depends" : ["staticFilesUpload"]
         },
-        "artifactUploadOnly":{
+        "staticFilesUpload":{
             "actionsBeforeApp": ["pasteup.uploadStaticFiles"]
         }
     }
