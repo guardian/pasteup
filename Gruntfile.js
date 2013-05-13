@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     pasteup: {
       version: grunt.file.readJSON('bower.json').version,
-      dist: "build/artifact"
+      dist: "build/artifacts"
     },
 
     copy: {
