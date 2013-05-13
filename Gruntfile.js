@@ -31,6 +31,17 @@ module.exports = function(grunt) {
       }
     },
 
+    sass: {
+      dist: {
+        files: {
+          "<%= pasteup.dist %>/<%= pasteup.version %>/css/responsive-layout.pasteup.min.css": "sass/layout/responsive-grid.scss"
+        },
+        options: {
+          style: 'compressed'
+        },
+      }
+    },
+
     requirejs: {
       compile: {
         options: {
@@ -68,6 +79,7 @@ module.exports = function(grunt) {
 
   // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
