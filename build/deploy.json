@@ -3,14 +3,16 @@
         "pasteup":{
             "type":"aws-s3",
             "data":{
+                "prefixStage": false,
+                "prefixPackage": false,
                 "bucketResource": "aws-bucket",
                 "cacheControl": [
                 { 
-                    "pattern": "^/js/lib/",
+                    "pattern": "^js/lib/",
                     "value": "max-age=315360000"
                 },
                 {
-                    "pattern": "^/\d*/",
+                    "pattern": "^\d*/",
                     "value": "max-age=315360000"
                 },
                 {
