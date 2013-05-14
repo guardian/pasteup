@@ -4,8 +4,20 @@
             "type":"aws-s3",
             "apps":[ "aws-s3" ],
             "data":{
-                "bucket":"pasteup-qa",
-                "cacheControl":"public, max-age=3600"
+                "bucketResource": "pasteup",
+                "cacheControl": [
+                { 
+                    "pattern": "^/js/lib/",
+                    "value": "max-age=315360000"
+                },
+                {
+                    "pattern": "^/\d*/",
+                    "value": "max-age=315360000"
+                },
+                {
+                    "pattern": ".*",
+                    "value": "max-age=3600"
+                }]
             }
         }
     },
