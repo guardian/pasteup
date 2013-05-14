@@ -2,7 +2,6 @@
     "packages":{
         "pasteup":{
             "type":"aws-s3",
-            "apps":[ "aws-s3" ],
             "data":{
                 "bucketResource": "aws-bucket",
                 "cacheControl": [
