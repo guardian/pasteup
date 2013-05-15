@@ -21,7 +21,8 @@ module.exports = function(grunt) {
 
 	function buildModuleLibrary(cb) {
 	  var modules = [];
-	  var template = grunt.file.read('build/templates/library.html');
+	  var template = grunt.file.read('build/templates/default.html');
+	  var moduleTemplate = grunt.file.read('build/templates/library.html');
 	  async.forEach(fs.readdirSync('html/module'), function(name, cb) {
 	    var module = grunt.file.read('html/module/' + name, 'utf8');
 	    modules.push({
@@ -31,7 +32,8 @@ module.exports = function(grunt) {
 	    cb();
 	  }, function() {
 	    // Render modules into template.
-	    var output = grunt.template.process(template, { data: {'modules': modules, 'pasteupVersion': version} });
+	    var moduleCode = grunt.template.process(moduleTemplate, { data: {'modules': modules} });
+	    var output = grunt.template.process(template, { data: {'code': moduleCode, 'pasteupVersion': version} })
 	    grunt.file.write(deployableDir + '/modules.html', output);
 	    cb();
 	  });
