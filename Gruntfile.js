@@ -82,7 +82,7 @@ module.exports = function(grunt) {
   });
 
   // Register the default task which does the full build.
-  grunt.registerTask('default', ['less', 'sass', 'requirejs', 'copy', 'docs', 'server', 'watch']);
+  grunt.registerTask('default', ['less', 'requirejs', 'copy', 'docs', 'server', 'watch']);
   grunt.registerTask('build', ['less', 'requirejs', 'copy', 'docs', 'zip']);
 
   // Load tasks.
