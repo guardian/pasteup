@@ -23,6 +23,7 @@ module.exports = function(grunt) {
         files: {
           "<%= pasteup.dist %>/<%= pasteup.version %>/css/core.pasteup.min.css": "less/core.pasteup.less",
           "<%= pasteup.dist %>/<%= pasteup.version %>/css/layout.pasteup.min.css": "less/layout.pasteup.less",
+          "<%= pasteup.dist %>/<%= pasteup.version %>/css/fonts.pasteup.min.css": "less/fonts.pasteup.less",
           "<%= pasteup.dist %>/<%= pasteup.version %>/css/pasteup.min.css": "less/pasteup.less"
         },
         options: {
