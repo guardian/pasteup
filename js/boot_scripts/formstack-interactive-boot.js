@@ -96,7 +96,7 @@ define([], function () {
                             });
                             break;
                         default:
-                           console.error('Received unknown action from iframe: ', message);
+                           console && console.error && console.error('Received unknown action from iframe: ', message);
                     }
                 }, false);
 
