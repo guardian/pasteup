@@ -18,7 +18,7 @@ define([], function () {
             }
 
             function _showElement(element) {
-                element.className = element.className.replace(/\bis-hidden\b/, "").replace(/\bhidden\b/, "");
+                element.className = element.className.replace(/\bis-hidden\b/, " ").replace(/\bhidden\b/, " ");
             }
 
             function _requireSignin() {
@@ -107,17 +107,13 @@ define([], function () {
             }
 
             if (link) {
-                if (el.className.match(/\bjs-request-user-signin\b/)) {
-                    if (_isSignedIn()) {
-                        _createIframe();
-                    } else {
-                        _requireSignin();
-                    }
+                if (el.className.match(/\bjs-request-user-signin\b/) && !_isSignedIn()) {
+                    _requireSignin();
                 } else {
                     _createIframe();
                 }
             } else {
-                console.warn('iframe-wrapper applied to element without any link');
+                console && console.warn && console.warn('iframe-wrapper applied to element without any link');
             }
         }
     };
