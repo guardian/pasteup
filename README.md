@@ -13,4 +13,5 @@ Using Pasteup
 Contributing to Pasteup
 =======================
 
+Get the dependancies with `npm install`
 
