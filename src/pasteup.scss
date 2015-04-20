@@ -1,3 +1,5 @@
+@import 'components/colours/_colours';
+
 p {
-    color: red;
+    color: colour(news-support-1);
 }
