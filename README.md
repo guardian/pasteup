@@ -8,41 +8,9 @@ Pasteup is where design meets development. It is where the Guardian’s globally
 Using Pasteup
 ========================
 
-Link to Pasteup CSS and JavaScript files directly. The current URLs can be found at http://pasteup.guim.co.uk/index.html.
-
-### Using Bower in your own build
-
-You can install Pasteup using bower.
-
-    > npm install -g bower
-    > bower install pasteup
-
-This will create a `components/pasteup` directory and you can reference Pasteup LESS and JS files directly in your own code. For example, in LESS:
-
-    @import "components/pasteup/less/layout.less";
-    @import "components/pasteup/less/zones.less";
-
-Or in you `requirejs` paths configuration:
-
-    paths: {
-    	detect: "components/pasteup/js/modules/detect",
-    	images: "components/pasteup/js/modules/images"
-    }
 
 
 Contributing to Pasteup
 =======================
 
-To build Pasteup you need the following installed:
 
-* `nodejs`
-* `npm`
-* `grunt`
-
-On linux you can run `> ./setup` to do this.
-
-With these dependencies installed try the following.
-
-`> grunt # Runs the build, starts server on http://localhost:3000 and watches files for changes.`
-
-`> grunt build # Runs the build.`

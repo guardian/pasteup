@@ -2,3 +2,4 @@ build/packages/pasteup
 build/deployable_artefact
 build/artifacts.zip
 npm-debug.log
+.DS_Store
