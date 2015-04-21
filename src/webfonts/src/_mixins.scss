@@ -1,0 +1,273 @@
+/**
+ * Machine-readable CSS font-weight.
+ *
+ * @param {String} $keyword - Human-readable keyword in $guss-font-weights
+ *
+ * @requires {variable} guss-font-weights
+ *
+ * @example scss
+ * font-weight: guss-font-weight(light);
+ *
+ * @return {Number} - CSS font-weight
+ *
+ * @group webfonts
+ */
+@function guss-font-weight($keyword) {
+    @return map-get($guss-font-weights, $keyword);
+}
+
+/**
+ * Is this font stored in `$guss-extras-directory`?
+ *
+ * @param {String} $font-family - Font to look for
+ *
+ * @requires {variable} guss-webfonts-extras
+ *
+ * @return {Bool}
+ *
+ * @group webfonts
+ */
+@function is-extra($font-family) {
+    @return contain($guss-webfonts-extras, $font-family);
+}
+
+/**
+ * Replace `$search` by `$replace` in `$string`.
+ *
+ * @author Hugo Giraudel
+ *
+ * @param {String} $string - string to update
+ * @param {String} $search - value to replace
+ * @param {String} $replace ('') - new value
+ *
+ * @return {String}
+ *
+ * @group webfonts
+ */
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @while $index {
+        $string: str-slice($string, 1, $index - 1) + $replace + str-slice($string, $index + 1);
+        $index: str-index($string, $search);
+    }
+
+    @return $string;
+}
+
+/**
+ * Remove white space in $string
+ *
+ * @requires {function} str-replace
+ *
+ * @param {String} $string - string to update
+ *
+ * @return {String}
+ *
+ * @group webfonts
+ */
+@function str-remove-white-space($string) {
+    @return str-replace($string, ' ', '');
+}
+
+/**
+ * Capitalise first letter of $string
+ *
+ * @param {String} $string - string to update
+ *
+ * @return {String}
+ *
+ * @group webfonts
+ */
+@function str-capitalise($string) {
+    $string: $string + unquote(''); // Make sure $string has a type of String
+    $first-letter: to-upper-case(str-slice($string, 0, 1));
+    $rest-of-string: str-slice($string, 2);
+
+    @return $first-letter + $rest-of-string;
+}
+
+/**
+ * Compose webfont filename
+ *
+ * @param {String} $font-family - font family
+ * @param {String} $weight - weight, member of $guss-font-weights
+ * @param {String} $style - normal | italic
+ *
+ * @requires {function} str-capitalise
+ * @requires {function} str-remove-white-space
+ *
+ * @return {String}
+ *
+ * @group webfonts
+ */
+@function compose-webfont-filename($font-family, $weight, $style) {
+    $style: if($style == normal, '', str-capitalise($style));
+    $weight: str-capitalise($weight);
+    $font: str-remove-white-space($font-family);
+
+    $filename: $font + '-' + $weight + $style;
+
+    @return $filename;
+}
+
+/**
+ * Compose webfont path
+ * "My Font" is in the MyFont/ directory
+ * "Extra" fonts are stored in `$guss-extras-directory`.
+ *
+ * @param {String} $font-family - font name
+ * @param {String} $base-path ($guss-webfonts-path) - base path of where to look for this font
+ *
+ * @requires {variable} guss-extras-directory
+ * @requires {function} str-remove-white-space
+ *
+ * @return {String} - Path to the font
+ *
+ * @group webfonts
+ */
+@function compose-webfont-path($font-family, $base-path: $guss-webfonts-path) {
+    $directory: if(is-extra($font-family), $guss-extras-directory, str-remove-white-space($font-family));
+    $path: $base-path + $directory + '/';
+
+    @return $path;
+}
+
+/**
+ * Look for `$needle` in `$haystack`.
+ *
+ * @param {List}   $haystack - List to search in
+ * @param {String} $needle - The string to look for
+ *
+ * @return {Bool}
+ *
+ * @group webfonts
+ */
+@function contain($haystack, $needle) {
+    @return not not index($haystack, $needle);
+}
+
+/**
+ * Output a @font-face declaration at root level.
+ *
+ * @param {String} $family - List to search in
+ * @param {String} $file - The filename
+ * @param {String} $base-path - Directory where the font is stored
+ * @param {Number} $weight (400) - CSS font-weight
+ * @param {String} $style (normal) - CSS font-style
+ * @param {String} $url ($guss-webfonts-base-url) - URL
+ *
+ * @requires {variable} guss-webfonts-base-url
+ *
+ * @group webfonts
+ */
+@mixin guss-at-font-face(
+    $family,
+    $filename,
+    $path,
+    $weight: 400,
+    $style: 'normal',
+    $url: $guss-webfonts-base-url
+) {
+    @at-root {
+        @font-face {
+            font-family: $family;
+            src: url('#{$url + $path + $filename}.eot'); // IE9 Compat Modes
+            src: url('#{$url + $path + $filename}.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+                 url('#{$url + $path + $filename}.woff2') format('woff2'), // Very Modern Browsers
+                 url('#{$url + $path + $filename}.woff') format('woff'), // Modern Browsers
+                 url('#{$url + $path + $filename}.ttf') format('truetype'), // Safari, Android, iOS
+                 url('#{$url + $path + $filename}.svg##{$filename}') format('svg'); // Legacy iOS
+            font-weight: $weight;
+            font-style: unquote($style);
+            font-stretch: normal;
+        }
+    }
+}
+
+/**
+ * Output the @font-face declaration for a Guss webfont.
+ *
+ * @param {Number} $font-family - ID of the font in $guss-webfonts
+ * @param {Map} $properties - weight (member of `$guss-font-weights`), style (`normal` | `italic`), version, hinting, kerning, charset
+ * @param {Map} $overrides - weight (member of `$guss-font-weights`), style (`normal` | `italic`)
+ *
+ * @requires {variable} guss-webfonts
+ * @requires {function} compose-webfont-filename
+ * @requires {function} compose-webfont-path
+ * @requires {function} guss-font-weight
+ * @requires {mixin} guss-at-font-face
+ *
+ * @group webfonts
+ */
+@mixin guss-webfonts-single-declaration(
+    $font-family,
+    $properties: (
+        weight:  'regular',
+        style:   'normal',
+        version: false,
+        hinting: false,
+        kerning: false,
+        charset: false
+    ),
+    $overrides: (weight: false, style: false)
+) {
+    $font: map-get($guss-webfonts, $font-family);
+    $font-weight-override: map-get($overrides, weight);
+    $font-style-override: map-get($overrides, style);
+
+    $version:   if(map-has-key($properties, version), map-get($properties, version), $guss-webfonts-version);
+    $hinting:   if(map-has-key($properties, hinting), map-get($properties, hinting), $guss-webfonts-hinting);
+    $kerning:   if(map-has-key($properties, kerning), map-get($properties, kerning), $guss-webfonts-kerning);
+    $charset:   if(map-has-key($properties, charset), map-get($properties, charset), $guss-webfonts-charset);
+    $base-path: if($guss-webfonts-path, $guss-webfonts-path, '#{$version}/hinting-#{$hinting}/kerning-#{$kerning}/#{$charset}/');
+
+    $font-filename: compose-webfont-filename($font-family, map-get($properties, weight), map-get($properties, style));
+    $full-path: compose-webfont-path($font-family, $base-path);
+    $font-weight: guss-font-weight(if($font-weight-override, $font-weight-override, map-get($properties, weight)));
+    $font-style: if($font-style-override, $font-style-override, map-get($properties, style));
+
+    @include guss-at-font-face(
+        $family: $font-family,
+        $filename: $font-filename,
+        $path: $full-path,
+        $weight: $font-weight,
+        $style: $font-style
+    );
+}
+
+/**
+ * Output the @font-face declaration for Guss webfonts.
+ *
+ * @param {String|List|Map} $fonts ($guss-webfonts) - Fonts to output
+ * @param {Map} $registry ($guss-webfonts) - Font registry
+ *
+ * @requires {variable} guss-webfonts
+ * @requires {mixin} guss-webfonts-single-declaration
+ * @requires {mixin} guss-webfonts
+ *
+ * @group webfonts
+ */
+@mixin guss-webfonts($fonts: $guss-webfonts, $registry: $guss-webfonts) {
+    @if type-of($fonts) == 'string' {
+        @each $properties in map-get($registry, $fonts) {
+            @include guss-webfonts-single-declaration($fonts, $properties);
+        }
+    } @else {
+        @if type-of($fonts) == 'list' {
+            @each $font in $fonts {
+                @include guss-webfonts($font);
+            }
+        } @else {
+            @each $font-family, $font-property-sets in $fonts {
+                @each $properties in $font-property-sets {
+                    @if map-has-key($properties, use-as) {
+                        @include guss-webfonts-single-declaration($font-family, $properties, map-get($properties, use-as));
+                    } @else {
+                        @include guss-webfonts-single-declaration($font-family, $properties);
+                    }
+                }
+            }
+        }
+    }
+}
