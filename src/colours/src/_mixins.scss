@@ -1,0 +1,19 @@
+/**
+ * Grid height.
+ * Compute the height of a given number of vertical grid units.
+ *
+ * @example
+ * .element {
+ *   padding-top: gs-height(2);
+ * }
+ *
+ * @param {Number} $n-rows
+ *
+ * @requires {variable} palette
+ *
+ * @return {Hex}
+ */
+ 
+@function colour($name) {
+    @return map-get($palette, $name);
+}

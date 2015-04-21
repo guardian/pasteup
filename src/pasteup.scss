@@ -1,3 +1,9 @@
 // Components
 @import 'colours/_';
 @import 'grid/_';
+
+// Test Zone
+
+p {
+    color: colour(news-support-1);
+}

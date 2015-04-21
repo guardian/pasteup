@@ -1,0 +1,44 @@
+ /**
+ * Gutter width.
+ *
+ * @type Number
+ *
+ * @group grid-system
+ */
+$gs-gutter: 20px !default;
+
+/**
+ * Baseline size.
+ *
+ * @type Number
+ *
+ * @group grid-system
+ */
+$gs-baseline: 12px !default;
+
+/**
+ * Column width.
+ *
+ * @type Number
+ *
+ * @group grid-system
+ */
+$gs-column-width: 60px !default;
+
+/**
+ * Row height.
+ *
+ * @type Number
+ *
+ * @group grid-system
+ */
+$gs-row-height: 36px !default;
+
+/**
+ * Number of columns.
+ *
+ * @type Number
+ *
+ * @group grid-system
+ */
+$gs-max-columns: 16 !default;
