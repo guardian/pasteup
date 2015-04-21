@@ -1,0 +1,97 @@
+/**
+ * Row utility class.
+ *
+ * @type String
+ *
+ * @group layout
+ */
+$guss-row-utility-class: '.l-row' !default;
+
+/**
+ * When set to false, output a simpler version with a static width.
+ *
+ * @link http://caniuse.com/#feat=flexbox Flexbox support table
+ *
+ * @type Bool
+ *
+ * @group layout
+ */
+$browser-supports-flexbox: true !default;
+
+/**
+ * Classes to manage feature-detection support for flex. Override if your
+ * detection uses a different convention.
+ *
+ * @link http://modernizr.com/docs/#flexbox Modernizr detection for flex
+ *
+ * @type String
+ *
+ * @group layout
+ */
+$has-flex: has-flex !default;
+$has-no-flex: has-no-flex !default;
+
+/**
+ * Static width for older browsers.
+ *
+ * @type Number
+ *
+ * @group layout
+ */
+$guss-row-fallback-width: 940px !default;
+
+/**
+ * Minimum column width.
+ * 
+ * @type Number
+ *
+ * @group layout
+ */
+$guss-column-min-width: 300px !default;
+
+/**
+ * Column gutter.
+ * 
+ * @type Number
+ *
+ * @group layout
+ */
+$guss-column-gap: 20px !default;
+
+/**
+ * Column utility class.
+ * 
+ * @type String
+ *
+ * @group layout
+ */
+$guss-columns-utility-class: '.l-columns';
+
+/**
+ * When set to false, output a simpler version with a static width.
+ *
+ * @link http://caniuse.com/#feat=multicolumn Column support table
+ * 
+ * @type Bool
+ *
+ * @group layout
+ */
+$browser-supports-columns: true !default;
+
+/**
+ * Fallback width when CSS3 columns support is disabled.
+ * 
+ * @type Number
+ *
+ * @group layout
+ */
+$guss-columns-fallback-width: 940px !default;
+
+/**
+ * Number of columns in the non-responsive version.
+ * 
+ * @type Number
+ *
+ * @group layout
+ */
+$guss-columns-fallback-columns: 3 !default;

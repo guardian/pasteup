@@ -1,0 +1,389 @@
+/**
+ * A row is an ensemble of 2, 3 or 4 items that are originally stacked
+ * vertically on mobile and flow horizontally on higher breakpoints.
+ *
+ * @param {String} $base-class
+ *
+ * @requires {variable} browser-supports-flexbox
+ * @requires {variable} guss-row-fallback-width
+ * @requires {mixin} mq
+ * @requires {mixin} flex-grow
+ * @requires {mixin} flex-basis
+ *
+ * @link http://sassmeister.com/gist/9b6033675b0f01de21f0 Examples on Sassmeister
+ *
+ * @example scss
+ *  // Sass Mixin
+ *  @include guss-row('.classname');
+ *
+ * @example scss
+ *  // Utility class set as `$guss-row-utility-class`
+ *  @include guss-row-utility;
+ *
+ * @example markup
+ * <div class="l-row l-row--items-<number of items contained>">
+ *     <div class="l-row__item [l-row__item--boost-2]"></div>
+ *     <div class="l-row__item"></div>
+ *     <div class="l-row__item"></div>
+ *     <div class="l-row__item [l-row__item--boost-1]"></div>
+ * </div>
+ * <!-- --boost-n modifiers are used to add visual importance to an item.
+ * Note that this applies only to browsers that support flexbox. -->
+ *
+ * @group layout
+ */
+@mixin guss-row($base-class, $detect: false) {
+    @if ($detect) {
+        .#{$has-flex} {
+            @include flex-row($base-class);
+        }
+        .#{$has-no-flex} {
+            @include no-flex-row($base-class);
+        }
+    } @else {
+        @if ($browser-supports-flexbox) {
+            @include flex-row($base-class);
+        } @else {
+            @include no-flex-row($base-class);
+        }
+    }
+}
+
+/**
+ * Rows for flex browsers.
+ *
+ * @requires {variable} base-class
+ *
+ * @group layout
+ */
+
+@mixin flex-row($base-class) {
+    @include mq(tablet) {
+        #{$base-class} {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-direction: normal;
+            -moz-box-direction: normal;
+            -webkit-box-orient: horizontal;
+            -moz-box-orient: horizontal;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-align-content: stretch;
+            -ms-flex-line-pack: stretch;
+            align-content: stretch;
+            -webkit-box-align: stretch;
+            -moz-box-align: stretch;
+            -webkit-align-items: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            width: 100%; // Prevent consecutive rows from flexing together in FF
+        }
+        #{$base-class}--reverse {
+            -webkit-flex-direction: row-reverse;
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+        }
+        #{$base-class}__item {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            @include flex-grow(1);
+            @include flex-basis(0);
+            width: 0; // Prevent items to grow out of their parent in FF
+        }
+        #{$base-class}__item--boost-1 { @include flex-grow(1.5); }
+        #{$base-class}__item--boost-2 { @include flex-grow(2); }
+    }
+
+    // Mobile layout variation:
+    // - Items are aligned horizontally, 50% each
+    // - Should degrade into a vertical list
+    //
+    // Browser support:
+    // - iOS 7+ (-webkit- prefix required)
+    // - Chrome
+    // - IE 11+
+    // - Firefox 28+ (for flex-wrap support)
+    @include mq($until: tablet) {
+        #{$base-class}--layout-m {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+            // Items fill half the width of their container
+            #{$base-class}__item {
+                -webkit-flex-basis: 50%;
+                flex-basis: 50%;
+            }
+
+            // Break the flow on mobile:
+            // Item will fill the whole width of its container
+            #{$base-class}__item--break-m {
+                -webkit-flex: 1 100%;
+                flex: 1 100%;
+            }
+        }
+    }
+}
+
+/**
+ * Rows for non-flex browsers.
+ *
+ * @requires {variable} base-class
+ * @requires {variable} guss-row-fallback-width
+ *
+ * @group layout
+ */
+
+@mixin no-flex-row($base-class) {
+    #{$base-class} {
+        width: $guss-row-fallback-width;
+
+        // Micro clearfix (http://nicolasgallagher.com/micro-clearfix-hack/)
+        zoom: 1;
+
+        &:after,
+        &:before {
+            content: "";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+
+    #{$base-class}__item {
+        float: left;
+    }
+
+    @each $i in 2, 3, 4 {
+        #{$base-class}--items-#{$i} #{$base-class}__item {
+            width: $guss-row-fallback-width / $i;
+        }
+    }
+}
+
+/**
+ * Row utility.
+ *
+ * @requires {variable} guss-row-utility-class
+ * @requires {mixin} guss-row
+ *
+ * @group layout
+ */
+@mixin guss-row-utility($detect: false) {
+    @include guss-row($guss-row-utility-class, $detect: $detect);
+}
+
+/**
+ * Width of fallback column item.
+ *
+ * @param {Number} $container-width
+ * @param {Number} $gap-between-columns
+ * @param {Number} $number-of-columns
+ *
+ * @return {Number}
+ *
+ * @group layout
+ */
+@function width-of-fallback-column-item($container-width, $gap-between-columns, $number-of-columns) {
+    @return ($container-width - $gap-between-columns * ($number-of-columns - 1)) / $number-of-columns;
+}
+
+/**
+ * A "columns pattern" fits as many "$guss-column-min-width"-wide columns
+ * in any type of context: full-width container, sidebar…
+ *
+ * @param {String} $base-class
+ * @param {Number} $column-min-width         ($guss-column-min-width)
+ * @param {Number} $column-gap               ($guss-column-gap)
+ * @param {Number} $columns-fallback-width   ($guss-columns-fallback-width)
+ * @param {Number} $columns-fallback-columns ($guss-columns-fallback-columns)
+ * @param {Bool}   $css3-columns-support     ($browser-supports-columns)
+ *
+ * @requires {variable} guss-column-min-width
+ * @requires {variable} guss-column-gap
+ * @requires {variable} guss-columns-fallback-width
+ * @requires {variable} guss-columns-fallback-columns
+ * @requires {variable} browser-supports-columns
+ * @requires {function} width-of-fallback-column-item
+ * @requires {function} rem
+ * @requires {mixin} mq
+ *
+ * @link http://sassmeister.com/gist/5c09ed0242085ba8d705 Examples on Sassmeister
+ * 
+ * @example
+ *  // Usage 1: Sass mixin
+ *  @include guss-columns('.classname');
+ *
+ *  // Usage 2: utility class set as `$guss-columns-utility-class`
+ *  @include guss-columns-utility;
+ *
+ * @example markup
+ * <div class="l-columns">
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ *     <div class="l-columns__item"></div>
+ * </div>
+ *
+ * @group layout
+ */
+@mixin guss-columns($base-class,
+                    $column-min-width: $guss-column-min-width,
+                    $column-gap: $guss-column-gap,
+                    $columns-fallback-width: $guss-columns-fallback-width,
+                    $columns-fallback-columns: $guss-columns-fallback-columns,
+                    $css3-columns-support: $browser-supports-columns) {
+    @if $css3-columns-support {
+        #{$base-class} {
+            @if function-exists(rem) {
+                -webkit-column-width: rem($column-min-width);
+                -webkit-column-gap: rem($column-gap);
+
+                -moz-column-width: rem($column-min-width);
+                -moz-column-gap: rem($column-gap);
+
+                column-width: rem($column-min-width);
+                column-gap: rem($column-gap);
+            }
+            @else {
+                -webkit-column-width: $column-min-width;
+                -webkit-column-gap: $column-gap;
+
+                -moz-column-width: $column-min-width;
+                -moz-column-gap: $column-gap;
+
+                column-width: $column-min-width;
+                column-gap: $column-gap;
+            }
+
+            -webkit-column-fill: balance;
+            -moz-column-fill: balance;
+            column-fill: balance;
+        }
+        #{$base-class}__item {
+            // Fix a bug in IE where hovering items would change
+            // the column container's height
+            height: 100%;
+
+            // `column-break-inside: avoid;` does not work in all browsers
+            // so we use `display: inline-block;` instead
+            // -webkit-column-break-inside: avoid;
+            //    -moz-column-break-inside: avoid;
+            //         column-break-inside: avoid;
+            display: inline-block;
+            width: 100%;
+        }
+    }
+    @if not $css3-columns-support {
+        #{$base-class} {
+            margin-left: $column-gap / 2 * -1;
+            margin-right: $column-gap / 2 * -1;
+
+            // Micro clearfix (http://nicolasgallagher.com/micro-clearfix-hack/)
+            zoom: 1;
+
+            &:after,
+            &:before {
+                content: '';
+                display: table;
+            }
+            &:after {
+                clear: both;
+            }
+        }
+        #{$base-class}__item {
+            position: relative;
+            display: block;
+            margin-left: $column-gap / 2;
+            margin-right: $column-gap / 2;
+
+            @include mq(tablet) {
+                float: left;
+            }
+
+            @if type-of($columns-fallback-width) == map {
+                // Author has specified various fallbacks depending on the breakpoint.
+                // Note: breakpoints refer to names given to screen sizes in sass-mq
+                // 
+                // @include guss-columns(
+                //     (…)
+                //     $columns-fallback-width: (
+                //         tablet: gs-span(9),
+                //         desktop: gs-span(12)
+                //     ),
+                //     $columns-fallback-columns: (
+                //         tablet: 2,
+                //         desktop: 3
+                //     )
+                // );
+                @each $breakpoint, $fallback-width in $columns-fallback-width {
+
+                    $number-of-fallback-columns: if(type-of($columns-fallback-columns) == map, map-get($columns-fallback-columns, $breakpoint), $columns-fallback-columns);
+
+                    @include mq($breakpoint) {
+                        width: width-of-fallback-column-item(
+                                    $container-width: $fallback-width,
+                                    $gap-between-columns: $column-gap,
+                                    $number-of-columns: $number-of-fallback-columns
+                                );
+
+                        &:nth-child(n) {
+                            clear: none;
+                        }
+                        &:nth-child(#{$number-of-fallback-columns}n+1) {
+                            clear: both;
+                        }
+                    }
+
+                }
+            } @else {
+                // Author specified a single fallback width, that applies to all breakpoints
+                // 
+                // @include guss-columns(
+                //     (…)
+                //     $columns-fallback-width: 290px,
+                //     $columns-fallback-columns: 3
+                // );
+                width: width-of-fallback-column-item(
+                            $container-width: $columns-fallback-width,
+                            $gap-between-columns: $column-gap,
+                            $number-of-columns: $columns-fallback-columns
+                        );
+
+                &:nth-child(n) {
+                    clear: none;
+                }
+                &:nth-child(#{$columns-fallback-columns}n+1) {
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Column utility.
+ *
+ * @requires {mixin} guss-columns
+ * @requires {variable} guss-columns-utility-class
+ *
+ * @group layout
+ */
+@mixin guss-columns-utility {
+    @include guss-columns($guss-columns-utility-class);
+}
