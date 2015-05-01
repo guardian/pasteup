@@ -15,5 +15,8 @@
     "node_modules/",
     "grunt.js",
     "setup.sh"
-  ]
+  ],
+  "dependencies": {
+    "sass-mq": "~3.1.2"
+  }
 }

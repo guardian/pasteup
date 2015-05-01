@@ -13,5 +13,5 @@ Using Pasteup
 Contributing to Pasteup
 =======================
 
-Get the dependancies with `npm install`
+Get the dependancies with `npm install` and `bower install`
 
