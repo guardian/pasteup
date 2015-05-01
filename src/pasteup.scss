@@ -7,8 +7,68 @@
 @import 'layout/_';
 @import 'typography/_';
 @import 'webfonts/_';
+@import 'buttons/_';
 
-// Test Zone
-p {
-    color: colour(news-support-1);
+// Future System
+@function remove($list, $value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append($result, remove(nth($list, $i), $value, $recursive), comma);
+    }
+
+    @else if nth($list, $i) != $value {
+      $result: append($result, nth($list, $i), comma);
+    }
+  }
+
+  @return $result;
 }
+
+// Register the components
+$pasteup-registry: (
+    colours,
+    grid,
+    layout,
+    typography,
+    webfonts,
+    buttons
+);
+
+// Import functions, mixins, variables
+@each $component in $pasteup-registry {
+    // @import '#{$component}/_';
+}
+
+// Mixin to allow users to opt into css producing parts of the library
+@mixin pasteup-styles(
+    $for: false,
+    $except: false
+) {
+    $components: ();
+
+    @if $for {
+        @each $component in $for {
+            $components: append($components, $component, comma);
+        }
+    } @else {
+        $components: $pasteup-registry;
+    }
+
+    @if $except {
+        @each $component in $except {
+            $components: remove($components, $component);
+        }
+    }
+
+    @debug $components;
+    
+    @each $component in $components {
+//         @include styles-for-#{$component}();
+    }
+}
+
+@include pasteup-styles();
+@include pasteup-styles($for: buttons webfonts);
+@include pasteup-styles($except: webfonts);

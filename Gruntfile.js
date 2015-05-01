@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         },
         watch: {
             dev: {
-                files: ['src/pasteup.scss'],
+                files: ['src/**/*.scss'],
                 tasks: ['sass:dev']
             }
         }
