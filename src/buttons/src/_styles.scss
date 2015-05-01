@@ -1,0 +1,184 @@
+.button {
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 1000px; /* [1] */
+    border-radius: 1000px;         /* [1] */
+    border-width: 1px;
+    border-style: solid;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    @include fs-textSans(2);
+    @include button-height($base-size * 5);
+    @include button-colour(
+        colour(news-main-2),
+        #ffffff,
+        colour(news-main-1)
+    );
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    .i-left {
+        margin-right: 0;
+        float: left;
+    }
+    .i-right {
+        margin-left: 0;
+        float: right;
+    }
+}
+.button--primary {
+    @include button-colour(
+        colour(guardian-brand),
+        #ffffff,
+        darken(colour(guardian-brand), 10%)
+    );
+}
+.button--secondary {
+    @include button-colour(
+        colour(neutral-7),
+        colour(neutral-1),
+        darken(colour(neutral-7), 10%)
+    );
+}
+.button--tertiary {
+    @include button-colour(
+        transparent,
+        colour(neutral-1),
+        transparent,
+        darken(colour(neutral-3), 10%),
+        colour(neutral-4)
+    );
+}
+.button--tone-media {
+    @include button-colour(
+        colour(multimedia-support-4),
+        #ffffff,
+        colour(neutral-2)
+    );
+}
+.button--tone-media-variant {
+    @include button-colour(
+        colour(multimedia-main-1),
+        #ffffff,
+        colour(multimedia-main-1),
+        colour(neutral-3),
+        colour(neutral-2)
+    );
+}
+.button--tone-news {
+    @include button-colour(
+        colour(neutral-7),
+        colour(news-main-1),
+        darken(colour(neutral-7), 10%)
+    );
+}
+.button--tone-news-variant {
+    @include button-colour(
+        #ffffff,
+        colour(news-main-1),
+        #ffffff,
+        darken(colour(neutral-3), 10%),
+        colour(neutral-4)
+    );
+}
+.button--tone-feature {
+    @include button-colour(
+        colour(neutral-7),
+        colour(features-support-1),
+        darken(colour(neutral-7), 10%)
+    );
+}
+.button--tone-feature-variant {
+    @include button-colour(
+        #ffffff,
+        colour(features-support-1),
+        #ffffff,
+        darken(colour(neutral-3), 10%),
+        colour(neutral-4)
+    );
+}
+.button--tone-comment {
+    @include button-colour(
+        colour(neutral-7),
+        colour(comment-main-1),
+        darken(colour(neutral-7), 10%)
+    );
+}
+.button--tone-comment-variant {
+    @include button-colour(
+        #ffffff,
+        colour(comment-main-1),
+        #ffffff,
+        darken(colour(neutral-3), 10%),
+        colour(neutral-4)
+    );
+}
+.button--tone-live {
+    @include button-colour(
+        colour(neutral-6),
+        colour(neutral-1),
+        darken(colour(neutral-6), 10%)
+    );
+}
+.button--tone-live-variant {
+    @include button-colour(
+        colour(neutral-8),
+        colour(neutral-1),
+        colour(neutral-8),
+        darken(colour(neutral-3), 10%),
+        colour(neutral-3)
+    );
+}
+.button--xlarge {
+    @include button-height(44px);
+}
+.button--large {
+    @include button-height($base-size * 6);
+
+    @include mq($from: desktop) {
+        line-height: ($base-size * 6) + 2;
+    }
+}
+.button--medium {
+    @include button-height($base-size * 5);
+
+    @include mq($from: desktop) {
+        line-height: ($base-size * 5) + 2px;
+    }
+}
+.button--small {
+    @include button-height($base-size * 4);
+    @include fs-textSans(1);
+    line-height: $gs-baseline * 2 - 2px;
+    font-weight: bold;
+}
+.button--xsmall {
+    @include button-height($base-size * 3);
+    @include fs-textSans(1);
+    line-height: ($base-size * 3) - 2px;
+    font-weight: bold;
+}
+
+.button--show-more {
+    position: relative;
+    padding-left: $show-more-icon-size + $show-more-icon-spacing * 2;
+
+    .i {
+        width: $show-more-icon-size;
+        height: $show-more-icon-size;
+        vertical-align: middle;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: $show-more-icon-spacing;
+    }
+}
