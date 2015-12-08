@@ -1,6 +1,6 @@
 {
   "name": "pasteup",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": [
     "./js/modules/main.js",
     "./less/pasteup.less"
