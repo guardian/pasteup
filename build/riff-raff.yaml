@@ -7,7 +7,6 @@ deployments:
     type: aws-s3
     parameters:
       bucketResource: aws-bucket
-      cacheControl: "public, max-age=300"
       prefixPackage: false
       prefixStage: false
       cacheControl:
