@@ -1,0 +1,18 @@
+regions:
+- eu-west-1
+stacks:
+- pasteup
+deployments:
+  pasteup:
+    type: aws-s3
+    parameters:
+      bucketResource: aws-bucket
+      prefixPackage: false
+      prefixStage: false
+      cacheControl:
+        - pattern: "^js/lib/"
+          value: "max-age=315360000"
+        - pattern: "^\\d*\\.\\d*\\.\\d*/"
+          value: "max-age=315360000"
+        - pattern: ".*"
+          value: "max-age=3600"
