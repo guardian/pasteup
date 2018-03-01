@@ -1,5 +1,5 @@
 {
-  "name": "$package_name$",
+  "name": "pasteup",
   "projectName":"Pasteup:pasteup",
   "riffraffFile":"build/riff-raff.yaml",
   "buildDir": "build/packages/",
