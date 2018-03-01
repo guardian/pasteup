@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     pasteup: {
       version: grunt.file.readJSON('bower.json').version,
-      dist: "build/packages/pasteup"
+      dist: "pasteup"
     },
 
     copy: {
@@ -57,14 +57,6 @@ module.exports = function(grunt) {
       }
     },
 
-    zip: {
-      build: {
-        cwd: 'build',
-        src: ['build/packages/**', 'build/deploy.json'],
-        dest: 'build/artifacts.zip'
-      }
-    },
-
     watch: {
       scripts: {
         files: 'js/**/*.js',
@@ -84,7 +76,7 @@ module.exports = function(grunt) {
 
   // Register the default task which does the full build.
   grunt.registerTask('default', ['less', 'requirejs', 'copy', 'docs', 'server', 'watch']);
-  grunt.registerTask('build', ['less', 'requirejs', 'copy', 'docs', 'zip']);
+  grunt.registerTask('build', ['less', 'requirejs', 'copy:dist', 'docs']);
 
   // Load tasks.
   grunt.loadNpmTasks('grunt-contrib-less');

@@ -1,0 +1,15 @@
+{
+  "name": "$package_name$",
+  "projectName":"Pasteup:pasteup",
+  "riffraffFile":"build/riff-raff.yaml",
+  "buildDir": "build/packages/",
+  "cloudformation": false,
+  "version": "0.0.1",
+  "dependencies": {
+    "node-riffraff-artefact": "^2.0.1"
+  },
+  "scripts": {
+    "riffraff-artefact": "./node_modules/.bin/riffraff-artefact",
+    "riffraff": "VERBOSE=true ARTEFACT_PATH=$PWD npm run riffraff-artefact"
+  }
+}
