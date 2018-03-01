@@ -2,7 +2,7 @@
   "name": "pasteup",
   "projectName":"Pasteup:pasteup",
   "riffraffFile":"build/riff-raff.yaml",
-  "buildDir": "build/packages/",
+  "buildDir": "pasteup/",
   "cloudformation": false,
   "version": "0.0.1",
   "dependencies": {
