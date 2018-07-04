@@ -6,9 +6,10 @@ deployments:
   pasteup:
     type: aws-s3
     parameters:
-      bucketResource: aws-bucket
+      bucket: pasteup-static
       prefixPackage: false
       prefixStage: false
+      prefixStack: false
       cacheControl:
         - pattern: "^js/lib/"
           value: "max-age=315360000"
