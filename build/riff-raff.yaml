@@ -1,7 +1,7 @@
 regions:
 - eu-west-1
 stacks:
-- pasteup
+- frontend
 deployments:
   pasteup:
     type: aws-s3
