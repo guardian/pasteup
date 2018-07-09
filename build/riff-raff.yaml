@@ -8,7 +8,7 @@ deployments:
     parameters:
       bucket: pasteup-static
       prefixPackage: false
-      prefixStage: false
+      prefixStage: true
       prefixStack: false
       cacheControl:
         - pattern: "^js/lib/"
