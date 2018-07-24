@@ -1,3 +1,5 @@
+### This project is now deprecated. Future development on the Guardian's design language can be found in [dotcom-rendering](https://github.com/guardian/dotcom-rendering/tree/master/packages/pasteup)
+
 Introduction
 ============
 
